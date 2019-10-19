@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: teach-plan
+  #jackson统一日期格式化配置
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+  mvc:
+    static-path-pattern: /static/**
+    #指定上传文件的路径，让它可以被访问到
+  resources:
+    #主要为了指定映射的路径，里面的img存放图片
+    static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:${filtuploadpath}
+
+  #数据库和jpa配置
+  datasource:
+    url: jdbc:mysql://localhost:3306/teachplan_db?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8 #&createDatabaseIfNotExist=true
+    username: root
+    password: root
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+
+  #设置文件上传大小限制
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 150MB
+
+filtuploadpath: E:/tmp
+#filtuploadpath: /home/data/tmp
+
+
+
+#服务端口
+server:
+  port: 8080
