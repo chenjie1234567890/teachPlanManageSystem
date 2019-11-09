@@ -1,5 +1,8 @@
 package com.sixgod.teachPlan.entity;
 
+import lombok.Builder;
+import lombok.Data;
+
 import javax.persistence.*;
 
 /**
@@ -7,7 +10,9 @@ import javax.persistence.*;
  * @author chenjie
  * @date 2019/10/18 17:09
  */
+@Data
 @Entity
+@Builder
 public class User {
     final public static Integer ROLE_STUDENT = 0;
     final public static Integer ROLE_TEACHER = 1;
@@ -33,28 +38,4 @@ public class User {
      * 角色
      */
     private Integer role = ROLE_STUDENT;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }

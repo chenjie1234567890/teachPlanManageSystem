@@ -1,0 +1,10 @@
+.login-background {
+  background-image: url('../../../assets/img/loginBG.png');
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  position: fixed;
+  overflow: hidden;
+  background-repeat: no-repeat;
+}
+

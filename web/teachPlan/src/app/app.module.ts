@@ -1,32 +1,35 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { IconsProviderModule } from './icons-provider.module';
-import { NgZorroAntdModule, NZ_I18N, en_US } from 'ng-zorro-antd';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {NZ_I18N, zh_CN} from 'ng-zorro-antd';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
+import {CoreModule} from './pages/core/core.module';
+import {RouterModule} from '@angular/router';
+import {SetupModule} from './pages/setup/setup.module';
+import {MyInterceptor} from './app.myInterceptor';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {AdminModule} from './pages/admin/admin.module';
+import {SharedModule} from './pages/shared/shared.module';
 
 registerLocaleData(en);
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
-    BrowserModule,
+    RouterModule,
+    CoreModule,
+    SetupModule,
+    AdminModule,
+    SharedModule,
     AppRoutingModule,
-    IconsProviderModule,
-    NgZorroAntdModule,
-    FormsModule,
-    HttpClientModule,
-    BrowserAnimationsModule
   ],
-  providers: [{ provide: NZ_I18N, useValue: en_US }],
+  providers: [
+    { provide: NZ_I18N, useValue: zh_CN },
+    { provide: HTTP_INTERCEPTORS, useClass: MyInterceptor, multi: true },
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

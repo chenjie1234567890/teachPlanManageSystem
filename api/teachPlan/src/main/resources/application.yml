@@ -1,6 +1,15 @@
 spring:
   application:
     name: teach-plan
+    redis:
+      host: 127.0.0.1
+      port: 6379
+    data:
+      redis:
+        repositories:
+          enabled: false
+    session:
+      store-type: redis
   #jackson统一日期格式化配置
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
