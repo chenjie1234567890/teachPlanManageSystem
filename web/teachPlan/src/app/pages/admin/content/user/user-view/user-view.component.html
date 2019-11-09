@@ -1,0 +1,58 @@
+<!--上方搜索框-->
+<div nz-row>
+  <div nz-col [nzSpan]="4">
+    <nz-input-group nzSearch>
+      <input type="text" nz-input placeholder="用户姓名" #search>
+    </nz-input-group>
+  </div>
+  <div nz-col [nzSpan]="4" [nzOffset]="1">
+    <button nz-button (click)="searchData(search.value)">
+      <i nz-icon nzType="search" nzTheme="outline"></i>
+      查询
+    </button>
+  </div>
+  <div nz-col [nzSpan]="4" [nzOffset]="2">
+    <a nz-button nzType="primary" routerLink="/admin/user/add">
+      <i nz-icon nzType="plus" nzTheme="outline"></i>新增</a>
+  </div>
+</div>
+<!--分割线-->
+<nz-divider></nz-divider>
+<!--下方表格-->
+<div nz-row>
+  <div nz-col [nzSpan]="24">
+    <nz-table
+      [nzData]="userList"
+      nzBordered
+      nzShowSizeChanger
+      [nzLoading]="loading"
+      [nzTotal]="userList.length"
+      (nzPageIndexChange)="getAllByPage()"
+      (nzPageSizeChange)="getAllByPage()"
+    >
+      <thead>
+      <tr>
+        <th>id</th>
+        <th>姓名</th>
+        <th>密码</th>
+        <th>身份</th>
+        <th>操作</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let user of userList">
+        <td>{{user.id}}</td>
+        <td>{{user.userName}}</td>
+        <td>{{user.password}}</td>
+        <td>{{user.role}}</td>
+        <td>
+          <a nz-button nzGhost nzType="primary" routerLink="/admin/user/edit/{{user.id}}">
+            <i nz-icon nzType="edit" nzTheme="twotone"></i>
+            编辑
+          </a>
+        </td>
+      </tr>
+      </tbody>
+    </nz-table>
+  </div>
+</div>
