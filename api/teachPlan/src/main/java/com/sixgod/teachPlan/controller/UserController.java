@@ -7,6 +7,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.security.auth.message.AuthException;
+import javax.servlet.http.HttpServletResponse;
+
 /** 用户控制器
  * @author chenjie
  * @date 2019/10/18 17:14
@@ -19,9 +22,9 @@ public class UserController {
     UserService userService;
 
     @PostMapping("/register")
-    public ResInfo<User> register(@RequestBody User user) {
+    public void register(@RequestBody User user) throws AuthException {
         log.debug(user.getUserName() + "注册");
-        return userService.register(user);
+        userService.register(user);
     }
 
     /**
@@ -32,9 +35,12 @@ public class UserController {
     * @Date 2019/10/23
     */
     @PostMapping("/login")
-    public ResInfo<User> login(@RequestBody User user) {
-        log.debug(user.getUserName() + "登录");
-        return userService.login(user);
+    public void login(@RequestBody User user, HttpServletResponse response) {
+        if (userService.login(user)) {
+            log.debug(user.getUserName() + "登录");
+        } else {
+            response.setStatus(401);
+        }
     }
 
     /**
@@ -44,8 +50,8 @@ public class UserController {
     * @Date 2019/10/23
     */
     @PostMapping("/logout")
-    public ResInfo logout() {
-        return userService.logout();
+    public void logout() throws AuthException {
+        userService.logout();
     }
 
     /**

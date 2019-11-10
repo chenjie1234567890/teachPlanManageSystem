@@ -1,7 +1,9 @@
 package com.sixgod.teachPlan.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
@@ -13,6 +15,8 @@ import javax.persistence.*;
 @Data
 @Entity
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
     final public static Integer ROLE_STUDENT = 0;
     final public static Integer ROLE_TEACHER = 1;

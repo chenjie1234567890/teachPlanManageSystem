@@ -17,14 +17,14 @@ public interface UserService {
     * @Author chenjie
     * @Date 2019/10/18
     */
-    ResInfo<User> register(User user);
+    void register(User user) throws AuthException;
 
     /**
      * 登陆
      * @param user
      * @return ResInfo
      */
-    ResInfo<User> login(User user);
+    Boolean login(User user);
 
     /**
     * @Description 获取一个未持久化的用户
@@ -47,7 +47,7 @@ public interface UserService {
      * 注销
      * @return
      */
-    ResInfo logout();
+    void logout() throws AuthException;
 
     /**
      * 获取当前登录用户

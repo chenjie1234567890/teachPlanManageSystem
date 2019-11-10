@@ -24,32 +24,28 @@ public class UserServiceImpl implements UserService {
     private HttpSession httpSession;
 
     @Override
-    public ResInfo<User> register(User user) {
-        ResInfo<User> userResInfo = new ResInfo<>();
-        if(!userRepository.existsByUserName(user.getUserName())) {
-            userResInfo.setData(userRepository.save(user));
+    public void register(User user) throws AuthException {
+        if(userRepository.existsByUserName(user.getUserName())) {
+            throw new AuthException("注册失败,用户名已存在");
         } else {
-            userResInfo.setStatus(false);
-            userResInfo.setMessage("注册失败,用户名已存在");
+            userRepository.save(user);
         }
-        return userResInfo;
     }
 
     @Override
-    public ResInfo<User> login(User user) {
-        ResInfo<User> userResInfo = new ResInfo<>();
-        User existsUser = userRepository.findByUserName(user.getUserName());
+    public Boolean login(User user) {
+        String s = user.getUserName();
+        User existsUser = userRepository.findByUserName(s);
         // 当此用户存在并且密码正确
         if (existsUser != null && existsUser.getPassword().equals(user.getPassword())) {
-            userResInfo.setData(user);
             log.debug("记录当前用户id");
             httpSession.setAttribute(UserService.USER_ID, existsUser.getId());
             user.setId(existsUser.getId());
+            return true;
         } else {
-            userResInfo.setStatus(false);
-            userResInfo.setMessage("用户名或密码不正确");
+            log.debug("用户名或密码不正确");
+            return false;
         }
-        return userResInfo;
     }
 
     @Override
@@ -68,17 +64,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ResInfo logout() {
-        ResInfo resInfo = new ResInfo<>();
+    public void logout() throws AuthException {
         Long userId = (Long) httpSession.getAttribute(UserService.USER_ID);
         if (userId == null) {
-            resInfo.setStatus(false);
-            resInfo.setMessage("请先登录！");
-            return resInfo;
+            throw new AuthException("\"请先登录！\"");
         } else {
             log.debug("清空session");
             httpSession.removeAttribute(UserService.USER_ID);
-            return resInfo;
         }
     }
 
