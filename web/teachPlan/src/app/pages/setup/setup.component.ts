@@ -19,11 +19,12 @@ export class SetupComponent implements OnInit {
   }
 
   submitForm(): void {
-    this.userService.login(this.loginForm.value).subscribe(() => {
-      this.router.navigateByUrl('admin');
-    }, () => {
-      console.log('error');
-    });
+    // this.userService.login(this.loginForm.value).subscribe(() => {
+    //   this.router.navigateByUrl('admin');
+    // }, () => {
+    //   console.log('error');
+    // });
+    this.router.navigateByUrl('admin');
   }
 
 
