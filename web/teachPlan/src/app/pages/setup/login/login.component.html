@@ -1,0 +1,30 @@
+<div class="login-background">
+  <div nz-row nzType="flex" nzJustify="center" nzAlign="top">
+    <div nz-col nzXs="24" nzSm="24" nzMd="4" nzLg="4" nzXl="5" class="height-100">
+      <nz-card nzTitle="您好用户，请登录">
+        <form nzl nz-form [nzLayout]="'Horizontal'" [formGroup] = "loginForm" (ngSubmit) = "submitForm()">
+          <nz-form-item>
+            <nz-form-control>
+              <nz-input-group nzPrefixIcon="user">
+                <input nz-input placeholder="用户名" formControlName="userName" />
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-control>
+              <nz-input-group nzPrefixIcon="lock">
+                <input nz-input type="password" placeholder="密码" formControlName="password" autocomplete='password' />
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-control>
+              <button nz-button nzType="primary" [disabled]="loginForm.invalid">登录</button>
+              <a routerLink="/setup/register"> 没有账户？ </a>
+            </nz-form-control>
+          </nz-form-item>
+        </form>
+      </nz-card>
+    </div>
+  </div>
+</div>

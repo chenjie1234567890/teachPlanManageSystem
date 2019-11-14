@@ -33,14 +33,14 @@ export class MyInterceptor implements HttpInterceptor {
     );
   }
 
-  private handleHttpException(error: HttpErrorResponse): Observable<HttpErrorResponse> {
-    switch (error.status) {
+  private handleHttpException(errorResponse: HttpErrorResponse): Observable<HttpErrorResponse> {
+    switch (errorResponse.status) {
       case 401:
         if (this.router.url !== '/setup/login') {
           // 未登录，跳转到登录页
           this.router.navigateByUrl('/setup/login');
         }
-        this.message.error('登录失败');
+        this.message.error(errorResponse.error.message);
         break;
       case 403:
         this.message.error('权限不足');
@@ -50,6 +50,6 @@ export class MyInterceptor implements HttpInterceptor {
         break;
     }
     // 最终将异常抛出来，便于组件个性化处理
-    throw error;
+    throw errorResponse;
   }
 }

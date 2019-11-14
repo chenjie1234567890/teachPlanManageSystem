@@ -1,7 +1,9 @@
 package com.sixgod.teachPlan.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
@@ -13,6 +15,8 @@ import javax.persistence.*;
 @Data
 @Entity
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
     final public static Integer ROLE_STUDENT = 0;
     final public static Integer ROLE_TEACHER = 1;
@@ -33,6 +37,12 @@ public class User {
      * 密码
      */
     private String password;
+
+    /**
+     * 确认密码，不映射到数据表
+     */
+    @Transient
+    private String confirmPassword;
 
     /**
      * 角色
