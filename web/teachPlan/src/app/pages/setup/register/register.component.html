@@ -1,0 +1,73 @@
+<div class="login-background">
+  <div nz-row nzType="flex" nzJustify="center" nzAlign="top">
+    <div nz-col nzXs="24" nzSm="24" nzMd="4" nzLg="4" nzXl="5" class="height-100">
+      <nz-card nzTitle="注册新用户">
+        <form nz-form [formGroup]="registerForm" (ngSubmit)="submitForm()">
+          <nz-form-item>
+            <nz-form-control [nzSpan]="24" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="userErrorTpl">
+              <nz-input-group nzPrefixIcon="user">
+                <input nz-input placeholder="用户名" formControlName="userName"/>
+              </nz-input-group>
+              <ng-template #userErrorTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">
+                  用户名不能为空
+                </ng-container>
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-control [nzSpan]="24" nzHasFeedback nzValidatingTip="Validating..."
+                             [nzErrorTip]="passwordErrorTpl">
+              <nz-input-group nzPrefixIcon="lock">
+                <input nz-input type="password" placeholder="请输入密码" formControlName="password" autocomplete='tel'/>
+              </nz-input-group>
+              <ng-template #passwordErrorTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">
+                  密码不能为空
+                </ng-container>
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-control [nzSpan]="24" nzHasFeedback nzValidatingTip="Validating..."
+                             [nzErrorTip]="confirmPasswordErrorTpl">
+              <nz-input-group nzPrefixIcon="lock">
+                <input nz-input type="password" placeholder="确认密码" formControlName="confirmPassword"
+                       id="confirmPassword" autocomplete='tel'/>
+              </nz-input-group>
+              <ng-template #confirmPasswordErrorTpl let-control>
+                <ng-container *ngIf="control.hasError('pwConfirm')">
+                  两次密码不一致
+                </ng-container>
+                <ng-container *ngIf="control.hasError('required')">
+                  请验证密码
+                </ng-container>
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-control [nzSpan]="24" nzhasfeedback nzValidatingTip="Validating..." [nzErrorTip]="roleErrorTpl">
+              <nz-radio-group formControlName="role">
+                <label nz-radio [nzValue]="0">学生</label>
+                <label nz-radio [nzValue]="1">教师</label>
+              </nz-radio-group>
+              <ng-template #roleErrorTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">
+                  密码不能为空
+                </ng-container>
+              </ng-template>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-control [nzOffset]="6" [nzSpan]="6">
+              <button nz-button nzType="primary" [disabled]="!registerForm.valid">注册</button>
+            </nz-form-control>
+            <nz-form-control [nzOffset]="10">
+              <button nz-button (click)="back()">返回</button>
+            </nz-form-control>
+          </nz-form-item>
+        </form>
+      </nz-card>
+    </div>
+  </div>
+</div>

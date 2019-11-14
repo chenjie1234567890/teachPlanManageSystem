@@ -1,13 +1,11 @@
 package com.sixgod.teachPlan.service.impl;
 
-import com.sixgod.teachPlan.entity.ResInfo;
 import com.sixgod.teachPlan.entity.User;
 import com.sixgod.teachPlan.repository.UserRepository;
 import com.sixgod.teachPlan.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import javax.security.auth.message.AuthException;
 import javax.servlet.http.HttpSession;
 
@@ -33,19 +31,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Boolean login(User user) {
-        String s = user.getUserName();
-        User existsUser = userRepository.findByUserName(s);
+    public User login(User user) throws AuthException {
+        User existsUser = userRepository.findByUserName(user.getUserName());
         // 当此用户存在并且密码正确
         if (existsUser != null && existsUser.getPassword().equals(user.getPassword())) {
             log.debug("记录当前用户id");
             httpSession.setAttribute(UserService.USER_ID, existsUser.getId());
             user.setId(existsUser.getId());
-            return true;
         } else {
             log.debug("用户名或密码不正确");
-            return false;
+            throw new AuthException("用户名或密码不正确");
         }
+
+        return existsUser;
     }
 
     @Override
@@ -79,6 +77,5 @@ public class UserServiceImpl implements UserService {
         Long userId = (Long) httpSession.getAttribute(UserService.USER_ID);
         return userRepository.findById(userId).orElse(null);
     }
-
 
 }

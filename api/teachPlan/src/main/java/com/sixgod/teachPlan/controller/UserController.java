@@ -1,6 +1,5 @@
 package com.sixgod.teachPlan.controller;
 
-import com.sixgod.teachPlan.entity.ResInfo;
 import com.sixgod.teachPlan.entity.User;
 import com.sixgod.teachPlan.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -30,22 +29,17 @@ public class UserController {
     /**
     * @Description 登录
     * @Param User
-    * @Return ResInfo<User>
     * @Author chenjie
     * @Date 2019/10/23
     */
     @PostMapping("/login")
-    public void login(@RequestBody User user, HttpServletResponse response) {
-        if (userService.login(user)) {
-            log.debug(user.getUserName() + "登录");
-        } else {
-            response.setStatus(401);
-        }
+    public User login(@RequestBody User user) throws AuthException {
+        log.debug(user.getUserName() + "登录");
+        return userService.login(user);
     }
 
     /**
     * @Description 注销
-    * @Return ResInfo
     * @Author chenjie
     * @Date 2019/10/23
     */
@@ -56,18 +50,14 @@ public class UserController {
 
     /**
      * 获取当前登录用户
-     * @return ResInfo<User>
      */
     @GetMapping("/currentLoginUser")
-    public ResInfo<User> getCurrentLoginUser() {
-        ResInfo<User> userResInfo = new ResInfo<>();
+    public User getCurrentLoginUser() throws AuthException {
         User user =  userService.getCurrentLoginUser();
         if (user == null) {
-            userResInfo.setMessage("获取失败,可能原因:未登录");
-            userResInfo.setStatus(false);
-        } else {
-            userResInfo.setData(user);
+            throw new AuthException("获取当前用户失败,可能原因:未登录");
         }
-        return userResInfo;
+
+        return user;
     }
 }

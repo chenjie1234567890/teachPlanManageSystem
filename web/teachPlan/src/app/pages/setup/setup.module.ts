@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, HashLocationStrategy, LocationStrategy} from '@angular/common';
 import { SetupRoutingModule } from './setup-routing.module';
 import { SetupComponent } from './setup.component';
 import {NgZorroAntdModule, NZ_I18N, zh_CN} from 'ng-zorro-antd';
@@ -10,10 +10,12 @@ import {IconsProviderModule} from '../../icons-provider.module';
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NzFormModule } from 'ng-zorro-antd/form';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
-  declarations: [SetupComponent],
+  declarations: [SetupComponent, RegisterComponent, LoginComponent],
   imports: [
     CommonModule,
     RouterModule,

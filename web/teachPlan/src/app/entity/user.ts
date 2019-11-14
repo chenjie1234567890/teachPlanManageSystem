@@ -3,20 +3,9 @@ export class User {
   public static readonly ROLE_TEACHER = 1;
   public static readonly ROLE_ADMIN = 2;
 
-  private id: number;
-
-  /**
-   * 用户
-   */
-  private  userName: string;
-
-  /**
-   * 密码
-   */
-  private  password: string;
-
-  /**
-   * 角色
-   */
-  private  role: number = User.ROLE_STUDENT;
+  id: number;                       // 用户id
+  userName: string;                 // 用户名
+  password: string;                 // 密码
+  confirmPassword: string;          // 确认密码
+  role: number = User.ROLE_STUDENT; // 角色
 }

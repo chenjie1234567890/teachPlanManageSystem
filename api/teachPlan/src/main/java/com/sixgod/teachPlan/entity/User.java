@@ -39,6 +39,12 @@ public class User {
     private String password;
 
     /**
+     * 确认密码，不映射到数据表
+     */
+    @Transient
+    private String confirmPassword;
+
+    /**
      * 角色
      */
     private Integer role = ROLE_STUDENT;

@@ -3,12 +3,14 @@ import { CommonModule } from '@angular/common';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { IconsProviderModule } from '../../icons-provider.module';
-import {RouterModule} from '@angular/router';
+
 
 
 
 @NgModule({
-  declarations: [NotFoundComponent],
+  declarations: [
+    NotFoundComponent
+  ],
   imports: [
     CommonModule
   ],

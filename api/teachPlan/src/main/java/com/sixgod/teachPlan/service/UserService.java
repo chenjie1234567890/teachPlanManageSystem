@@ -1,6 +1,5 @@
 package com.sixgod.teachPlan.service;
 
-import com.sixgod.teachPlan.entity.ResInfo;
 import com.sixgod.teachPlan.entity.User;
 
 import javax.security.auth.message.AuthException;
@@ -24,7 +23,7 @@ public interface UserService {
      * @param user
      * @return ResInfo
      */
-    Boolean login(User user);
+    User login(User user) throws AuthException;
 
     /**
     * @Description 获取一个未持久化的用户
