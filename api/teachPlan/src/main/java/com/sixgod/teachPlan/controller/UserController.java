@@ -5,9 +5,7 @@ import com.sixgod.teachPlan.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import javax.security.auth.message.AuthException;
-import javax.servlet.http.HttpServletResponse;
 
 /** 用户控制器
  * @author chenjie
@@ -21,9 +19,9 @@ public class UserController {
     UserService userService;
 
     @PostMapping("/register")
-    public void register(@RequestBody User user) throws AuthException {
+    public User register(@RequestBody User user) throws AuthException {
         log.debug(user.getUserName() + "注册");
-        userService.register(user);
+        return userService.register(user);
     }
 
     /**
@@ -57,7 +55,7 @@ public class UserController {
         if (user == null) {
             throw new AuthException("获取当前用户失败,可能原因:未登录");
         }
-
         return user;
     }
+
 }

@@ -1,6 +1,7 @@
 package com.sixgod.teachPlan.service;
 
 import com.sixgod.teachPlan.entity.User;
+import org.springframework.data.domain.Page;
 
 import javax.security.auth.message.AuthException;
 
@@ -16,7 +17,7 @@ public interface UserService {
     * @Author chenjie
     * @Date 2019/10/18
     */
-    void register(User user) throws AuthException;
+    User register(User user) throws AuthException;
 
     /**
      * 登陆

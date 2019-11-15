@@ -1,13 +1,21 @@
 package com.sixgod.teachPlan.service.impl;
 
+import com.sixgod.teachPlan.entity.Student;
+import com.sixgod.teachPlan.entity.Teacher;
 import com.sixgod.teachPlan.entity.User;
+import com.sixgod.teachPlan.repository.StudentRepository;
+import com.sixgod.teachPlan.repository.TeacherRepository;
 import com.sixgod.teachPlan.repository.UserRepository;
 import com.sixgod.teachPlan.service.UserService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang.RandomStringUtils;
+import org.apache.commons.lang.math.RandomUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import javax.security.auth.message.AuthException;
 import javax.servlet.http.HttpSession;
+import java.util.Random;
 
 /**
  * @author chenjie
@@ -16,17 +24,43 @@ import javax.servlet.http.HttpSession;
 @Service
 @Slf4j
 public class UserServiceImpl implements UserService {
+
+    private final UserRepository userRepository;
+    private final TeacherRepository teacherRepository;
+    private final StudentRepository studentRepository;
+    private final HttpSession httpSession;
+
     @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private HttpSession httpSession;
+    public UserServiceImpl(UserRepository userRepository,
+                           TeacherRepository teacherRepository,
+                           StudentRepository studentRepository,
+                           HttpSession httpSession) {
+        this.userRepository = userRepository;
+        this.teacherRepository = teacherRepository;
+        this.studentRepository = studentRepository;
+        this.httpSession = httpSession;
+    }
 
     @Override
-    public void register(User user) throws AuthException {
+    public User register(User user) throws AuthException {
         if(userRepository.existsByUserName(user.getUserName())) {
             throw new AuthException("注册失败,用户名已存在");
         } else {
-            userRepository.save(user);
+            // 持久化用户
+            User persistUser = userRepository.save(user);
+            // 如果注册的是学生，则新建学生实体
+            if (user.getRole().equals(User.ROLE_STUDENT)) {
+                Student student = new Student();
+                student.setUser(persistUser);
+                studentRepository.save(student);
+            } else if(user.getRole().equals(User.ROLE_TEACHER)){
+                Teacher teacher = new Teacher();
+                teacher.setUser(persistUser);
+                teacherRepository.save(teacher);
+            } else {
+                throw  new AuthException("注册失败， 请选择角色");
+            }
+            return persistUser;
         }
     }
 
@@ -48,12 +82,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getOneUser() {
-       User user = User.builder()
-                        .userName("test")
-                        .password("123456")
-                        .role(User.ROLE_STUDENT)
+      return User.builder()
+                        .userName(RandomStringUtils.randomAlphanumeric(5))
+                        .password(RandomStringUtils.randomAlphanumeric(8))
+                        .role(RandomUtils.nextInt(2))
                         .build();
-        return user;
     }
 
     @Override
@@ -77,5 +110,4 @@ public class UserServiceImpl implements UserService {
         Long userId = (Long) httpSession.getAttribute(UserService.USER_ID);
         return userRepository.findById(userId).orElse(null);
     }
-
 }

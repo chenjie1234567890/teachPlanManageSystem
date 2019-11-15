@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @Transactional
-class TeachPlanApplicationTests {
+public class TeachPlanApplicationTests {
 
 	@Test
 	void contextLoads() {
