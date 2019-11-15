@@ -31,8 +31,9 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     database-platform: org.hibernate.dialect.MySQL5Dialect
+    open-in-view: false
 
   #设置文件上传大小限制
   servlet:

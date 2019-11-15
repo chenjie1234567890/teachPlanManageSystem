@@ -18,7 +18,7 @@ public class AuthInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response,
-                             Object handler) throws Exception {
+                             Object handler) {
         log.debug("获取session，判断是否认证登录");
         HttpSession httpSession = request.getSession();
         Long userId = (Long) httpSession.getAttribute(UserService.USER_ID);

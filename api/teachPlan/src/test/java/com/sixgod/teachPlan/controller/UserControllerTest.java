@@ -5,9 +5,11 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class UserControllerTest {
+    private static String baseUrl = "/user";
 
     @Test
-    void register() {
+    void register() throws Exception {
+
     }
 
     @Test
