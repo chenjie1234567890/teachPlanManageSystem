@@ -60,7 +60,7 @@ public class CourseController {
         courseService.deleteById(id);
     }
 
-    @GetMapping
+    @GetMapping("/getAllCourse")
     public List<Course> getAllCourse(){
         return courseService.getAllCourse();
     }
