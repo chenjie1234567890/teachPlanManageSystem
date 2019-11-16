@@ -24,6 +24,8 @@ public class Semester {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    String name;
+
     Date startTime;     // 开始时间
 
     Date endTime;       // 结束时间

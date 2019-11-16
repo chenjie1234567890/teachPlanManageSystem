@@ -1,0 +1,18 @@
+package com.sixgod.teachPlan.repository;
+
+import com.sixgod.teachPlan.entity.Semester;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+public interface SemesterRepository extends JpaRepository <Semester,Long > {
+
+    /**
+     * 按照姓名查询学期页
+     * @param name
+     * @param pageable
+     * @return
+     */
+    Page<Semester> findAllByNameLike(String name, Pageable pageable);
+}
