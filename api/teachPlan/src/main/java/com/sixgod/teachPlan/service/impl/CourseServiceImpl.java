@@ -7,8 +7,11 @@ import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
 import javax.persistence.EntityNotFoundException;
 
+@Service
 public class CourseServiceImpl implements CourseService {
     @Autowired
     CourseRepository courseRepository;
