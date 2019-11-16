@@ -10,6 +10,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Slf4j
 @RestController
 @RequestMapping("course")
@@ -53,8 +55,12 @@ public class CourseController {
      * 删除
      * @param id
      */
-    @PostMapping("/{id}")
+    @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id){
         courseService.deleteById(id);
+    }
+
+    public List<Course> getAllCourse(){
+        return courseService.getAllCourse();
     }
 }

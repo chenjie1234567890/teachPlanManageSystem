@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
 import javax.persistence.EntityNotFoundException;
+import java.util.List;
 
 @Service
 public class CourseServiceImpl implements CourseService {
@@ -24,6 +24,11 @@ public class CourseServiceImpl implements CourseService {
         else {
             return courseRepository.finAllByNameLike(name,pageable);
         }
+    }
+
+    @Override
+    public List<Course> getAllCourse() {
+        return courseRepository.findAll();
     }
 
     @Override
