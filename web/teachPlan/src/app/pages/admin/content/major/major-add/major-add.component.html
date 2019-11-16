@@ -1,0 +1,30 @@
+<form nz-form [formGroup]="addForm" (ngSubmit)="submitForm()">
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" nzRequired>专业名</nz-form-label>
+    <nz-form-control [nzSpan]="6" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="nameErrorTpl">
+      <input nz-input formControlName="name" placeholder="请输入专业名" />
+      <ng-template #nameErrorTpl let-control>
+        <ng-container *ngIf="control.hasError('required')">
+          专业名1必须输入
+        </ng-container>
+      </ng-template>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7">课程</nz-form-label>
+    <nz-form-control [nzSpan]="12">
+      <nz-select
+        nzMode="multiple"
+        nzPlaceHolder="请选择课程"
+        [formControlName]="'courseList'">
+        <nz-option *ngFor="let courseOption of courseOptions" [nzLabel]="courseOption.label" [nzValue]="courseOption.value"></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control [nzOffset]="7" [nzSpan]="12">
+      <button nz-button nzType="primary" [disabled]="!addForm.valid">提交</button>
+      <button nz-button (click)="resetForm($event)">重置</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>

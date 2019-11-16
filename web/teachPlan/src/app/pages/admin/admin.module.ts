@@ -8,6 +8,7 @@ import {CoreModule} from '../core/core.module';
 import { AdminContentComponent } from './content/admin-content.component';
 import {SharedModule} from '../shared/shared.module';
 import {UserModule} from './content/user/user.module';
+import {MajorModule} from "./content/major/major.module";
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import {UserModule} from './content/user/user.module';
     NzLayoutModule,
     AdminRoutingModule,
     UserModule,
+    MajorModule
   ],
 })
 export class AdminModule {

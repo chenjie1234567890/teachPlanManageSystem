@@ -1,0 +1,61 @@
+<!--上方搜索框-->
+<div nz-row>
+  <div nz-col [nzSpan]="4">
+    <nz-input-group nzSearch>
+      <input type="text" nz-input placeholder="专业名" [(ngModel)]="majorName">
+    </nz-input-group>
+  </div>
+  <div nz-col [nzSpan]="4" [nzOffset]="1">
+    <button nz-button (click)="getMajorPage()">
+      <i nz-icon nzType="search" nzTheme="outline"></i>
+      查询
+    </button>
+  </div>
+  <div nz-col [nzSpan]="4" [nzOffset]="2">
+    <a nz-button nzType="primary" routerLink="/admin/major/add">
+      <i nz-icon nzType="plus" nzTheme="outline"></i>新增</a>
+  </div>
+</div>
+<!--分割线-->
+<nz-divider></nz-divider>
+<!--下方表格-->
+<div nz-row>
+  <div nz-col [nzSpan]="24">
+    <nz-table
+      [nzData]="majorPage.content"
+      nzBordered
+      nzShowSizeChanger
+      [nzLoading]="loading"
+      [nzTotal]="majorPage?.content.length"
+      [nzPageSize]="majorPage.size"
+      [nzPageIndex]="majorPage.number"
+      (nzPageIndexChange)="getMajorPage()"
+      (nzPageSizeChange)="getMajorPage()">
+      <thead>
+      <tr>
+        <th>id</th>
+        <th>名称</th>
+        <th>课程</th>
+        <th>操作</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let major of majorPage?.content">
+        <td>{{major.id}}</td>
+        <td>{{major.name}}</td>
+        <td>{{major.courseList}}</td>
+        <td>
+          <a nz-button nzGhost nzType="primary" routerLink="/admin/major/edit/{{major.id}}">
+            <i nz-icon nzType="edit" nzTheme="twotone"></i>
+            编辑
+          </a>
+          <button nz-button nzGhost nzType="danger" (click)="deleteById(major.id)">
+            <i nz-icon nzType="delete" nzTheme="twotone"></i>
+            删除
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </nz-table>
+  </div>
+</div>
