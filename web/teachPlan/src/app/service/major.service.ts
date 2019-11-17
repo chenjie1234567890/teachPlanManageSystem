@@ -49,4 +49,8 @@ export class MajorService {
   deleteById(id: number): Observable<void> {
     return this.http.delete<void>(this.baseUrl + '/' + id);
   }
+
+  findById(id: number): Observable<Major> {
+    return this.http.get<Major>(this.baseUrl + '/' + id);
+  }
 }

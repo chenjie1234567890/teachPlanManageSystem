@@ -73,4 +73,9 @@ public class MajorServiceImpl implements MajorService {
     public Major getOneSavedMajor() {
         return majorRepository.save(getOneMajor());
     }
+
+    @Override
+    public Major findById(Long id) {
+        return majorRepository.findById(id).orElse(null);
+    }
 }

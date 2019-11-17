@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MajorService} from "../../../../../service/major.service";
 import {CourseService} from "../../../../../service/course.service";
+import {Course} from "../../../../../entity/course";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-major-add',
@@ -10,10 +12,12 @@ import {CourseService} from "../../../../../service/course.service";
 })
 export class MajorAddComponent implements OnInit {
   addForm: FormGroup;
-  courseOptions: Array<{ label: string; value: string }> = [];
+  courseOptions: Array<{ label: string; value: Course }> = [];
   constructor(private fb: FormBuilder,
               private majorService: MajorService,
-              private courseService: CourseService) { }
+              private courseService: CourseService,
+              private router: Router) { }
+  // 初始化表单
   initForm() {
     this.addForm = this.fb.group({
       name: ['', [Validators.required]],
@@ -21,9 +25,14 @@ export class MajorAddComponent implements OnInit {
     });
   }
 
+  // 初始化课程选项
   initOptions() {
-    this.courseService.getAllCourse().subscribe((data) => {
-      console.log(data)
+    this.courseService.getAllCourse().subscribe((courseList: Course[]) => {
+      const children: Array<{ label: string; value: Course }> = [];
+      for (let course of courseList) {
+        children.push({ label: course.name, value: course });
+      }
+      this.courseOptions = children;
     }, () => {
       console.log('error')
     });
@@ -38,20 +47,18 @@ export class MajorAddComponent implements OnInit {
     }
   }
 
-  //
-
+  // 提交表单
   submitForm() {
-    const major = this.addForm.value;
-    console.log(major);
-    // this.majorService.add(major).subscribe(() => {
-    //   console.log('success');
-    // }, () => {
-    //   console.log('error');
-    // });
+    this.majorService.add(this.addForm.value).subscribe(() => {
+      this.router.navigateByUrl('admin/major');
+    }, () => {
+      console.log('error');
+    });
   }
 
   ngOnInit() {
     this.initForm();
+    this.initOptions();
   }
 
 }

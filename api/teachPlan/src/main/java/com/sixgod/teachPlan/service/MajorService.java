@@ -34,4 +34,9 @@ public interface MajorService {
      */
 
     Major getOneSavedMajor();
+
+    /**
+     * 根据id获取专业
+     */
+    Major findById(Long id);
 }

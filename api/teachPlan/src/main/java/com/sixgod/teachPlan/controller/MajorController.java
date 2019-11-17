@@ -65,4 +65,14 @@ public class MajorController {
     public void deleteById(@PathVariable Long id) {
         majorService.deleteById(id);
     }
+
+    /**
+     * 根据id获取专业
+     * @param id
+     */
+    @JsonView(MajorJsonView.getAll.class)
+    @GetMapping("/{id}")
+    public Major findById(@PathVariable Long id) {
+        return majorService.findById(id);
+    }
 }

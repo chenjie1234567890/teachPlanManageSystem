@@ -1,6 +1,8 @@
 package com.sixgod.teachPlan.controller;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.sixgod.teachPlan.entity.Course;
+import com.sixgod.teachPlan.jsonView.CourseJsonView;
 import org.springframework.data.domain.Pageable;
 import com.sixgod.teachPlan.service.CourseService;
 import lombok.extern.slf4j.Slf4j;
@@ -60,6 +62,7 @@ public class CourseController {
         courseService.deleteById(id);
     }
 
+    @JsonView(CourseJsonView.getBase.class)
     @GetMapping("/getAllCourse")
     public List<Course> getAllCourse(){
         return courseService.getAllCourse();

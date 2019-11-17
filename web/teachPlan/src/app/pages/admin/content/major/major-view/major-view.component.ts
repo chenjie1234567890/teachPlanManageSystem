@@ -23,11 +23,19 @@ export class MajorViewComponent implements OnInit {
         console.log(res);
       });
   }
+
+  /**
+   * 根据id删除
+   * @param id
+   */
   deleteById(id: number) {
     this.majorService.deleteById(id)
       .subscribe(() => {
-        console.log('sucess');
-      }, () => {
+        for(let i = 0; i < this.majorPage.content.length; i++) {
+          if(this.majorPage.content[i].id == id) {
+            this.majorPage.content.splice(i, 1);
+            break;
+          }}}, () => {
         console.log('error')
       });
   }

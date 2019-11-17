@@ -33,17 +33,18 @@
       (nzPageSizeChange)="getMajorPage()">
       <thead>
       <tr>
-        <th>id</th>
-        <th>名称</th>
-        <th>课程</th>
-        <th>操作</th>
+        <th width="10%">id</th>
+        <th width="10">名称</th>
+        <th width="70%">课程</th>
+        <th width="10%">操作</th>
       </tr>
       </thead>
       <tbody>
       <tr *ngFor="let major of majorPage?.content">
         <td>{{major.id}}</td>
         <td>{{major.name}}</td>
-        <td>{{major.courseList}}</td>
+        <td>
+          <span *ngFor="let course of major.courseList"><nz-tag [nzColor]="'#108ee9'">{{course.name}}</nz-tag></span></td>
         <td>
           <a nz-button nzGhost nzType="primary" routerLink="/admin/major/edit/{{major.id}}">
             <i nz-icon nzType="edit" nzTheme="twotone"></i>
