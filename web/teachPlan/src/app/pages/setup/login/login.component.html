@@ -1,7 +1,8 @@
 <div class="login-background">
-  <div nz-row nzType="flex" nzJustify="center" nzAlign="top">
+  <p>教学计划<br>管理系统</p>
+  <div nz-row nzType="flex" nzJustify="center" nzAlign="top" class="customtop">
     <div nz-col nzXs="24" nzSm="24" nzMd="4" nzLg="4" nzXl="5" class="height-100">
-      <nz-card nzTitle="您好用户，请登录">
+      <nz-card nzTitle="请登录">
         <form nzl nz-form [nzLayout]="'Horizontal'" [formGroup] = "loginForm" (ngSubmit) = "submitForm()">
           <nz-form-item>
             <nz-form-control>
@@ -19,8 +20,8 @@
           </nz-form-item>
           <nz-form-item>
             <nz-form-control>
-              <button nz-button nzType="primary" [disabled]="loginForm.invalid">登录</button>
-              <a routerLink="/setup/register"> 没有账户？ </a>
+              <button nz-button nzType="primary" [disabled]="loginForm.invalid">登陆</button>
+              <a routerLink="/setup/register"> 没有账户？点这里 </a>
             </nz-form-control>
           </nz-form-item>
         </form>
