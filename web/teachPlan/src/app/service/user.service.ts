@@ -32,6 +32,14 @@ export class UserService {
     return this.http.post<User>(url, user);
   }
 
+  /**
+   * 获取当前登录用户
+   */
+  getCurrentLoginUser(): Observable<User> {
+    const url: string = this.baseUrl + '/currentLoginUser';
+    return this.http.get<User>(url);
+  }
+
   loginRoute(user: User): string {
     let url = '';
     switch (user.role) {

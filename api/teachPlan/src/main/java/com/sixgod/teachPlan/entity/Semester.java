@@ -4,11 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
+import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author chenjie
@@ -24,7 +23,12 @@ public class Semester {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    String name;
+
     Date startTime;     // 开始时间
 
     Date endTime;       // 结束时间
+
+    @ManyToMany
+    List<Course> courseList;    // 该学期开设的课程
 }
