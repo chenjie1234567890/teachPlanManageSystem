@@ -1,1 +1,59 @@
-<p>course-edit works!</p>
+<form nz-form [formGroup]="editForm" (ngSubmit)="submitForm()">
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" nzRequired>课程名</nz-form-label>
+    <nz-form-control [nzSpan]="6" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="nameErrorTpl">
+      <input nz-input formControlName="name" placeholder="请输入课程名" />
+      <ng-template #nameErrorTpl let-control>
+        <ng-container *ngIf="control.hasError('required')">
+          课程名必须输入
+        </ng-container>
+      </ng-template>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" nzRequired>学分</nz-form-label>
+    <nz-form-control [nzSpan]="6" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="nameErrorTpl">
+      <nz-input-number
+        formControlName="credit"
+        [nzMin]="1"
+        [nzMax]="10"
+        [nzStep]="0.1"
+      ></nz-input-number>
+      <ng-template #nameErrorTpl let-control>
+        <ng-container *ngIf="control.hasError('required')">
+          学分必须输入
+        </ng-container>
+      </ng-template>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" nzRequired>总课时</nz-form-label>
+    <nz-form-control [nzSpan]="6" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="nameErrorTpl">
+      <nz-input-number
+        formControlName="totalLessonHour"
+        [nzMin]="1"
+        [nzMax]="100"
+      ></nz-input-number>
+      <ng-template #nameErrorTpl let-control>
+        <ng-container *ngIf="control.hasError('required')">
+          总课时必须输入
+        </ng-container>
+      </ng-template>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" nzRequired>课程类型</nz-form-label>
+    <nz-form-control [nzSpan]="6" nzValidatingTip="Validating...">
+      <nz-radio-group formControlName="type">
+        <label nz-radio [nzValue]="0">普通课</label>
+        <label nz-radio [nzValue]="1">实验课</label>
+      </nz-radio-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control [nzOffset]="7" [nzSpan]="12">
+      <button nz-button type="submit" nzType="primary" [disabled]="!editForm.valid">提交</button>
+      <button nz-button type="reset" (click)="resetForm($event)">清空</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>
