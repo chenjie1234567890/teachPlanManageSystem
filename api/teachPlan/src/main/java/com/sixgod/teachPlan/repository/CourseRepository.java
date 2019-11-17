@@ -13,4 +13,11 @@ public interface CourseRepository extends JpaRepository<Course, Long> {
      * @return
      */
     Page<Course> findAllByNameLike(String name, Pageable pageable);
+
+    /**
+     * 查询课程名是否存在
+     * @param name
+     * @return
+     */
+    boolean existsByName(String name);
 }

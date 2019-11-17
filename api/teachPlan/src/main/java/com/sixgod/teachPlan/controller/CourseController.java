@@ -82,4 +82,14 @@ public class CourseController {
     public Course findById(@PathVariable Long id) {
         return courseService.findById(id);
     }
+
+    /**
+     * 查询课程名是否存在
+     * @param name
+     * @return
+     */
+    @GetMapping("/findByName")
+    public Boolean existByName(String name){
+        return courseService.existByName(name);
+    }
 }

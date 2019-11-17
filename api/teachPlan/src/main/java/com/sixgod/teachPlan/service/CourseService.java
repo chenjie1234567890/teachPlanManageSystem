@@ -49,11 +49,11 @@ public interface CourseService {
      */
     Course saveRandomCourse();
 
-//    /**
-//     * 校验课程名是否存在
-//     */
-//    Boolean existByName(String name);
-//
+    /**
+     * 校验课程名是否存在
+     */
+    Boolean existByName(String name);
+
     /**
      * 根据id获取课程
      */

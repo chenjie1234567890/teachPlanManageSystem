@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 /**
  * @author chenjie
@@ -74,5 +75,24 @@ public class MajorController {
     @GetMapping("/{id}")
     public Major findById(@PathVariable Long id) {
         return majorService.findById(id);
+    }
+
+    /**
+     * 返回全部专业
+     * @return
+     */
+    @GetMapping("/getAllMajor")
+    public List<Major> getAllMajor(){
+        return majorService.getAllMajor();
+    }
+
+    /**
+     * 检查专业名是否存在
+     * @param name
+     * @return
+     */
+    @GetMapping("/existByName")
+    public Boolean existByName(String name){
+        return majorService.existByName(name) ;
     }
 }

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
-@RequestMapping("Semester")
+@RequestMapping("semester")
 public class SemesterController {
     @Autowired
     SemesterService semesterService;
@@ -56,5 +56,25 @@ public class SemesterController {
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable Long id){
         semesterService.deleteById(id);
+    }
+
+    /**
+     * 查询学期名是否存在
+     * @param name
+     * @return
+     */
+    @GetMapping("/existByName")
+    public Boolean existByName(String name){
+        return semesterService.existByName(name);
+    }
+
+    /**
+     * 根据id查询学期
+     * @param id
+     * @return
+     */
+    @GetMapping("/{id}")
+    public Semester findById(Long id){
+        return semesterService.findById(id);
     }
 }
