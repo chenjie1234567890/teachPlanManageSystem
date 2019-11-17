@@ -9,6 +9,7 @@ import { AdminContentComponent } from './content/admin-content.component';
 import {SharedModule} from '../shared/shared.module';
 import {UserModule} from './content/user/user.module';
 import {MajorModule} from "./content/major/major.module";
+import {CourseModule} from "./content/course/course.module";
 
 
 @NgModule({
@@ -21,9 +22,10 @@ import {MajorModule} from "./content/major/major.module";
     CoreModule,
     SharedModule,
     NzLayoutModule,
-    AdminRoutingModule,
     UserModule,
-    MajorModule
+    MajorModule,
+    CourseModule,
+    AdminRoutingModule,
   ],
 })
 export class AdminModule {
