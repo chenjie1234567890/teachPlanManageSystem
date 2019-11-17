@@ -61,4 +61,24 @@ public class SemesterController {
     public void deleteById(@PathVariable Long id){
         semesterService.deleteById(id);
     }
+
+    /**
+     * 查询学期名是否存在
+     * @param name
+     * @return
+     */
+    @GetMapping("/existByName")
+    public Boolean existByName(String name){
+        return semesterService.existByName(name);
+    }
+
+    /**
+     * 根据id查询学期
+     * @param id
+     * @return
+     */
+    @GetMapping("/{id}")
+    public Semester findById(Long id){
+        return semesterService.findById(id);
+    }
 }

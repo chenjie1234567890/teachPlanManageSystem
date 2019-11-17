@@ -55,4 +55,19 @@ public class SemesterServiceImpl implements SemesterService {
             semesterRepository.deleteById(id);
         }
     }
+
+    @Override
+    public Boolean existByName(String name) {
+        if(semesterRepository.existsByName(name)){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    @Override
+    public Semester findById(Long id) {
+        return semesterRepository.findById(id).orElse(null);
+    }
 }

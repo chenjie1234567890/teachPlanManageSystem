@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.List;
 
 /**
  * @author chenjie
@@ -77,5 +78,20 @@ public class MajorServiceImpl implements MajorService {
     @Override
     public Major findById(Long id) {
         return majorRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public List<Major> getAllMajor() {
+        return majorRepository.findAll();
+    }
+
+    @Override
+    public Boolean existByName(String name) {
+        if(majorRepository.existsByName(name)){
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }
