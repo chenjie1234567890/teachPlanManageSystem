@@ -48,7 +48,7 @@ public class SemesterController {
      * @param semester
      * @param id
      */
-    @PostMapping("/{id}")
+    @PutMapping("/{id}")
     public void update(@RequestBody Semester semester,@PathVariable Long id){
         semesterService.upadte(id,semester);
     }
@@ -77,8 +77,9 @@ public class SemesterController {
      * @param id
      * @return
      */
+    @JsonView(SemesterJsonView.getAll.class)
     @GetMapping("/{id}")
-    public Semester findById(Long id){
+    public Semester findById(@PathVariable Long id){
         return semesterService.findById(id);
     }
 }

@@ -58,6 +58,7 @@ export class SemesterService {
   }
 
   findById(id: number): Observable<Semester> {
+    console.log(id);
     return this.http.get<Semester>(this.baseUrl + '/' + id);
   }
 }

@@ -6,7 +6,6 @@ import {SemesterService} from "../../../../../service/semester.service";
 import {CourseService} from "../../../../../service/course.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Semester} from "../../../../../entity/semester";
-import {Major} from "../../../../../entity/major";
 
 @Component({
   selector: 'app-semester-edit',
@@ -17,7 +16,7 @@ export class SemesterEditComponent implements OnInit {
   dateFormat = AppConfig.dateFormat;
   editForm: FormGroup;
   editSemesterId: number;
-  courseOptions: Array<{ label: string; value: Course }> = [];
+  courseOptions: Array<{ label: string; value: number }> = [];
   constructor(private fb: FormBuilder,
               private semesterService: SemesterService,
               private courseService: CourseService,
@@ -25,6 +24,7 @@ export class SemesterEditComponent implements OnInit {
               private route: ActivatedRoute) {
     this.createForm();
   }
+
   // 构造表单
   createForm() {
     this.editForm = this.fb.group({
@@ -49,6 +49,7 @@ export class SemesterEditComponent implements OnInit {
     for(let course of semester.courseList) {
       ids.push(course.id);
     }
+    console.log(ids);
     return ids;
   }
 
@@ -66,13 +67,12 @@ export class SemesterEditComponent implements OnInit {
     });
   }
 
-
   // 初始化课程选项
   initOptions() {
     this.courseService.getAllCourse().subscribe((courseList: Course[]) => {
-      const children: Array<{ label: string; value: Course }> = [];
+      const children: Array<{ label: string; value: number }> = [];
       for (let course of courseList) {
-        children.push({ label: course.name, value: course });
+        children.push({ label: course.name, value: course.id });
       }
       this.courseOptions = children;
     }, () => {
@@ -102,11 +102,11 @@ export class SemesterEditComponent implements OnInit {
       name: this.editForm.get('name').value,
       startTime: this.editForm.get('timeRange').value[0],
       endTime: this.editForm.get('timeRange').value[1],
-      courseList: this.editForm.get('courseList').value
+      courseList: courses
     };
 
     // 发起请求
-    this.semesterService.add(semester).subscribe(() => {
+    this.semesterService.update(semester, this.editSemesterId).subscribe(() => {
       this.router.navigateByUrl('admin/semester');
     }, () => {
       console.log('error');
