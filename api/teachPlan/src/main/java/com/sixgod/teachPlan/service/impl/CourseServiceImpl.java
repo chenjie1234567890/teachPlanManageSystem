@@ -73,4 +73,9 @@ public class CourseServiceImpl implements CourseService {
     public Course saveRandomCourse() {
         return courseRepository.save(getRandomCourse());
     }
+
+    @Override
+    public Course findById(Long id) {
+        return courseRepository.findById(id).orElse(null);
+    }
 }

@@ -62,9 +62,24 @@ public class CourseController {
         courseService.deleteById(id);
     }
 
+    /**
+     * 获取所有课程
+     * @return
+     */
     @JsonView(CourseJsonView.getBase.class)
     @GetMapping("/getAllCourse")
     public List<Course> getAllCourse(){
         return courseService.getAllCourse();
+    }
+
+    /**
+     * 根据id获取课程
+     * @param id
+     * @return
+     */
+    @GetMapping("/{id}")
+    @JsonView(CourseJsonView.getBase.class)
+    public Course findById(@PathVariable Long id) {
+        return courseService.findById(id);
     }
 }
