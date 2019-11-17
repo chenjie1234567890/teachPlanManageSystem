@@ -3,8 +3,23 @@
   height: 100%;
   width: 100%;
   background-size: cover;
-  position: fixed;
+  position:fixed;
   overflow: hidden;
   background-repeat: no-repeat;
+}
+.login-background p{
+  position:absolute;
+  color:white;
+  top:175px;
+  left:250px;
+  font-family: 幼圆,sans-serif;
+  font-weight: bold;
+  font-size: 5em;
+}
+.customtop
+{
+  margin-top: 180px;
+  margin-left: 200px;
+  width: 1600px;
 }
 

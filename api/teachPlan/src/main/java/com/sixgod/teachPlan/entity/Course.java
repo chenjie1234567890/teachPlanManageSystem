@@ -29,4 +29,8 @@ public class Course {
     Float credit;               // 学分
     Integer totalLessonHour;    // 总课时
     Integer type;               // 课程类型
+
+    @JsonView({CourseJsonView.getAll.class, NoneJsonView.class})
+    @ManyToMany
+    List<Major> majorList;       // 对应的专业
 }
