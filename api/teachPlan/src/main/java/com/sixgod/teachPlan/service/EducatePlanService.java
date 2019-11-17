@@ -14,12 +14,12 @@ public interface EducatePlanService {
     /**
      * 新增
      */
-    void add(EducatePlan major);
+    void add(EducatePlan educatePlan);
 
     /**
      * 更新
      */
-    void update(Long id, EducatePlan major);
+    void update(Long id, EducatePlan educatePlan);
 
     /**
      * 删除
