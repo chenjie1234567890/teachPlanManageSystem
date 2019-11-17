@@ -26,7 +26,7 @@ public class Course {
     private Long id;
 
     String name;                // 课程名
-    Integer credit;             // 学分
+    Float credit;               // 学分
     Integer totalLessonHour;    // 总课时
     Integer type;               // 课程类型
 

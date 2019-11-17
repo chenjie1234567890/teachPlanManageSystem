@@ -31,4 +31,14 @@ public interface SemesterService {
      * @param id
      */
     void deleteById(Long id);
+
+//    /**
+//     * 校验学期名是否存在
+//     */
+//    Boolean existByName(String name);
+//
+//    /**
+//     * 根据id获取学期
+//     */
+//    Semester findById(Long id);
 }

@@ -22,12 +22,11 @@ public class EducatePlan {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    Integer termNumber;  // 学年，例如1为第一学年，2为第二学年
 
-    String teamNumber;  // 学年，例如第一学年，第二学年
-
-    @OneToOne
-    Major major;
+    @ManyToOne
+    Major major;        // 所属专业
 
     @ManyToMany
-    List<Course> courseList;
+    List<Course> courseList;    // 包含的课程
 }

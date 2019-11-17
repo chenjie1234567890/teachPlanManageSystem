@@ -54,4 +54,9 @@ public interface UserService {
      * @return
      */
     User getCurrentLoginUser();
+
+//    /**
+//     * 校验用户名是否存在
+//     */
+//    Boolean existByUserName(String userName);
 }

@@ -40,6 +40,7 @@ public class SemesterServiceImpl implements SemesterService {
             semester1.setName(semester.getName());
             semester1.setStartTime(semester.getStartTime());
             semester1.setEndTime(semester.getEndTime());
+            semester1.setCourseList(semester.getCourseList());
             semesterRepository.save(semester1);
         }
     }
