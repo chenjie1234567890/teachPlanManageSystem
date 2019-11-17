@@ -54,8 +54,8 @@ public interface CourseService {
 //     */
 //    Boolean existByName(String name);
 //
-//    /**
-//     * 根据id获取课程
-//     */
-//    Course findById(Long id);
+    /**
+     * 根据id获取课程
+     */
+    Course findById(Long id);
 }
