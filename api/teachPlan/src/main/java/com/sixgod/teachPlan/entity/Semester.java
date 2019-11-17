@@ -29,6 +29,6 @@ public class Semester {
 
     Date endTime;       // 结束时间
 
-    @OneToOne
+    @ManyToMany
     List<Course> courseList;    // 该学期开设的课程
 }

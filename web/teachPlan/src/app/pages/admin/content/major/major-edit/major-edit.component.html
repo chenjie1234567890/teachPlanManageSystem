@@ -16,7 +16,7 @@
       <nz-select
         nzMode="multiple"
         nzPlaceHolder="请选择课程"
-        formControlName="courseList">
+        formControlName="courseIds">
         <nz-option *ngFor="let courseOption of courseOptions" [nzLabel]="courseOption.label" [nzValue]="courseOption.value"></nz-option>
       </nz-select>
     </nz-form-control>
