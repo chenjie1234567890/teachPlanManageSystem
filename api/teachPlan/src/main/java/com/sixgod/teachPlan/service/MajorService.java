@@ -42,13 +42,13 @@ public interface MajorService {
      */
     Major findById(Long id);
 
-//    /**
-//     * 获取所有专业
-//     */
-//    List<Major> getAllMajor();
-//
-//    /**
-//     * 校验专业名是否存在
-//     */
-//    Boolean existByName(String name);
+    /**
+     * 获取所有专业
+     */
+    List<Major> getAllMajor();
+
+    /**
+     * 校验专业名是否存在
+     */
+    Boolean existByName(String name);
 }

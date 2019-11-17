@@ -19,4 +19,11 @@ public interface MajorRepository extends JpaRepository<Major, Long> {
      * @return
      */
     Page<Major> findAll(Pageable pageable);
+
+    /**
+     * 查询专业名是否存在
+     * @param name
+     * @return
+     */
+    boolean existsByName(String name);
 }

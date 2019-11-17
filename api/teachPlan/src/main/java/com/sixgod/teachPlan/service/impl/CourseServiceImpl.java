@@ -75,6 +75,16 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
+    public Boolean existByName(String name) {
+        if(courseRepository.existsByName(name)){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    @Override
     public Course findById(Long id) {
         return courseRepository.findById(id).orElse(null);
     }
