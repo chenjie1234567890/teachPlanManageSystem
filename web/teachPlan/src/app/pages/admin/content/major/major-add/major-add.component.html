@@ -23,8 +23,8 @@
   </nz-form-item>
   <nz-form-item>
     <nz-form-control [nzOffset]="7" [nzSpan]="12">
-      <button nz-button nzType="primary" [disabled]="!addForm.valid">提交</button>
-      <button nz-button (click)="resetForm($event)">重置</button>
+      <button nz-button type="submit" nzType="primary" [disabled]="!addForm.valid">提交</button>
+      <button nz-button type="reset" (click)="resetForm($event)">清空</button>
     </nz-form-control>
   </nz-form-item>
 </form>

@@ -7,6 +7,7 @@ import { CourseViewComponent } from './course-view/course-view.component';
 import { CourseAddComponent } from './course-add/course-add.component';
 import { CourseEditComponent } from './course-edit/course-edit.component';
 import {SharedModule} from "../../../shared/shared.module";
+import {NzInputNumberModule, NzRadioModule} from "ng-zorro-antd";
 
 
 @NgModule({
@@ -18,6 +19,8 @@ import {SharedModule} from "../../../shared/shared.module";
   imports: [
     CommonModule,
     SharedModule,
+    NzInputNumberModule,
+    NzRadioModule,
     CourseRoutingModule
   ]
 })
