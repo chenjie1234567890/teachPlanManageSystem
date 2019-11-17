@@ -39,7 +39,6 @@ public class CourseServiceImpl implements CourseService {
         }
         else{
             course1.setCredit(course.getCredit());
-            course1.setMajorList(course.getMajorList());
             course1.setName(course.getName());
             course1.setTotalLessonHour(course.getTotalLessonHour());
             course1.setType(course.getType());

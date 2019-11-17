@@ -9,5 +9,5 @@ export const AppConfig = {
   currentDate: new Date(),
 
   // 分页配置
-  pageConfig: new Pageable(1, 5),
+  pageConfig: new Pageable(1, 2),
 };

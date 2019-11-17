@@ -27,15 +27,15 @@
       nzShowSizeChanger
       [nzLoading]="loading"
       [nzTotal]="majorPage?.content.length"
-      [nzPageSize]="majorPage.size"
-      [nzPageIndex]="majorPage.number"
+      [nzPageSize]="pageable.size"
+      [nzPageIndex]="pageable.page"
       (nzPageIndexChange)="getMajorPage()"
       (nzPageSizeChange)="getMajorPage()">
       <thead>
       <tr>
         <th width="10%">id</th>
-        <th width="10">名称</th>
-        <th width="70%">课程</th>
+        <th width="10">专业名称</th>
+        <th width="70%">包含课程</th>
         <th width="10%">操作</th>
       </tr>
       </thead>
