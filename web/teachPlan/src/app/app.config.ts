@@ -10,4 +10,7 @@ export const AppConfig = {
 
   // 分页配置
   pageConfig: new Pageable(1, 10),
+
+  // 日期格式
+  dateFormat: 'yyyy-MM-dd',
 };

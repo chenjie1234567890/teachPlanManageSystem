@@ -1,6 +1,8 @@
 package com.sixgod.teachPlan.controller;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.sixgod.teachPlan.entity.Semester;
+import com.sixgod.teachPlan.jsonView.SemesterJsonView;
 import com.sixgod.teachPlan.service.SemesterService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
-@RequestMapping("Semester")
+@RequestMapping("semester")
 public class SemesterController {
     @Autowired
     SemesterService semesterService;
@@ -23,11 +25,13 @@ public class SemesterController {
      * @param pageable
      * @return
      */
+    @JsonView(SemesterJsonView.getAll.class)
     @GetMapping
     public Page<Semester> getSemesterPage(
             @RequestParam(name = "name",required = false,defaultValue = "") String name,
             @PageableDefault(sort = "id",direction = Sort.Direction.DESC) Pageable pageable){
-        return semesterService.findAllByName(name,pageable);
+        Page<Semester> semesterPage = semesterService.findAllByName(name,pageable);
+        return semesterPage;
     }
 
     /**

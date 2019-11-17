@@ -1,5 +1,8 @@
 package com.sixgod.teachPlan.entity;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.sixgod.teachPlan.jsonView.NoneJsonView;
+import com.sixgod.teachPlan.jsonView.SemesterJsonView;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -29,6 +32,7 @@ public class Semester {
 
     Date endTime;       // 结束时间
 
-    @ManyToMany
+    @JsonView({NoneJsonView.class, SemesterJsonView.getAll.class})
+    @ManyToMany(fetch = FetchType.EAGER)
     List<Course> courseList;    // 该学期开设的课程
 }
