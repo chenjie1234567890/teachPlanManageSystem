@@ -4,6 +4,8 @@ import com.sixgod.teachPlan.entity.Major;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
+
 public interface MajorService {
     /**
      * 根据专业名查询专业分页信息
@@ -34,4 +36,19 @@ public interface MajorService {
      */
 
     Major getOneSavedMajor();
+
+    /**
+     * 根据id获取专业
+     */
+    Major findById(Long id);
+
+//    /**
+//     * 获取所有专业
+//     */
+//    List<Major> getAllMajor();
+//
+//    /**
+//     * 校验专业名是否存在
+//     */
+//    Boolean existByName(String name);
 }

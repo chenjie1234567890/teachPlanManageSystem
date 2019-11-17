@@ -7,7 +7,7 @@ import {AppConfig} from '../../../app.config';
   styleUrls: ['../core.component.css']
 })
 export class FooterComponent implements OnInit {
-  productName: string
+  productName: string;
   teamname: string;
   onLineDate: Date;
   currentDate: Date;

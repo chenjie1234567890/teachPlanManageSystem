@@ -8,6 +8,10 @@ import java.util.List;
 
 public interface CourseService {
 
+    /**
+     * 获取所有课程
+     * @return
+     */
     List<Course> getAllCourse();
 
     /**
@@ -44,4 +48,14 @@ public interface CourseService {
      * @return
      */
     Course saveRandomCourse();
+
+//    /**
+//     * 校验课程名是否存在
+//     */
+//    Boolean existByName(String name);
+//
+//    /**
+//     * 根据id获取课程
+//     */
+//    Course findById(Long id);
 }

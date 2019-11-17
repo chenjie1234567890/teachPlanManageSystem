@@ -1,5 +1,9 @@
 package com.sixgod.teachPlan.entity;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.sixgod.teachPlan.jsonView.CourseJsonView;
+import com.sixgod.teachPlan.jsonView.MajorJsonView;
+import com.sixgod.teachPlan.jsonView.NoneJsonView;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,9 +26,10 @@ public class Major {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
+    @JsonView({MajorJsonView.getAll.class})
     String name;                // 专业名
 
-    @ManyToMany
+    @JsonView({MajorJsonView.getAll.class, NoneJsonView.class})
+    @ManyToMany(fetch = FetchType.EAGER)
     List<Course> courseList;    // 包含的课程列表
 }

@@ -12,5 +12,5 @@ public interface CourseRepository extends JpaRepository<Course, Long> {
      * @param pageable
      * @return
      */
-    Page<Course> finAllByNameLike(String name, Pageable pageable);
+    Page<Course> findAllByNameLike(String name, Pageable pageable);
 }

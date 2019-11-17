@@ -1,6 +1,8 @@
 package com.sixgod.teachPlan.controller;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.sixgod.teachPlan.entity.Major;
+import com.sixgod.teachPlan.jsonView.MajorJsonView;
 import com.sixgod.teachPlan.service.MajorService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,11 +29,13 @@ public class MajorController {
      * @param pageable
      * @return Page<Major>
      */
+    @JsonView(MajorJsonView.getAll.class)
     @GetMapping
     public Page<Major> getMajorPage(
             @RequestParam(name = "name", required = false, defaultValue = "") String name,
             @PageableDefault(sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
-        return majorService.findAllByName(name, pageable);
+        Page<Major> majorPage = majorService.findAllByName(name, pageable);
+        return majorPage;
     }
 
     /**
@@ -48,7 +52,7 @@ public class MajorController {
      * @param id
      * @param major
      */
-    @PostMapping("/{id}")
+    @PutMapping("/{id}")
     public void update(@PathVariable Long id, @RequestBody Major major) {
         majorService.update(id, major);
     }
@@ -60,5 +64,15 @@ public class MajorController {
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable Long id) {
         majorService.deleteById(id);
+    }
+
+    /**
+     * 根据id获取专业
+     * @param id
+     */
+    @JsonView(MajorJsonView.getAll.class)
+    @GetMapping("/{id}")
+    public Major findById(@PathVariable Long id) {
+        return majorService.findById(id);
     }
 }

@@ -22,7 +22,7 @@ public class CourseServiceImpl implements CourseService {
             return courseRepository.findAll(pageable);
         }
         else {
-            return courseRepository.finAllByNameLike(name,pageable);
+            return courseRepository.findAllByNameLike(name,pageable);
         }
     }
 
