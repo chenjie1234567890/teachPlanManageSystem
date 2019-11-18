@@ -10,12 +10,15 @@ import {UserModule} from './content/user/user.module';
 import {MajorModule} from "./content/major/major.module";
 import {CourseModule} from "./content/course/course.module";
 import {SemesterModule} from "./content/semester/semester.module";
+import { EducatePlanComponent } from './content/educate-plan/educate-plan.component';
+import {EducatePlanModule} from "./content/educate-plan/educate-plan.module";
 
 
 @NgModule({
   declarations: [
       AdminComponent,
-      AdminContentComponent
+      AdminContentComponent,
+      EducatePlanComponent
   ],
   imports: [
     CommonModule,
@@ -26,6 +29,7 @@ import {SemesterModule} from "./content/semester/semester.module";
     MajorModule,
     CourseModule,
     SemesterModule,
+    EducatePlanModule,
     AdminRoutingModule,
   ],
 })

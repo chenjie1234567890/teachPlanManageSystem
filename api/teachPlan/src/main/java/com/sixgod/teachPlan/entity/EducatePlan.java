@@ -1,9 +1,14 @@
 package com.sixgod.teachPlan.entity;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.sixgod.teachPlan.jsonView.EducatePlanJsonView;
+import com.sixgod.teachPlan.jsonView.NoneJsonView;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.List;
@@ -27,6 +32,8 @@ public class EducatePlan {
     @ManyToOne
     Major major;        // 所属专业
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
+    @JsonView({EducatePlanJsonView.getAll.class, NoneJsonView.class})
     List<Course> courseList;    // 包含的课程
 }

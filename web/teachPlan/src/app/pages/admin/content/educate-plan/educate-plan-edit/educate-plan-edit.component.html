@@ -1,0 +1,45 @@
+<form nz-form [formGroup]="editForm" (ngSubmit)="submitForm()">
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" nzRequired>学年</nz-form-label>
+    <nz-form-control [nzSpan]="6" nzValidatingTip="Validating...">
+      <nz-select
+        nzShowSearch
+        formControlName="termNumber">
+        <nz-option nzLabel="第一学年" [nzValue]="1"></nz-option>
+        <nz-option nzLabel="第二学年" [nzValue]="2"></nz-option>
+        <nz-option nzLabel="第三学年" [nzValue]="3"></nz-option>
+        <nz-option nzLabel="第四学年" [nzValue]="4"></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" nzRequired>专业</nz-form-label>
+    <nz-form-control [nzSpan]="6" nzValidatingTip="Validating...">
+      <nz-select
+        nzShowSearch
+        nzPlaceHolder="请选择专业"
+        formControlName="majorId">
+        <nz-option *ngFor="let majorOption of majorOptions" [nzLabel]="majorOption.label"
+                   [nzValue]="majorOption.value"></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7">课程</nz-form-label>
+    <nz-form-control [nzSpan]="12">
+      <nz-select
+        nzMode="multiple"
+        nzPlaceHolder="请选择课程"
+        [formControlName]="'courseIds'">
+        <nz-option *ngFor="let courseOption of courseOptions" [nzLabel]="courseOption.label"
+                   [nzValue]="courseOption.value"></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control [nzOffset]="7" [nzSpan]="12">
+      <button nz-button type="submit" nzType="primary" [disabled]="!editForm.valid">提交</button>
+      <button nz-button type="reset" (click)="resetForm($event)">清空</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>

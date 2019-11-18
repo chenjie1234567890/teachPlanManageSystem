@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface EducatePlanService {
     /**
-     * 根据学年查询培养计划分页信息
+     * 根据专业查询培养计划分页信息
      */
-    Page<EducatePlan> findAllByName(String name, Pageable pageable);
+    Page<EducatePlan> findAllByMajor(Long majorId, Pageable pageable);
     /**
      * 新增
      */

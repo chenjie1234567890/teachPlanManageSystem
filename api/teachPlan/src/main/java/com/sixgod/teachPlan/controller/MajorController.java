@@ -81,9 +81,11 @@ public class MajorController {
      * 返回全部专业
      * @return
      */
+    @JsonView(MajorJsonView.getBase.class)
     @GetMapping("/getAllMajor")
     public List<Major> getAllMajor(){
-        return majorService.getAllMajor();
+        List<Major> majorList = majorService.getAllMajor();
+        return majorList;
     }
 
     /**

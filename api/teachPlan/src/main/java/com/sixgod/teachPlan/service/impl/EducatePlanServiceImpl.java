@@ -1,6 +1,7 @@
 package com.sixgod.teachPlan.service.impl;
 
 import com.sixgod.teachPlan.entity.EducatePlan;
+import com.sixgod.teachPlan.entity.Major;
 import com.sixgod.teachPlan.repository.EducatePlanRepository;
 import com.sixgod.teachPlan.service.EducatePlanService;
 import org.apache.commons.lang.math.RandomUtils;
@@ -17,12 +18,13 @@ public class EducatePlanServiceImpl implements EducatePlanService {
     EducatePlanRepository educatePlanRepository;
 
     @Override
-    public Page<EducatePlan> findAllByName(String name, Pageable pageable) {
-        if(name.equals("")){
+    public Page<EducatePlan> findAllByMajor(Long majorId, Pageable pageable) {
+        if(majorId == 0){
             return educatePlanRepository.findAll(pageable);
         }
         else {
-            return educatePlanRepository.findAllByNameLike(name,pageable);
+            return educatePlanRepository.findAllByMajor(
+                    Major.builder().id(majorId).build(), pageable);
         }
     }
 
