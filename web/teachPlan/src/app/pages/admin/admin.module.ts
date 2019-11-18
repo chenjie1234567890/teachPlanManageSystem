@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-
 import {AdminRoutingModule} from './admin-routing.module';
 import {AdminComponent} from './admin.component';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
@@ -10,6 +9,7 @@ import {SharedModule} from '../shared/shared.module';
 import {UserModule} from './content/user/user.module';
 import {MajorModule} from "./content/major/major.module";
 import {CourseModule} from "./content/course/course.module";
+import {SemesterModule} from "./content/semester/semester.module";
 
 
 @NgModule({
@@ -25,6 +25,7 @@ import {CourseModule} from "./content/course/course.module";
     UserModule,
     MajorModule,
     CourseModule,
+    SemesterModule,
     AdminRoutingModule,
   ],
 })

@@ -29,10 +29,12 @@ public class CourseController {
      * @return  Page<Course>
      */
     @GetMapping
+    @JsonView(CourseJsonView.getBase.class)
     public Page<Course> getCoursePage(
             @RequestParam(name = "name",required = false,defaultValue = "") String name,
             @PageableDefault(sort = "id",direction = Sort.Direction.DESC) Pageable pageable){
-        return courseService.findAllByName(name,pageable);
+        Page<Course> coursePage = courseService.findAllByName(name, pageable);
+        return coursePage;
     }
 
     /** 新增
