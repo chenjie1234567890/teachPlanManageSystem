@@ -1,40 +1,17 @@
 <component name="InspectionProjectProfileManager">
   <profile version="1.0">
     <option name="myName" value="Project Default" />
-<<<<<<< HEAD
-    <inspection_tool class="HtmlUnknownTag" enabled="true" level="WARNING" enabled_by_default="true">
-      <option name="myValues">
-        <value>
-          <list size="11">
-            <item index="0" class="java.lang.String" itemvalue="nobr" />
-            <item index="1" class="java.lang.String" itemvalue="noembed" />
-            <item index="2" class="java.lang.String" itemvalue="comment" />
-            <item index="3" class="java.lang.String" itemvalue="noscript" />
-            <item index="4" class="java.lang.String" itemvalue="embed" />
-            <item index="5" class="java.lang.String" itemvalue="script" />
-            <item index="6" class="java.lang.String" itemvalue="style" />
-            <item index="7" class="java.lang.String" itemvalue="svg" />
-            <item index="8" class="java.lang.String" itemvalue="path" />
-            <item index="9" class="java.lang.String" itemvalue="g" />
-            <item index="10" class="java.lang.String" itemvalue="polygon" />
-=======
     <inspection_tool class="HtmlUnknownAttribute" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="myValues">
         <value>
-          <list size="4">
-            <item index="0" class="java.lang.String" itemvalue="nzghost" />
-            <item index="1" class="java.lang.String" itemvalue="nzrequired" />
-            <item index="2" class="java.lang.String" itemvalue="nzhasfeedback" />
-            <item index="3" class="java.lang.String" itemvalue="formcontrolname" />
->>>>>>> master
+          <list size="3">
+            <item index="0" class="java.lang.String" itemvalue="nzshowsearch" />
+            <item index="1" class="java.lang.String" itemvalue="nzallowclear" />
+            <item index="2" class="java.lang.String" itemvalue="formcontrolname" />
           </list>
         </value>
       </option>
       <option name="myCustomValuesEnabled" value="true" />
     </inspection_tool>
-<<<<<<< HEAD
-    <inspection_tool class="TsLint" enabled="true" level="WARNING" enabled_by_default="true" />
-=======
->>>>>>> master
   </profile>
 </component>

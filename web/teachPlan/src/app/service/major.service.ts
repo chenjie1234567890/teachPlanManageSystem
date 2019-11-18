@@ -50,7 +50,18 @@ export class MajorService {
     return this.http.delete<void>(this.baseUrl + '/' + id);
   }
 
+  /**
+   * 根据id获取专业
+   * @param id
+   */
   findById(id: number): Observable<Major> {
     return this.http.get<Major>(this.baseUrl + '/' + id);
+  }
+
+  /**
+   * 获取所有专业
+   */
+  getAll(): Observable<Major[]> {
+    return this.http.get<Major[]>(this.baseUrl + '/getAllMajor');
   }
 }

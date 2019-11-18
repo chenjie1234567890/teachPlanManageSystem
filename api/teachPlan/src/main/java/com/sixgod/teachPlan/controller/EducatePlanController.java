@@ -1,6 +1,8 @@
 package com.sixgod.teachPlan.controller;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.sixgod.teachPlan.entity.EducatePlan;
+import com.sixgod.teachPlan.jsonView.EducatePlanJsonView;
 import com.sixgod.teachPlan.service.EducatePlanService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,23 +15,24 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping("educateplan")
+@RequestMapping("educatePlan")
 public class EducatePlanController {
     @Autowired
     EducatePlanService educatePlanService;
 
     /**
-     * 根据姓名查看所有培养计划分页信息
-     * @param name
+     * 根据专业id查询所有培养计划分页信息
+     * @param majorId
      * @param pageable
      * @return
      */
     @GetMapping
+    @JsonView(EducatePlanJsonView.getAll.class)
     public Page<EducatePlan> getEducatPlanPage(
-            @RequestParam(name = "name",required = false,defaultValue = "") String name,
+            @RequestParam(name = "majorId",required = false, defaultValue = "0") Long majorId,
             @PageableDefault(sort = "id",direction = Sort.Direction.DESC) Pageable pageable
-            ){
-        Page<EducatePlan> educatePlanPage = educatePlanService.findAllByName(name,pageable);
+            ) {
+        Page<EducatePlan> educatePlanPage = educatePlanService.findAllByMajor(majorId,pageable);
         return educatePlanPage;
     }
 
@@ -67,6 +70,7 @@ public class EducatePlanController {
      * @return
      */
     @GetMapping("/{id}")
+    @JsonView(EducatePlanJsonView.getAll.class)
     public EducatePlan findById(@PathVariable Long id){
         return educatePlanService.findById(id);
     }

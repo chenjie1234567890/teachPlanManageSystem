@@ -2,7 +2,7 @@
 <div nz-row>
   <div nz-col [nzSpan]="4">
     <nz-input-group nzSearch>
-      <input type="text" nz-input placeholder="专业名" [(ngModel)]="courseName">
+      <input type="text" nz-input placeholder="课程名" [(ngModel)]="courseName">
     </nz-input-group>
   </div>
   <div nz-col [nzSpan]="4" [nzOffset]="1">
@@ -26,7 +26,7 @@
       nzBordered
       nzShowSizeChanger
       [nzLoading]="loading"
-      [nzTotal]="coursePage?.totalElements"
+      [nzTotal]="coursePage?.total"
       [(nzPageSize)]="pageable.size"
       [(nzPageIndex)]="pageable.page"
       (nzPageIndexChange)="getMajorPage()"

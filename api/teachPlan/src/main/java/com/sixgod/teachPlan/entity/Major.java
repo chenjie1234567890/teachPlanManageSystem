@@ -26,10 +26,13 @@ public class Major {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JsonView({MajorJsonView.getAll.class})
     String name;                // 专业名
 
     @JsonView({MajorJsonView.getAll.class, NoneJsonView.class})
     @ManyToMany(fetch = FetchType.EAGER)
     List<Course> courseList;    // 包含的课程列表
+
+    @OneToMany(mappedBy = "major")
+    @JsonView({NoneJsonView.class})
+    List<EducatePlan> educatePlanList;
 }
