@@ -41,4 +41,10 @@ public interface SemesterService {
      * 根据id获取学期
      */
     Semester findById(Long id);
+
+    /**
+     * 将id所代表的学期指定为当前学期
+     * @param id
+     */
+    void setCurrentSemester(Long id);
 }
