@@ -15,7 +15,7 @@ import {Semester} from "../../../../../entity/semester";
 export class SemesterEditComponent implements OnInit {
   dateFormat = AppConfig.dateFormat;
   editForm: FormGroup;
-  editSemesterId: number;
+  editSemester: Semester;
   courseOptions: Array<{ label: string; value: number }> = [];
   constructor(private fb: FormBuilder,
               private semesterService: SemesterService,
@@ -56,8 +56,8 @@ export class SemesterEditComponent implements OnInit {
   // 获取要编辑的学期
   getEditSemester() {
     this.route.params.subscribe(params => {
-      this.editSemesterId = params['id'];
-      this.semesterService.findById(this.editSemesterId).subscribe((semester: Semester) => {
+      this.semesterService.findById(params['id']).subscribe((semester: Semester) => {
+        this.editSemester = semester;
         this.initForm(semester);
       }, (error) => {
         console.log(error);
@@ -102,11 +102,12 @@ export class SemesterEditComponent implements OnInit {
       name: this.editForm.get('name').value,
       startTime: this.editForm.get('timeRange').value[0],
       endTime: this.editForm.get('timeRange').value[1],
+      currentSemester: this.editSemester.currentSemester,
       courseList: courses
     };
 
     // 发起请求
-    this.semesterService.update(semester, this.editSemesterId).subscribe(() => {
+    this.semesterService.update(semester, this.editSemester.id).subscribe(() => {
       this.router.navigateByUrl('admin/semester');
     }, () => {
       console.log('error');

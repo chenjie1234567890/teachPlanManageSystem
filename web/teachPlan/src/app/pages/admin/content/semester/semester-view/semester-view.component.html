@@ -33,10 +33,10 @@
       (nzPageSizeChange)="getMajorPage()">
       <thead>
       <tr>
-        <th width="10%">id</th>
+        <th width="5%">id</th>
         <th width="10">学期名称</th>
-        <th width="70%">开设课程</th>
-        <th width="10%">操作</th>
+        <th width="60%">开设课程</th>
+        <th width="25%">操作</th>
       </tr>
       </thead>
       <tbody>
@@ -46,6 +46,11 @@
         <td>
           <span *ngFor="let course of semester.courseList"><nz-tag [nzColor]="'#108ee9'">{{course.name}}</nz-tag></span></td>
         <td>
+          <button nz-button [nzType]="semester.currentSemester? 'primary':'default'"
+                  (click)="setCurrentSemester(semester)">
+            <i nz-icon nzType="poweroff" theme="outline"></i>
+            {{semester.currentSemester ? '处于当前学期' : '设为当前学期'}}
+          </button>
           <a nz-button nzGhost nzType="primary" routerLink="/admin/semester/edit/{{semester.id}}">
             <i nz-icon nzType="edit" nzTheme="twotone"></i>
             编辑

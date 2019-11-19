@@ -88,7 +88,7 @@ public class SemesterController {
      * @param id
      */
     @PostMapping("/setCurrentSemester")
-    public void setCurrentSemester(Long id){
+    public void setCurrentSemester(@RequestBody Long id){
         semesterService.setCurrentSemester(id);
     }
 }

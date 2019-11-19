@@ -61,4 +61,8 @@ export class SemesterService {
     console.log(id);
     return this.http.get<Semester>(this.baseUrl + '/' + id);
   }
+
+  setCurrentSemester(id: number): Observable<void> {
+    return this.http.post<void>(this.baseUrl + '/setCurrentSemester', id);
+  }
 }
