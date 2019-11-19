@@ -41,6 +41,23 @@ export class SemesterViewComponent implements OnInit {
       });
   }
 
+  /**
+   * 设置当前学期
+   */
+  setCurrentSemester(editSemester: Semester) {
+    for (let semester of this.semesterPage.content) {
+      if (semester.id == editSemester.id) {
+        editSemester.currentSemester = !editSemester.currentSemester;
+      } else {
+        semester.currentSemester = false;
+      }
+    }
+    this.semesterService.setCurrentSemester(editSemester.id).subscribe(() => {
+    }, () => {
+      console.log('error');
+    });
+  }
+
   ngOnInit() {
     this.getSemesterPage();
   }

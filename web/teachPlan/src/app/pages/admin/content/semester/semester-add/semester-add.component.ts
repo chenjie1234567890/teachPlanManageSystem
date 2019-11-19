@@ -58,6 +58,7 @@ export class SemesterAddComponent implements OnInit {
       name: this.addForm.get('name').value,
       startTime: this.addForm.get('timeRange').value[0],
       endTime: this.addForm.get('timeRange').value[1],
+      currentSemester: false,
       courseList: this.addForm.get('courseList').value
     };
     this.semesterService.add(semester).subscribe(() => {

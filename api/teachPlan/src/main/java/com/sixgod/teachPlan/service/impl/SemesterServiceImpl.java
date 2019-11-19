@@ -73,16 +73,23 @@ public class SemesterServiceImpl implements SemesterService {
 
     @Override
     public void setCurrentSemester(Long id) {
-        List<Semester> semesterList = semesterRepository.findAll();
-        for (Semester value : semesterList) {
-            value.setCurrentSemester(false);
-        }
+        // 判断设置的学期是否存在
         Semester semester = semesterRepository.findById(id).orElse(null);
         if (semester == null){
             throw new EntityNotFoundException("学期id为：" + id + "不存在");
         }
-        else {
-            semester.setCurrentSemester(true);
+
+        // 设置当前学期状态
+        List<Semester> semesterList = semesterRepository.findAll();
+        for (Semester value : semesterList) {
+            if (value.getId().equals(id)) {
+                value.setCurrentSemester(!value.getCurrentSemester());
+            } else {
+                value.setCurrentSemester(false);
+            }
         }
+
+        // 保存数据
+        semesterRepository.saveAll(semesterList);
     }
 }

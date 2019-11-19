@@ -28,7 +28,7 @@ public class Semester {
 
     String name;
 
-    Boolean currentSemester = false;
+    Boolean currentSemester = false;    // 是否当前学期
 
     Date startTime;     // 开始时间
 

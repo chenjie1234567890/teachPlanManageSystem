@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import javax.persistence.EntityNotFoundException;
 import javax.security.auth.message.AuthException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,6 +31,12 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(value = AuthException.class)
     protected ResponseEntity<JsonErrorResult> handleAuthException(AuthException ex, HttpServletRequest httpServletRequest) {
         log.error("---登录验证发生错误：---Host {} invokes url {} ERROR: {}", httpServletRequest.getRemoteHost(), httpServletRequest.getRequestURL(), ex.getMessage());
+        return new ResponseEntity<>(new JsonErrorResult(httpServletRequest, ex), HttpStatus.UNAUTHORIZED);
+    }
+
+    @ExceptionHandler(value = EntityNotFoundException.class)
+    protected ResponseEntity<JsonErrorResult> handleEntityNotFoundException(AuthException ex, HttpServletRequest httpServletRequest) {
+        log.error("---发生实体未找到错误：---Host {} invokes url {} ERROR: {}", httpServletRequest.getRemoteHost(), httpServletRequest.getRequestURL(), ex.getMessage());
         return new ResponseEntity<>(new JsonErrorResult(httpServletRequest, ex), HttpStatus.UNAUTHORIZED);
     }
 }
