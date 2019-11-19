@@ -77,4 +77,13 @@ public class SemesterController {
     public Semester findById(Long id){
         return semesterService.findById(id);
     }
+
+    /**
+     * 将id代表学期指定为当前学期
+     * @param id
+     */
+    @PostMapping("/setCurrentSemester")
+    public void setCurrentSemester(Long id){
+        semesterService.setCurrentSemester(id);
+    }
 }

@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
 import javax.persistence.EntityNotFoundException;
+import java.util.List;
 
 @Service
 public class SemesterServiceImpl implements SemesterService {
@@ -69,5 +69,20 @@ public class SemesterServiceImpl implements SemesterService {
     @Override
     public Semester findById(Long id) {
         return semesterRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public void setCurrentSemester(Long id) {
+        List<Semester> semesterList = semesterRepository.findAll();
+        for (Semester value : semesterList) {
+            value.setCurrentSemester(false);
+        }
+        Semester semester = semesterRepository.findById(id).orElse(null);
+        if (semester == null){
+            throw new EntityNotFoundException("学期id为：" + id + "不存在");
+        }
+        else {
+            semester.setCurrentSemester(true);
+        }
     }
 }

@@ -25,6 +25,8 @@ public class Semester {
 
     String name;
 
+    Boolean currentSemester = false;
+
     Date startTime;     // 开始时间
 
     Date endTime;       // 结束时间
