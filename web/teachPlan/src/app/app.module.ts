@@ -11,6 +11,7 @@ import {MyInterceptor} from './app.myInterceptor';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {AdminModule} from './pages/admin/admin.module';
 import {SharedModule} from './pages/shared/shared.module';
+import {TeacherModule} from "./pages/teacher/teacher.module";
 
 registerLocaleData(en);
 
@@ -21,9 +22,10 @@ registerLocaleData(en);
   imports: [
     RouterModule,
     CoreModule,
+    SharedModule,
     SetupModule,
     AdminModule,
-    SharedModule,
+    TeacherModule,
     AppRoutingModule,
   ],
   providers: [

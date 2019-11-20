@@ -5,8 +5,16 @@ import {AdminContentComponent} from './content/admin-content.component';
 
 
 const routes: Routes = [
-  { path: 'admin', component: AdminComponent, children: [{path: '', component: AdminContentComponent}] },
-  { path: '', redirectTo: '/admin', pathMatch: 'full' },
+  {
+    path: 'admin',
+    component: AdminComponent,
+    children: [
+      {
+        path: '',
+        component: AdminContentComponent
+      }
+    ]
+  },
 ];
 
 @NgModule({

@@ -2,17 +2,19 @@ package com.sixgod.teachPlan.service;
 
 import com.sixgod.teachPlan.entity.TeachPlan;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 /**
  * 教学计划服务
  */
 public interface TeachPlanService {
     /**
-     * 通过教师Id获取分页信息
-     * @param teacherId
-     * @return
+     * 获取当前登录教师的教学计划列表
+     * 通过教师服务，获取当前登录教师
+     * 再执行教学计划仓库findAllByTeacherId
+     * @return Page<TeachPlan>
      */
-    Page<TeachPlan> findAllByTeacherId(Long teacherId);
+    Page<TeachPlan> getTeachPlanPage(Pageable pageable);
 
     /**
      * 新增
