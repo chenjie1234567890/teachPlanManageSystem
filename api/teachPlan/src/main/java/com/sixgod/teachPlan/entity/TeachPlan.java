@@ -25,8 +25,16 @@ public class TeachPlan {
     Integer teacheType;     // 授课方式
     Integer examType;       // 考核方式
     Boolean isPass;         // 是否通过审核
+
     @OneToMany
     List<Lesson> lessonList; // 课时列表
+
     @ManyToOne
-    Semester semester;      // 所属学期
+    Semester semester;      // 对应学期
+
+    @ManyToOne
+    Major major;            // 对应专业
+
+    @ManyToOne
+    Course course;          // 对应课程
 }

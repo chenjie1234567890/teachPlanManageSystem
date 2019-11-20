@@ -23,9 +23,6 @@ public class Lesson {
 
 
     Integer lessonHour;    // 课时次序
-    String content;         // 内容
-    Integer weight;         // 重要性
-
-    @ManyToOne
-    Course course;      // 对应的课程
+    String content;        // 内容
+    Integer weight = 0;    // 重要性
 }
