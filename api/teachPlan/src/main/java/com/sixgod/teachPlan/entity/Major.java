@@ -8,6 +8,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.List;
@@ -30,6 +32,7 @@ public class Major {
 
     @JsonView({MajorJsonView.getAll.class, NoneJsonView.class})
     @ManyToMany(fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
     List<Course> courseList;    // 包含的课程列表
 
     @OneToMany(mappedBy = "major")
