@@ -10,28 +10,29 @@ import {UserModule} from './content/user/user.module';
 import {MajorModule} from "./content/major/major.module";
 import {CourseModule} from "./content/course/course.module";
 import {SemesterModule} from "./content/semester/semester.module";
-import { EducatePlanComponent } from './content/educate-plan/educate-plan.component';
 import {EducatePlanModule} from "./content/educate-plan/educate-plan.module";
 
 
 @NgModule({
   declarations: [
       AdminComponent,
-      AdminContentComponent,
-      EducatePlanComponent
+      AdminContentComponent
   ],
   imports: [
     CommonModule,
     CoreModule,
     SharedModule,
     NzLayoutModule,
+    AdminRoutingModule,
     UserModule,
     MajorModule,
     CourseModule,
     SemesterModule,
     EducatePlanModule,
-    AdminRoutingModule,
   ],
+  exports: [
+    AdminContentComponent
+  ]
 })
 export class AdminModule {
 }

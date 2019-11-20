@@ -6,10 +6,12 @@ import { EducatePlanAddComponent } from './educate-plan-add/educate-plan-add.com
 import { EducatePlanEditComponent } from './educate-plan-edit/educate-plan-edit.component';
 import { EducatePlanViewComponent } from './educate-plan-view/educate-plan-view.component';
 import {SharedModule} from "../../../shared/shared.module";
+import {EducatePlanComponent} from "./educate-plan.component";
 
 
 @NgModule({
   declarations: [
+    EducatePlanComponent,
     EducatePlanAddComponent,
     EducatePlanEditComponent,
     EducatePlanViewComponent

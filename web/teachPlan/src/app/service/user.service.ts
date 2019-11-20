@@ -57,4 +57,9 @@ export class UserService {
     }
     return url;
   }
+
+  // 注销
+  logout(): Observable<void> {
+    return this.http.post<void>(this.baseUrl + '/logout', null);
+  }
 }

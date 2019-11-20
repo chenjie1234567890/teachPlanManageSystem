@@ -1,0 +1,42 @@
+.warn {
+  padding: 45px 0 0 0;
+  text-align: center;
+  color: red;
+}
+.container-header {
+  margin: 2% 0 5% 0;
+  width: 100%;
+  text-align: center;
+}
+.title{
+  font-size: 22px;
+  color: #606266;
+}
+
+.content {
+  margin: 15px auto 15px auto;
+  padding: 15px 0;
+  width: 656px;
+  color: rgba(24,43,78,0.4);
+  border-top: 2px solid #f8fafc;
+  border-bottom: 2px solid #f8fafc;
+}
+
+.card-title {
+  padding: 0 6px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+footer {
+  font-size: 14px;
+  background-color: #000;
+  position: relative;
+  color: rgba(255,255,255,.65);
+  text-align: center;
+  height:50px;
+}
+
+.container {
+  min-height:100%;margin-bottom:-50px;
+}

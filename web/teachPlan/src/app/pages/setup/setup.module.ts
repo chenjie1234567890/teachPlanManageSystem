@@ -12,6 +12,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
+import {CoreModule} from "../core/core.module";
 
 
 @NgModule({
@@ -27,7 +28,7 @@ import { LoginComponent } from './login/login.component';
     SetupRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    NzFormModule
+    NzFormModule,
   ],
   exports: [
     SetupComponent

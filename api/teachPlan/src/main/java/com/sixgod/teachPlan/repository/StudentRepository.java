@@ -9,4 +9,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @date 2019/11/15 16:26
  */
 public interface StudentRepository extends JpaRepository<Student, Long> {
+    /**
+     * 通过用户id获取教师
+     */
+    Student findByUserId(Long userId);
 }

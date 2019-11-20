@@ -12,5 +12,15 @@ export class MenuService {
    {  id: 4, name: '专业管理', iconType: 'phone', router: '/admin/major', _CHECKED: false, _SELECTED: false},
    {  id: 5, name: '课程管理', iconType: 'eye', router: '/admin/course', _CHECKED: false, _SELECTED: false},
  ];
+
+  teacherMenu: Menu[]  = [
+    {  id: 1, name: '教学计划', iconType: 'book', router: '/teacher/teach-plan', _CHECKED: false, _SELECTED: false},
+    {  id: 2, name: '课程信息', iconType: 'phone', router: '/teacher/course', _CHECKED: false, _SELECTED: false},
+  ];
+
+  studentMenu: Menu[]  = [
+    {  id: 1, name: '培养计划', iconType: 'book', router: '/teacher/teach-plan', _CHECKED: false, _SELECTED: false},
+    {  id: 2, name: '课程信息', iconType: 'phone', router: '/teacher/course', _CHECKED: false, _SELECTED: false},
+  ];
   constructor() { }
 }

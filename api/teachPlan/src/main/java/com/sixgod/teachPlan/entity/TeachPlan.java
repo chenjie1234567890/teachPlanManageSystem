@@ -30,6 +30,9 @@ public class TeachPlan {
     List<Lesson> lessonList; // 课时列表
 
     @ManyToOne
+    Teacher teacher;
+
+    @ManyToOne
     Semester semester;      // 对应学期
 
     @ManyToOne

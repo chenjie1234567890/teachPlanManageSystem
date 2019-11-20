@@ -7,11 +7,12 @@ import {en_US, NZ_I18N} from 'ng-zorro-antd';
 import { FooterComponent } from './footer/footer.component';
 import {SharedModule} from '../shared/shared.module';
 import {RouterModule} from '@angular/router';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 
 
 @NgModule({
-  declarations: [CoreComponent, SidebarComponent, BannerComponent, FooterComponent],
+  declarations: [CoreComponent, SidebarComponent, BannerComponent, FooterComponent, WelcomeComponent],
   imports: [
     CommonModule,
     SharedModule,
@@ -20,7 +21,8 @@ import {RouterModule} from '@angular/router';
   exports: [
     SidebarComponent,
     BannerComponent,
-    FooterComponent
+    FooterComponent,
+    WelcomeComponent
   ],
   bootstrap: [CoreComponent],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
