@@ -24,7 +24,7 @@ public class Teacher {
 
     Integer staffNumber;    // 工号
     @OneToOne
-    User user;  //用户
+    User user;              //用户
     @OneToMany
     List<TeachPlan> teachPlanList;
 
