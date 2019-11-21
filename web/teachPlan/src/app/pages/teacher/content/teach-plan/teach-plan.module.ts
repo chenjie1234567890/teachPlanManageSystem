@@ -8,6 +8,7 @@ import {TeachPlanAddComponent} from "./teach-plan-add/teach-plan-add.component";
 import {TeachPlanEditComponent} from "./teach-plan-edit/teach-plan-edit.component";
 import {NzLayoutModule} from "ng-zorro-antd";
 import {SharedModule} from "../../../shared/shared.module";
+import { TeachPlanDetailComponent } from './teach-plan-detail/teach-plan-detail.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import {SharedModule} from "../../../shared/shared.module";
     TeachPlanComponent,
     TeachPlanViewComponent,
     TeachPlanAddComponent,
-    TeachPlanEditComponent
+    TeachPlanEditComponent,
+    TeachPlanDetailComponent
   ],
   imports: [
     CommonModule,

@@ -1,32 +1,30 @@
-<!--上方搜索框-->
+<!--上方详情页面-->
 <div nz-row>
-  <div nz-col [nzSpan]="4" [nzOffset]="2">
-    <a nz-button nzType="primary" routerLink="/admin/major/add">
-      <i nz-icon nzType="plus" nzTheme="outline"></i>新增</a>
+  <div nz-col [nzSpan]="24">
+    <nz-descriptions nzTitle="教学详情">
+      <nz-descriptions-item nzTitle="学期">{{teachPlan.semester}}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="专业">{{teachPlan.major}}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="课程">{{teachPlan.course}}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="授课方式">{{teachPlan.teacheType}}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="考核方式">{{teachPlan.examType}}</nz-descriptions-item>
+    </nz-descriptions>
   </div>
 </div>
+
 <!--分割线-->
 <nz-divider></nz-divider>
 <!--下方表格-->
 <div nz-row>
   <div nz-col [nzSpan]="24">
     <nz-table
-      [nzData]="teachPlanPage.content"
+      [nzData]="teachPlan.lessonList"
       nzBordered
-      nzShowSizeChanger
       [nzLoading]="loading"
-      [nzTotal]="teachPlanPage?.content.length"
-      [nzPageSize]="pageable.size"
-      [nzPageIndex]="pageable.page"
-      (nzPageIndexChange)="getMajorPage()"
-      (nzPageSizeChange)="getMajorPage()">
       <thead>
       <tr>
-        <th width="10%">id</th>
-        <th width="20%">学期</th>
-        <th width="20">专业</th>
-        <th width="20%">课程</th>
-        <th width="30%">操作</th>
+        <th width="10%">课时</th>
+        <th width="70%">内容</th>
+        <th width="20%">操作</th>
       </tr>
       </thead>
       <tbody>

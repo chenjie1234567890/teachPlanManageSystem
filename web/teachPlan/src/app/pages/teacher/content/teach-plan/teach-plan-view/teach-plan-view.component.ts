@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {AppConfig} from "../../../../../app.config";
 import {Page} from "../../../../../entity/page";
-import {EducatePlan} from "../../../../../entity/educate-plan";
-import {Major} from "../../../../../entity/major";
 import {MajorService} from "../../../../../service/major.service";
-import {EducatePlanService} from "../../../../../service/educate-plan.service";
+import {TeachPlan} from "../../../../../entity/teach-plan";
+import {TeachPlanService} from "../../../../../service/teach-plan.service";
 
 @Component({
   selector: 'app-teach-plan-view',
@@ -14,33 +13,21 @@ import {EducatePlanService} from "../../../../../service/educate-plan.service";
 export class TeachPlanViewComponent implements OnInit {
 
   pageable = AppConfig.pageConfig;
-  educatePlanPage: Page<EducatePlan> = new Page();
-  majorId = 0;
-  majorList: Major[];
+  teachPlanPage: Page<TeachPlan> = new Page();
+
   constructor(private majorService: MajorService,
-              private educatePlanService: EducatePlanService) { }
+              private teachPlanService: TeachPlanService) { }
 
   /**
-   * 获取培养计划分页信息
+   * 获取教学计划分页信息
    */
-  getEducatePlanPage() {
-    this.educatePlanService.getEducatePlanPage(this.pageable, this.majorId)
-      .subscribe((data: Page<EducatePlan>) => {
-        this.educatePlanPage = data;
+  getTeachPlanPage() {
+    this.teachPlanService.getTeachPlanPage(this.pageable)
+      .subscribe((data: Page<TeachPlan>) => {
+        this.teachPlanPage = data;
       }, (res) => {
         console.log(res);
       });
-  }
-
-  /**
-   * 获取专业列表
-   */
-  getMajorList() {
-    this.majorService.getAll().subscribe((data: Major[]) => {
-      this.majorList = data;
-    }, () => {
-      console.log('error');
-    });
   }
 
   /**
@@ -48,11 +35,11 @@ export class TeachPlanViewComponent implements OnInit {
    * @param id
    */
   deleteById(id: number) {
-    this.educatePlanService.deleteById(id)
+    this.teachPlanService.deleteById(id)
       .subscribe(() => {
-        for(let i = 0; i < this.educatePlanPage.content.length; i++) {
-          if(this.educatePlanPage.content[i].id == id) {
-            this.educatePlanPage.content.splice(i, 1);
+        for(let i = 0; i < this.teachPlanPage.content.length; i++) {
+          if(this.teachPlanPage.content[i].id == id) {
+            this.teachPlanPage.content.splice(i, 1);
             break;
           }}}, () => {
         console.log('error')
@@ -60,8 +47,7 @@ export class TeachPlanViewComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getEducatePlanPage();
-    this.getMajorList();
+    this.getTeachPlanPage();
   }
 
 }
