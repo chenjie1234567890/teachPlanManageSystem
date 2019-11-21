@@ -1,11 +1,9 @@
 package com.sixgod.teachPlan.service.impl;
 
-import com.sixgod.teachPlan.entity.Course;
 import com.sixgod.teachPlan.entity.Lesson;
 import com.sixgod.teachPlan.entity.TeachPlan;
 import com.sixgod.teachPlan.entity.Teacher;
 import com.sixgod.teachPlan.repository.TeachPlanRepository;
-import com.sixgod.teachPlan.repository.TeacherRepository;
 import com.sixgod.teachPlan.service.TeachPlanService;
 import com.sixgod.teachPlan.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
