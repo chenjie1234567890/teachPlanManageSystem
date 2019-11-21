@@ -58,4 +58,13 @@ public class UserController {
         return user;
     }
 
+    /**
+     * 查询用户姓名是否存在
+     * @param username
+     * @return
+     */
+    @GetMapping("/existByUserName")
+    public boolean existByUserName(String username){
+        return userService.existByUserName(username);
+    }
 }
