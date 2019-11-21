@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class TeachPlanServiceImpl implements TeachPlanService {
@@ -26,13 +27,17 @@ public class TeachPlanServiceImpl implements TeachPlanService {
 
     @Override
     public void add(TeachPlan teachPlan) {
-        List<Lesson> lessonList = teachPlan.getLessonList();
+        List<Lesson> lessonList = new ArrayList<>();
         int i = teachPlan.getCourse().getTotalLessonHour();
+        Lesson lesson;
         for(int j = 0;j < i;j++){
-            Lesson lesson = new Lesson();
+            lesson = new Lesson();
+            lesson.setLessonHour(j + 1);
             lessonList.add(lesson);
         }
         teachPlan.setLessonList(lessonList);
+
+        teachPlanRepository.save(teachPlan);
     }
 
     @Override
