@@ -28,12 +28,13 @@ public class TeachPlanServiceImpl implements TeachPlanService {
 
     @Override
     public void add(TeachPlan teachPlan) {
-        List<Lesson> lessonList;
+        List<Lesson> lessonList = teachPlan.getLessonList();
         int i = teachPlan.getCourse().getTotalLessonHour();
         for(int j = 0;j < i;j++){
-
-            lessonList.add()
+            Lesson lesson = new Lesson();
+            lessonList.add(lesson);
         }
+        teachPlan.setLessonList(lessonList);
     }
 
     @Override

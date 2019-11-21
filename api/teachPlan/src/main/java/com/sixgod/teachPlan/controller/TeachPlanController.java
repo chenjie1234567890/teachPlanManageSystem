@@ -1,9 +1,7 @@
 package com.sixgod.teachPlan.controller;
 
 import com.sixgod.teachPlan.entity.TeachPlan;
-import com.sixgod.teachPlan.entity.Teacher;
 import com.sixgod.teachPlan.service.TeachPlanService;
-import com.sixgod.teachPlan.service.TeacherService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
