@@ -1,13 +1,144 @@
-<div nz-row class="container">
-  <div nz-col class="warn">
-    公告：推荐您使用谷歌、火狐、360极速、IE 9以上浏览器访问本管理平台，其他低版本浏览器可能会影响您的使用体验。
-  </div>
-  <div nz-col>
-    <div class="container-header">
-      <div class="title">欢迎访问教学计划管理系统</div>
-      <div class="content">
-        <p>千里之行始于足下</p>
-      </div>
+<!--<div nz-row class="container">-->
+<!--  <div nz-col class="warn">-->
+<!--    公告：推荐您使用谷歌、火狐、360极速、IE 9以上浏览器访问本管理平台，其他低版本浏览器可能会影响您的使用体验。-->
+<!--  </div>-->
+<!--  <div nz-col>-->
+<!--    <div class="container-header">-->
+<!--      <div class="title">欢迎访问教学计划管理系统</div>-->
+<!--      <div class="content">-->
+<!--        <p>千里之行始于足下</p>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>公告效果</title>
+  <style type="text/css">
+    * {
+      font-size:30px;
+      margin:0;
+      padding:0;
+
+    }
+    html * {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    /*
+    */
+    *, *:after, *:before {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+    /*内容总区域的长度，自行控制*/
+    .timeline-block {
+      width:90%;
+      margin:0 auto;
+    }
+    /*title区域*/
+    .timeline-title-info {
+      display:-webkit-box;
+      display:-moz-box;
+
+    }
+    /*公告文字*/
+    .timeline-title {
+      color:#F67236;
+      margin-right:16px;
+    }
+    /*日期*/
+    .timeline-time {
+      -webkit-box-flex:1;
+      box-flex:1;
+    }
+    /*内容区域*/
+    .timeline-info {
+      width:100%;
+    }
+    /*内容文字*/
+    .timeline-content {
+      border-left:1px solid #FBC0A6;
+      margin-left:10px;
+      padding-left:34px;
+      margin-top:10px;
+      margin-bottom:8px;
+      color:#999999;
+      font-size:18px;
+      position:relative;
+      min-height:66px;
+    }
+    .timeline-content::before {
+      content:'';
+      display:block;
+      position:absolute;
+      left:-3px;
+      top:-3px;
+      width:5px;
+      height:5px;
+      border-radius:50%;
+      background:#F6763D;
+    }
+    .timeline-content::after {
+      content:'';
+      display:block;
+      position:absolute;
+      left:-3px;
+      bottom:0;
+      width:5px;
+      height:5px;
+      border-radius:50%;
+      background:#F6763D;
+    }
+  </style>
+</head>
+<body>
+<br>
+<br>
+<br>
+<!--公告模块-->
+<section>
+  <!--公告区域1-->
+  <div class="timeline-block">
+    <!--标题-->
+    <div class="timeline-title-info">
+      <div class="timeline-title">欢迎访问教学计划管理系统</div><div class="timeline-time"></div>
+    </div>
+    <!--内容-->
+    <div class="timeline-info">
+      <div class="timeline-content">如有紧急情况<br>请联系网站管理员</div>
     </div>
   </div>
-</div>
+  <!--end 公告区域-->
+  <!--公告区域2-->
+  <div class="timeline-block">
+    <!--标题-->
+    <div class="timeline-title-info">
+      <div class="timeline-title">推荐使用以下浏览器进行访问</div><div class="timeline-time"></div>
+    </div>
+    <!--内容-->
+    <div class="timeline-info">
+      <div class="timeline-content">谷歌chrome浏览器<i nz-icon nzType="chrome" nzTheme="fill" nzSpin="true"></i><br>火狐浏览器<br>360极速浏览器<br>IE 9以上版本浏览器</div>
+    </div>
+  </div>
+  <!--end 公告区域-->
+  <!--公告区域3-->
+  <div class="timeline-block">
+    <!--标题-->
+    <div class="timeline-title-info">
+      <div class="timeline-title">实时公告</div><div class="timeline-time">2019-11-21</div>
+    </div>
+    <!--内容-->
+    <div class="timeline-info">
+      <div class="timeline-content">目前大家还在很努力的完善这个系统<br>大家辛苦了！</div>
+    </div>
+  </div>
+  <!--end 公告区域-->
+</section>
+<!--公告模块-->
+</body>
+</html>

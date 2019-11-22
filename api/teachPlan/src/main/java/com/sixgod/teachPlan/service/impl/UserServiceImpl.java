@@ -11,11 +11,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang.math.RandomUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import javax.security.auth.message.AuthException;
 import javax.servlet.http.HttpSession;
-import java.util.Random;
 
 /**
  * @author chenjie
@@ -109,5 +107,16 @@ public class UserServiceImpl implements UserService {
     public User getCurrentLoginUser() {
         Long userId = (Long) httpSession.getAttribute(UserService.USER_ID);
         return userRepository.findById(userId).orElse(null);
+    }
+
+    @Override
+    public Boolean existByUserName(String userName) {
+        User user = userRepository.findByUserName(userName);
+        if(user == null){
+            return false;
+        }
+        else{
+            return true;
+        }
     }
 }

@@ -21,7 +21,6 @@ public class Lesson {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
     Integer lessonHour;    // 课时次序
     String content;        // 内容
     Integer weight = 0;    // 重要性

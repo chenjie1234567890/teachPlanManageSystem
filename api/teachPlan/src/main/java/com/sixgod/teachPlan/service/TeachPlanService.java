@@ -11,7 +11,7 @@ public interface TeachPlanService {
     /**
      * 获取当前登录教师的教学计划列表
      * 通过教师服务，获取当前登录教师
-     * 再执行教学计划仓库findAllByTeacherId
+     * 再执行教学计划仓库findAllByTeacherById
      * @return Page<TeachPlan>
      */
     Page<TeachPlan> getTeachPlanPage(Pageable pageable);
