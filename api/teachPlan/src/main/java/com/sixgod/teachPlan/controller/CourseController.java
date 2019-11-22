@@ -90,7 +90,7 @@ public class CourseController {
      * @param name
      * @return
      */
-    @GetMapping("/findByName")
+    @GetMapping("/existByName")
     public Boolean existByName(String name){
         return courseService.existByName(name);
     }
