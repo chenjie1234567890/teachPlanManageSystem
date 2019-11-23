@@ -22,4 +22,6 @@ public interface SemesterRepository extends JpaRepository <Semester,Long > {
      * @return
      */
     boolean existsByName(String name);
+
+    Semester findByCurrentSemesterTrue();
 }

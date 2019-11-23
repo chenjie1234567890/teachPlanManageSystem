@@ -34,12 +34,14 @@
     >
       <thead>
       <tr>
-        <th width="15%">id</th>
-        <th width="15">课程名称</th>
-        <th width="15%">学分</th>
-        <th width="15%">总课时</th>
-        <th width="15%">课程类型</th>
-        <th width="25%">操作</th>
+        <th width="5%">id</th>
+        <th width="25">课程名称</th>
+        <th width="10%">学分</th>
+        <th width="10%">总课时</th>
+        <th width="10%">课程类型</th>
+        <th width="10%">授课方式</th>
+        <th width="10%">考核方式</th>
+        <th width="20%">操作</th>
       </tr>
       </thead>
       <tbody>
@@ -48,7 +50,9 @@
         <td>{{course.name}}</td>
         <td>{{course.credit}}</td>
         <td>{{course.totalLessonHour}}</td>
-        <td>{{course.type}}</td>
+        <td>{{course.type | courseType}}</td>
+        <td>{{course.teachType | teachType}}</td>
+        <td>{{course.examType | examType}}</td>
         <td>
           <a nz-button nzGhost nzType="primary" routerLink="/admin/course/edit/{{course.id}}">
             <i nz-icon nzType="edit" nzTheme="twotone"></i>

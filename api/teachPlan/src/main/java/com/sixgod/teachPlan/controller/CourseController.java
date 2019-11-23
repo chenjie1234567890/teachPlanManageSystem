@@ -17,7 +17,6 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("course")
-
 public class CourseController {
     @Autowired
     CourseService courseService;
@@ -50,7 +49,7 @@ public class CourseController {
      * @param id
      * @param course
      */
-    @PostMapping("/{id}")
+    @PutMapping("/{id}")
     public void update(@PathVariable Long id,@RequestBody Course course){
         courseService.update(id,course);
     }
@@ -93,5 +92,14 @@ public class CourseController {
     @GetMapping("/existByName")
     public Boolean existByName(String name){
         return courseService.existByName(name);
+    }
+
+    @JsonView(CourseJsonView.getBase.class)
+    @GetMapping("/findBySemesterAndTeacher")
+    public List<Course> findBySemesterAndTeacher(
+            @RequestParam(name = "semesterId") Long semesterId,
+            @RequestParam(name = "teacherId") Long teacherId) {
+        List<Course> courseList = courseService.findBySemesterAndTeacher(semesterId, teacherId);
+        return courseList;
     }
 }

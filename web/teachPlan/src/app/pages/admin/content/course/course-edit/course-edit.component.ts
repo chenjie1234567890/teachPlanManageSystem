@@ -24,7 +24,9 @@ export class CourseEditComponent implements OnInit {
       name: ['', [Validators.required]],
       credit: [null, [Validators.required]],
       totalLessonHour: [null, [Validators.required]],
-      type: [null]
+      type: [null],
+      teachType: [null],
+      examType: [null],
     });
   }
 
@@ -34,7 +36,9 @@ export class CourseEditComponent implements OnInit {
       name: course.name,
       credit: course.credit,
       totalLessonHour: course.totalLessonHour,
-      type: course.type
+      type: course.type,
+      teachType: course.teachType,
+      examType: course.examType
     });
   }
 
@@ -63,7 +67,7 @@ export class CourseEditComponent implements OnInit {
 
   // 提交表单
   submitForm() {
-    this.courseService.add(this.editForm.value).subscribe(() => {
+    this.courseService.update(this.editForm.value, this.editCourseId).subscribe(() => {
       this.router.navigateByUrl('admin/course');
     }, () => {
       console.log('error');

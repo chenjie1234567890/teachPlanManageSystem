@@ -51,4 +51,11 @@ public interface MajorService {
      * 校验专业名是否存在
      */
     Boolean existByName(String name);
+
+    /**
+     * 获取所有包含courseId的专业
+     * @param id
+     * @return
+     */
+    List<Major> findAllByCourseId(Long id);
 }

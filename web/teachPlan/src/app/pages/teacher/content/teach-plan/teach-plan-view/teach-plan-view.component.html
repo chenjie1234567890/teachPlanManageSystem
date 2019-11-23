@@ -1,7 +1,7 @@
 <!--上方搜索框-->
 <div nz-row>
   <div nz-col [nzSpan]="4" [nzOffset]="2">
-    <a nz-button nzType="primary" routerLink="/admin/major/add">
+    <a nz-button nzType="primary" routerLink="/teacher/teach-plan/add">
       <i nz-icon nzType="plus" nzTheme="outline"></i>新增</a>
   </div>
 </div>
@@ -11,15 +11,15 @@
 <div nz-row>
   <div nz-col [nzSpan]="24">
     <nz-table
-      [nzData]="teachPlanPage.content"
+      [nzData]="teachPlanPage?.content"
       nzBordered
       nzShowSizeChanger
       [nzLoading]="loading"
       [nzTotal]="teachPlanPage?.content.length"
       [nzPageSize]="pageable.size"
       [nzPageIndex]="pageable.page"
-      (nzPageIndexChange)="getMajorPage()"
-      (nzPageSizeChange)="getMajorPage()">
+      (nzPageIndexChange)="getTeachPlanPage()"
+      (nzPageSizeChange)="getTeachPlanPage()">
       <thead>
       <tr>
         <th width="10%">id</th>
@@ -32,20 +32,20 @@
       <tbody>
       <tr *ngFor="let teachPlan of teachPlanPage?.content">
         <td>{{teachPlan.id}}</td>
-        <td>{{teachPlan.semester}}</td>
-        <td>{{teachPlan.major}}</td>
-        <td>{{teachPlan.course}}</td>
+        <td>{{teachPlan.semester.name}}</td>
+        <td>{{teachPlan.major.name}}</td>
+        <td>{{teachPlan.course.name}}</td>
         <td>
-          <a nz-button nzGhost nzType="default" routerLink="/teacher/teacher-plan/detail/{{teachPlan.id}}">
-            <i nz-icon nzType="glass" nzTheme="twotone"></i>
+          <a nz-button nzType="default" routerLink="/teacher/teacher-plan/detail/{{teachPlan.id}}">
+            <i nz-icon nzType="search" nzTheme="outline"></i>
             查看详情
           </a>
-          <a nz-button nzGhost nzType="primary" routerLink="/admin/major/edit/{{major.id}}">
-            <i nz-icon nzType="edit" nzTheme="twotone"></i>
+          <a nz-button nzGhost  nzType="primary" routerLink="/teacher/teacher-plan/edit/{{teachPlan.id}}">
+            <i nz-icon nzType="edit" nzTheme="outline"></i>
             编辑
           </a>
-          <button nz-button nzGhost nzType="danger" (click)="deleteById(major.id)">
-            <i nz-icon nzType="delete" nzTheme="twotone"></i>
+          <button nz-button nzGhost nzType="danger" (click)="deleteById(teachPlan.id)">
+            <i nz-icon nzType="delete" nzTheme="outline"></i>
             删除
           </button>
         </td>

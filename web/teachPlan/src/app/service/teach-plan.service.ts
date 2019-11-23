@@ -9,7 +9,7 @@ import {TeachPlan} from "../entity/teach-plan";
   providedIn: 'root'
 })
 export class TeachPlanService {
-  baseUrl = 'teachPlan';
+  baseUrl = 'teachplan';
   constructor(private http: HttpClient) { }
 
   /**

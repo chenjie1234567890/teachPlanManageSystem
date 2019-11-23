@@ -1,11 +1,15 @@
 package com.sixgod.teachPlan.controller;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.sixgod.teachPlan.entity.TeachPlan;
+import com.sixgod.teachPlan.jsonView.TeachPlanJsonView;
 import com.sixgod.teachPlan.service.TeachPlanService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
@@ -20,8 +24,9 @@ public class TeachPlanController {
      * @param pageable
      * @return
      */
+    @JsonView(TeachPlanJsonView.getBase.class)
     @GetMapping
-    public Page<TeachPlan> getTeachPlanPage(Pageable pageable) {
+    public Page<TeachPlan> getTeachPlanPage(@PageableDefault(sort = "id",direction = Sort.Direction.DESC) Pageable pageable) {
         return teachPlanService.getTeachPlanPage(pageable);
     }
 

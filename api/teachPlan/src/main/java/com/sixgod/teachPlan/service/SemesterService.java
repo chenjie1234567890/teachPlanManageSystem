@@ -4,6 +4,8 @@ import com.sixgod.teachPlan.entity.Semester;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
+
 public interface SemesterService {
     /**
      * 按照姓名查找学期
@@ -47,4 +49,15 @@ public interface SemesterService {
      * @param id
      */
     void setCurrentSemester(Long id);
+
+    /**
+     * 获取当前开放学期
+     */
+    Semester getOpenSemester();
+
+    /**
+     * 获取所有学期
+     * @return
+     */
+    List<Semester> findAll();
 }

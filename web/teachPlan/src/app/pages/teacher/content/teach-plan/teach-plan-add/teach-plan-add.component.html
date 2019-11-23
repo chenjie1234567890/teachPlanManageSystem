@@ -1,1 +1,47 @@
-<p>teach-plan-add works!</p>
+<form nz-form [formGroup]="addForm" (ngSubmit)="submitForm()">
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" nzRequired>学期</nz-form-label>
+    <nz-form-control [nzSpan]="6" nzValidatingTip="Validating...">
+      <nz-select
+        nzShowSearch
+        #SelectSemesterId
+        nzPlaceHolder="请选择学期"
+        (ngModelChange)="semesterChange(SelectSemesterId.value)"
+        formControlName="semester">
+        <nz-option *ngFor="let semesterOption of semesterOptions" [nzLabel]="semesterOption.name"
+                   [nzValue]="semesterOption.id"></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" nzRequired>教授课程</nz-form-label>
+    <nz-form-control [nzSpan]="6" nzValidatingTip="Validating...">
+      <nz-select
+        nzShowSearch
+        #SelectCourse
+        nzPlaceHolder="请选择课程"
+        (ngModelChange)="courseChange(SelectCourse.value)"
+        formControlName="course">
+        <nz-option *ngFor="let courseOption of courseOptions" [nzLabel]="courseOption.name"
+                   [nzValue]="courseOption"></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7">教授专业</nz-form-label>
+    <nz-form-control [nzSpan]="6">
+      <nz-select
+        nzPlaceHolder="请选择教授专业"
+        formControlName="major">
+        <nz-option *ngFor="let majorOption of majorOptions" [nzLabel]="majorOption.name"
+                   [nzValue]="majorOption"></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control [nzOffset]="7" [nzSpan]="12">
+      <button nz-button type="submit" nzType="primary" [disabled]="!addForm.valid">提交</button>
+      <button nz-button type="reset" (click)="resetForm($event)">清空</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>

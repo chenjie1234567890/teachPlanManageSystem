@@ -5,6 +5,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
+
 public interface CourseRepository extends JpaRepository<Course, Long> {
     /**
      * 根据姓名查询所有课程信息

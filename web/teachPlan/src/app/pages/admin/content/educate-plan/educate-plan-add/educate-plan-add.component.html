@@ -13,26 +13,28 @@
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>
-    <nz-form-label [nzSpan]="7" nzRequired>专业</nz-form-label>
+    <nz-form-label [nzSpan]="7" nzRequired>所属专业</nz-form-label>
     <nz-form-control [nzSpan]="6" nzValidatingTip="Validating...">
       <nz-select
         nzShowSearch
+        #SelectMajor
         nzPlaceHolder="请选择专业"
+        (ngModelChange)="majorChange(SelectMajor.value)"
         formControlName="major">
-        <nz-option *ngFor="let majorOption of majorOptions" [nzLabel]="majorOption.label"
-                   [nzValue]="majorOption.value"></nz-option>
+        <nz-option *ngFor="let majorOption of majorOptions" [nzLabel]="majorOption.name"
+                   [nzValue]="majorOption"></nz-option>
       </nz-select>
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>
-    <nz-form-label [nzSpan]="7">课程</nz-form-label>
+    <nz-form-label [nzSpan]="7" nzRequired>开设课程</nz-form-label>
     <nz-form-control [nzSpan]="12">
       <nz-select
         nzMode="multiple"
         nzPlaceHolder="请选择课程"
         [formControlName]="'courseList'">
-        <nz-option *ngFor="let courseOption of courseOptions" [nzLabel]="courseOption.label"
-                   [nzValue]="courseOption.value"></nz-option>
+        <nz-option *ngFor="let courseOption of courseOptions" [nzLabel]="courseOption.name"
+                   [nzValue]="courseOption"></nz-option>
       </nz-select>
     </nz-form-control>
   </nz-form-item>

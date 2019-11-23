@@ -14,41 +14,41 @@
 <!--分割线-->
 <nz-divider></nz-divider>
 <!--下方表格-->
-<div nz-row>
-  <div nz-col [nzSpan]="24">
-    <nz-table
-      [nzData]="teachPlan.lessonList"
-      nzBordered
-      [nzLoading]="loading"
-      <thead>
-      <tr>
-        <th width="10%">课时</th>
-        <th width="70%">内容</th>
-        <th width="20%">操作</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let teachPlan of teachPlanPage?.content">
-        <td>{{teachPlan.id}}</td>
-        <td>{{teachPlan.semester}}</td>
-        <td>{{teachPlan.major}}</td>
-        <td>{{teachPlan.course}}</td>
-        <td>
-          <a nz-button nzGhost nzType="default" routerLink="/teacher/teacher-plan/detail/{{teachPlan.id}}">
-            <i nz-icon nzType="glass" nzTheme="twotone"></i>
-            查看详情
-          </a>
-          <a nz-button nzGhost nzType="primary" routerLink="/admin/major/edit/{{major.id}}">
-            <i nz-icon nzType="edit" nzTheme="twotone"></i>
-            编辑
-          </a>
-          <button nz-button nzGhost nzType="danger" (click)="deleteById(major.id)">
-            <i nz-icon nzType="delete" nzTheme="twotone"></i>
-            删除
-          </button>
-        </td>
-      </tr>
-      </tbody>
-    </nz-table>
-  </div>
-</div>
+<!--<div nz-row>-->
+  <!--<div nz-col [nzSpan]="24">-->
+    <!--<nz-table-->
+      <!--[nzData]="teachPlan.lessonList"-->
+      <!--nzBordered-->
+      <!--[nzLoading]="loading"-->
+      <!--<thead>-->
+      <!--<tr>-->
+        <!--<th width="10%">课时</th>-->
+        <!--<th width="70%">内容</th>-->
+        <!--<th width="20%">操作</th>-->
+      <!--</tr>-->
+      <!--</thead>-->
+      <!--<tbody>-->
+      <!--<tr *ngFor="let teachPlan of teachPlanPage?.content">-->
+        <!--<td>{{teachPlan.id}}</td>-->
+        <!--<td>{{teachPlan.semester}}</td>-->
+        <!--<td>{{teachPlan.major}}</td>-->
+        <!--<td>{{teachPlan.course}}</td>-->
+        <!--<td>-->
+          <!--<a nz-button nzGhost nzType="default" routerLink="/teacher/teacher-plan/detail/{{teachPlan.id}}">-->
+            <!--<i nz-icon nzType="glass" nzTheme="twotone"></i>-->
+            <!--查看详情-->
+          <!--</a>-->
+          <!--<a nz-button nzGhost nzType="primary" routerLink="/admin/major/edit/{{major.id}}">-->
+            <!--<i nz-icon nzType="edit" nzTheme="twotone"></i>-->
+            <!--编辑-->
+          <!--</a>-->
+          <!--<button nz-button nzGhost nzType="danger" (click)="deleteById(major.id)">-->
+            <!--<i nz-icon nzType="delete" nzTheme="twotone"></i>-->
+            <!--删除-->
+          <!--</button>-->
+        <!--</td>-->
+      <!--</tr>-->
+      <!--</tbody>-->
+    <!--</nz-table>-->
+  <!--</div>-->
+<!--</div>-->

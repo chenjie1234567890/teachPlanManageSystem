@@ -12,12 +12,21 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Slf4j
 @RestController
 @RequestMapping("semester")
 public class SemesterController {
     @Autowired
     SemesterService semesterService;
+
+    @JsonView(SemesterJsonView.getAll.class)
+    @GetMapping("/getAll")
+    public List<Semester> getAll() {
+        return semesterService.findAll();
+    }
+
 
     /**
      * 按照姓名查找学期
@@ -91,4 +100,11 @@ public class SemesterController {
     public void setCurrentSemester(@RequestBody Long id){
         semesterService.setCurrentSemester(id);
     }
+
+    /**
+     * 获取当前开放学期
+     */
+    @JsonView(SemesterJsonView.getAll.class)
+    @GetMapping("/getOpenSemester")
+    public Semester semester() { return semesterService.getOpenSemester(); }
 }

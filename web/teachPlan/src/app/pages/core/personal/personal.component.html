@@ -1,0 +1,51 @@
+<form nz-form [formGroup]="userForm" (ngSubmit)="submitForm()">
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7">用户名</nz-form-label>
+    <nz-form-control [nzSpan]="6" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="userErrorTpl">
+      <nz-input-group nzPrefixIcon="user">
+        <input nz-input placeholder="用户名" formControlName="userName"/>
+      </nz-input-group>
+      <ng-template #userErrorTpl let-control>
+        <ng-container *ngIf="control.hasError('required')">
+          用户名不能为空
+        </ng-container>
+      </ng-template>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7">密码</nz-form-label>
+    <nz-form-control [nzSpan]="6" nzHasFeedback [nzErrorTip]="passwordErrorTpl">
+      <nz-input-group nzPrefixIcon="lock">
+        <input nz-input type="password" placeholder="请输入密码" formControlName="password" autocomplete='tel'/>
+      </nz-input-group>
+      <ng-template #passwordErrorTpl let-control>
+        <ng-container *ngIf="control.hasError('required')">
+          密码不能为空
+        </ng-container>
+      </ng-template>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7">确认密码</nz-form-label>
+    <nz-form-control [nzSpan]="6" nzHasFeedback [nzErrorTip]="confirmPasswordErrorTpl">
+      <nz-input-group nzPrefixIcon="lock">
+        <input nz-input type="password" placeholder="确认密码" formControlName="confirmPassword"
+               id="confirmPassword" autocomplete='tel'/>
+      </nz-input-group>
+      <ng-template #confirmPasswordErrorTpl let-control>
+        <ng-container *ngIf="control.hasError('pwConfirm')">
+          两次密码不一致
+        </ng-container>
+        <ng-container *ngIf="control.hasError('required')">
+          请验证密码
+        </ng-container>
+      </ng-template>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control [nzOffset]="7" [nzSpan]="12">
+      <button nz-button type="submit" nzType="primary" [disabled]="!userForm.valid">保存</button>
+      <button nz-button type="reset" (click)="getUserInfo()">还原</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>

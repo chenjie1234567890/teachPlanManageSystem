@@ -8,11 +8,12 @@ import { FooterComponent } from './footer/footer.component';
 import {SharedModule} from '../shared/shared.module';
 import {RouterModule} from '@angular/router';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { PersonalComponent } from './personal/personal.component';
 
 
 
 @NgModule({
-  declarations: [CoreComponent, SidebarComponent, BannerComponent, FooterComponent, WelcomeComponent],
+  declarations: [CoreComponent, SidebarComponent, BannerComponent, FooterComponent, WelcomeComponent, PersonalComponent],
   imports: [
     CommonModule,
     SharedModule,
@@ -22,7 +23,8 @@ import { WelcomeComponent } from './welcome/welcome.component';
     SidebarComponent,
     BannerComponent,
     FooterComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    PersonalComponent
   ],
   bootstrap: [CoreComponent],
   providers: [{ provide: NZ_I18N, useValue: en_US }],

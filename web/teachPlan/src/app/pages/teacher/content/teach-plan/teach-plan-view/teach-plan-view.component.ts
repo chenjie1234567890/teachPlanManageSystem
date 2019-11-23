@@ -49,5 +49,4 @@ export class TeachPlanViewComponent implements OnInit {
   ngOnInit() {
     this.getTeachPlanPage();
   }
-
 }

@@ -15,45 +15,29 @@ import {EducatePlanService} from "../../../../../service/educate-plan.service";
 export class EducatePlanAddComponent implements OnInit {
 
   addForm: FormGroup;
-  courseOptions: Array<{ label: string; value: Course }> = [];
-  majorOptions: Array<{ label: string; value: Major }>;
+  courseOptions = Array<Course>();
+  majorOptions = Array<Major>();
   constructor(private fb: FormBuilder,
               private majorService: MajorService,
               private courseService: CourseService,
               private educateService: EducatePlanService,
               private router: Router) { }
+
   // 初始化表单
   initForm() {
     this.addForm = this.fb.group({
       termNumber: [1, [Validators.required]],
       major: [null, [Validators.required]],
-      courseList: [null, []]
+      courseList: [null, [Validators.required]]
     });
   }
 
   // 初始化专业选项
   initMajorOptions() {
-    this.majorService.getAll().subscribe((majorList: Major[]) => {
-      const children: Array<{ label: string; value: Major }> = [];
-      for (let major of majorList) {
-        children.push({ label: major.name, value: major });
-      }
-      this.majorOptions = children;
+    this.majorService.getAll().subscribe((majors: Major[]) => {
+      this.majorOptions = majors;
     }, () => {
       console.log('error');
-    });
-  }
-
-  // 初始化课程选项
-  initCourseOptions() {
-    this.courseService.getAllCourse().subscribe((courseList: Course[]) => {
-      const children: Array<{ label: string; value: Course }> = [];
-      for (let course of courseList) {
-        children.push({ label: course.name, value: course });
-      }
-      this.courseOptions = children;
-    }, () => {
-      console.log('error')
     });
   }
 
@@ -64,6 +48,15 @@ export class EducatePlanAddComponent implements OnInit {
       this.addForm.controls[key].markAsPristine();
       this.addForm.controls[key].updateValueAndValidity();
     }
+  }
+
+  // 专业选项改变
+  majorChange(selectMajor: Major) {
+    this.majorService.findById(selectMajor.id).subscribe((majorInfo: Major) => {
+      this.courseOptions = majorInfo.courseList;
+    }, () => {
+      console.log('error');
+    });
   }
 
   // 提交表单
@@ -77,7 +70,6 @@ export class EducatePlanAddComponent implements OnInit {
 
   ngOnInit() {
     this.initForm();
-    this.initCourseOptions();
     this.initMajorOptions();
   }
 
