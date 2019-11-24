@@ -1,0 +1,38 @@
+<app-personal></app-personal>
+<nz-divider></nz-divider>
+<form nz-form [formGroup]="editForm" (ngSubmit)="submitForm()">
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" nzRequired>学号</nz-form-label>
+    <nz-form-control [nzSpan]="6" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="studentNumErrorTpl">
+      <nz-input-group>
+        <input nz-input placeholder="学号" formControlName="studentNum"/>
+      </nz-input-group>
+      <ng-template #studentNumErrorTpl let-control>
+        <ng-container *ngIf="control.hasError('required')">
+          学号必须输入
+        </ng-container>
+      </ng-template>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" nzRequired>所属专业</nz-form-label>
+    <nz-form-control [nzSpan]="6"  [nzErrorTip]="majorErrorTpl">
+      <nz-select
+        nzPlaceHolder="请选择所属专业"
+        [formControlName]="'majorId'">
+        <nz-option *ngFor="let major of majorList" [nzLabel]="major.name"
+                   [nzValue]="major.id"></nz-option>
+      </nz-select>
+      <ng-template #majorErrorTpl let-control>
+        <ng-container *ngIf="control.hasError('required')">
+          学号必须输入
+        </ng-container>
+      </ng-template>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control [nzOffset]="7" [nzSpan]="12">
+      <button nz-button type="submit" nzType="primary" [disabled]="!editForm.valid">保存</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>

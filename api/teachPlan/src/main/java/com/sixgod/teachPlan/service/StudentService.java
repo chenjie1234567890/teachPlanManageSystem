@@ -8,4 +8,18 @@ public interface StudentService {
      * @return Teacher
      */
     Student getCurrentLoginStudent();
+
+    /**
+     * 更新学生
+     * @param id
+     * @param student
+     */
+    void upadte(Long id, Student student);
+
+    /**
+     * 根据id获取学生
+     * @param id
+     * @return
+     */
+    Student findById(Long id);
 }

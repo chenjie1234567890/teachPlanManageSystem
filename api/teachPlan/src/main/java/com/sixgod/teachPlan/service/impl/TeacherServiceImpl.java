@@ -16,7 +16,7 @@ public class TeacherServiceImpl implements TeacherService {
     TeacherRepository teacherRepository;
 
     @Autowired
-    UserService userService ;
+    UserService userService;
 
     @Override
     public Teacher getCurrentLoginTeacher() {
@@ -26,14 +26,10 @@ public class TeacherServiceImpl implements TeacherService {
 
     @Override
     public void upadte(Long id, Teacher teacher) {
-        Teacher persistTeacher = teacherRepository.findById(id).orElse(null);
-        if (persistTeacher == null) {
-            throw new EntityNotFoundException("专业id为：" + id + "不存在");
-        } else {
-            persistTeacher.setStaffNumber(teacher.getStaffNumber());
-            persistTeacher.setCourseList(teacher.getCourseList());
-            teacherRepository.save(persistTeacher);
-        }
+        Teacher persistTeacher = findById(id);
+        persistTeacher.setStaffNumber(teacher.getStaffNumber());
+        persistTeacher.setCourseList(teacher.getCourseList());
+        teacherRepository.save(persistTeacher);
     }
 
     @Override

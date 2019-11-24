@@ -19,7 +19,7 @@ export class MenuService {
   ];
 
   studentMenu: Menu[]  = [
-    {  id: 1, name: '培养计划', iconType: 'book', router: '/student/educate-plan', _CHECKED: false, _SELECTED: false},
+    {  id: 1, name: '培养计划', iconType: 'book', router: '/student/educate', _CHECKED: false, _SELECTED: false},
     {  id: 2, name: '课程信息', iconType: 'phone', router: '/student/course', _CHECKED: false, _SELECTED: false},
   ];
   constructor() { }

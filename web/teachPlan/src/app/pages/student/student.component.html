@@ -1,0 +1,29 @@
+<nz-layout class="layout">
+  <nz-sider
+    nzCollapsible
+    [(nzCollapsed)]="isCollapsed"
+    [nzBreakpoint]="'lg'"
+    [nzCollapsedWidth]="0"
+    [nzZeroTrigger]="zeroTrigger"
+  >
+    <!-- 侧边栏 -->
+    <app-sidebar></app-sidebar>
+  </nz-sider>
+  <nz-layout>
+    <!-- 顶端栏 -->
+    <app-banner></app-banner>
+    <nz-content>
+      <div class="inner-content">
+        <!-- 入口内容 -->
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+    <!-- 底端信息 -->
+    <nz-footer><app-footer></app-footer></nz-footer>
+  </nz-layout>
+</nz-layout>
+
+<!-- 小屏幕显示菜单按钮 -->
+<ng-template #zeroTrigger>
+  <i nz-icon nzType="menu-fold" nzTheme="outline"></i>
+</ng-template>
