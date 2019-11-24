@@ -43,9 +43,10 @@ public class TeachPlanController {
      * 更新教学计划
      * @param teachPlan
      */
-    @PostMapping("/update")
-    public void update(@RequestBody TeachPlan teachPlan) {
-        teachPlanService.update(teachPlan);
+    @PutMapping("/{id}")
+    public void update(@RequestBody TeachPlan teachPlan,
+                       @PathVariable Long id) {
+        teachPlanService.update(teachPlan, id);
     }
 
     /**
@@ -53,9 +54,12 @@ public class TeachPlanController {
      * @param id
      * @return
      */
-    @PostMapping("/{id}")
+    @GetMapping("/{id}")
+    @JsonView({TeachPlanJsonView.getAll.class})
     public TeachPlan findById(@PathVariable Long id) {
-        return teachPlanService.findById(id);
+        TeachPlan teachPlan = teachPlanService.findById(id);
+        return teachPlan;
+        
     }
 
     /**

@@ -1,6 +1,15 @@
+<div nz-row>
+  <div nz-col [nzSpan]="16" [nzOffset]="6">
+    <nz-descriptions nzTitle="定制教学计划">
+      <nz-descriptions-item nzTitle="当前学期">{{currentSemester?.name}}</nz-descriptions-item>
+      <nz-descriptions-item nzTitle="定制教师">{{loginTeacher?.user.userName}}</nz-descriptions-item>
+    </nz-descriptions>
+  </div>
+</div>
+<nz-divider></nz-divider>
 <form nz-form [formGroup]="addForm" (ngSubmit)="submitForm()">
   <nz-form-item>
-    <nz-form-label [nzSpan]="7" nzRequired>学期</nz-form-label>
+    <nz-form-label [nzSpan]="7" nzRequired>上课学期</nz-form-label>
     <nz-form-control [nzSpan]="6" nzValidatingTip="Validating...">
       <nz-select
         nzShowSearch
@@ -45,3 +54,5 @@
     </nz-form-control>
   </nz-form-item>
 </form>
+<nz-divider></nz-divider>
+<nz-alert nzType="info" nzMessage="提示" nzDescription="提交教学计划后，可在【查看详情】修改课时内容"></nz-alert>

@@ -36,13 +36,9 @@
         <td>{{teachPlan.major.name}}</td>
         <td>{{teachPlan.course.name}}</td>
         <td>
-          <a nz-button nzType="default" routerLink="/teacher/teacher-plan/detail/{{teachPlan.id}}">
+          <a nz-button nzGhost nzType="primary" routerLink="/teacher/teach-plan/detail/{{teachPlan.id}}">
             <i nz-icon nzType="search" nzTheme="outline"></i>
             查看详情
-          </a>
-          <a nz-button nzGhost  nzType="primary" routerLink="/teacher/teacher-plan/edit/{{teachPlan.id}}">
-            <i nz-icon nzType="edit" nzTheme="outline"></i>
-            编辑
           </a>
           <button nz-button nzGhost nzType="danger" (click)="deleteById(teachPlan.id)">
             <i nz-icon nzType="delete" nzTheme="outline"></i>

@@ -18,5 +18,10 @@ export class Course {
   type: number;             // 课程类型
   teachType: number;        // 授课方式
   examType: number;         // 考核方式
-  majorList: Major[]        // 对应专业
+  majorList: Major[];        // 对应专业
+
+
+  constructor(id?: number) {
+    this.id = id;
+  }
 }

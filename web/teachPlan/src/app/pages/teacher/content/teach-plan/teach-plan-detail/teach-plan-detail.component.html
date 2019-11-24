@@ -1,54 +1,61 @@
-<!--上方详情页面-->
+<!--分割线-->
+<nz-descriptions nzTitle="教学计划详情">
+  <nz-descriptions-item nzTitle="上课学期">{{teachPlan?.semester.name}}</nz-descriptions-item>
+  <nz-descriptions-item nzTitle="课程名">{{teachPlan?.course.name}}</nz-descriptions-item>
+  <nz-descriptions-item nzTitle="教授专业">{{teachPlan?.major.name}}</nz-descriptions-item>
+  <nz-descriptions-item nzTitle="课程类型">{{teachPlan?.course.type | courseType}}</nz-descriptions-item>
+  <nz-descriptions-item nzTitle="教学方式">{{teachPlan?.course.teachType | teachType}}</nz-descriptions-item>
+  <nz-descriptions-item nzTitle="考核方式">{{teachPlan?.course.examType | examType}}</nz-descriptions-item>
+  <nz-descriptions-item nzTitle="学分">{{teachPlan?.course.credit}}</nz-descriptions-item>
+  <nz-descriptions-item nzTitle="总课时">{{teachPlan?.course.totalLessonHour}}</nz-descriptions-item>
+</nz-descriptions>
 <div nz-row>
   <div nz-col [nzSpan]="24">
-    <nz-descriptions nzTitle="教学详情">
-      <nz-descriptions-item nzTitle="学期">{{teachPlan.semester}}</nz-descriptions-item>
-      <nz-descriptions-item nzTitle="专业">{{teachPlan.major}}</nz-descriptions-item>
-      <nz-descriptions-item nzTitle="课程">{{teachPlan.course}}</nz-descriptions-item>
-      <nz-descriptions-item nzTitle="授课方式">{{teachPlan.teacheType}}</nz-descriptions-item>
-      <nz-descriptions-item nzTitle="考核方式">{{teachPlan.examType}}</nz-descriptions-item>
-    </nz-descriptions>
+    <nz-table
+      [nzBordered]="true"
+      [nzVirtualScroll]="true"
+      [nzData]="teachPlan?.lessonList"
+      [nzFrontPagination]="false"
+      [nzShowPagination]="false"
+      [nzScroll]="{ x: '1300px', y: '500px' }"
+    >
+      <thead>
+      <tr>
+        <th width="5%">课时</th>
+        <th width="25">重要性</th>
+        <th width="70%">课时内容</th>
+      </tr>
+      </thead>
+      <tbody>
+      <ng-template nz-virtual-scroll let-lesson>
+        <tr>
+          <td width="10%">{{lesson.lessonHour}}</td>
+          <td width="30%">
+            <nz-slider
+              [nzMin]="0"
+              [nzMax]="0.9"
+              [ngStyle]="{ marginLeft: '16px' }"
+              [nzIncluded]="false"
+              [nzStep]="0.3"
+              [nzTooltipVisible]="'never'"
+              [nzMarks]="weightTip"
+              [(ngModel)]="lesson.weight"
+              (nzOnAfterChange)="weightChange($event, lesson.id)"
+            ></nz-slider>
+          </td>
+          <td width="60%" [nzBreakWord]="true">
+            <p
+              nz-paragraph
+              nzCopyable
+              nzEditable
+              nzEllipsis
+              [(nzContent)]="lesson.content"
+              (nzContentChange)="contentChange($event, lesson.id)"
+              [nzEllipsisRows]="2"></p>
+          </td>
+        </tr>
+      </ng-template>
+      </tbody>
+    </nz-table>
   </div>
 </div>
-
-<!--分割线-->
-<nz-divider></nz-divider>
-<!--下方表格-->
-<!--<div nz-row>-->
-  <!--<div nz-col [nzSpan]="24">-->
-    <!--<nz-table-->
-      <!--[nzData]="teachPlan.lessonList"-->
-      <!--nzBordered-->
-      <!--[nzLoading]="loading"-->
-      <!--<thead>-->
-      <!--<tr>-->
-        <!--<th width="10%">课时</th>-->
-        <!--<th width="70%">内容</th>-->
-        <!--<th width="20%">操作</th>-->
-      <!--</tr>-->
-      <!--</thead>-->
-      <!--<tbody>-->
-      <!--<tr *ngFor="let teachPlan of teachPlanPage?.content">-->
-        <!--<td>{{teachPlan.id}}</td>-->
-        <!--<td>{{teachPlan.semester}}</td>-->
-        <!--<td>{{teachPlan.major}}</td>-->
-        <!--<td>{{teachPlan.course}}</td>-->
-        <!--<td>-->
-          <!--<a nz-button nzGhost nzType="default" routerLink="/teacher/teacher-plan/detail/{{teachPlan.id}}">-->
-            <!--<i nz-icon nzType="glass" nzTheme="twotone"></i>-->
-            <!--查看详情-->
-          <!--</a>-->
-          <!--<a nz-button nzGhost nzType="primary" routerLink="/admin/major/edit/{{major.id}}">-->
-            <!--<i nz-icon nzType="edit" nzTheme="twotone"></i>-->
-            <!--编辑-->
-          <!--</a>-->
-          <!--<button nz-button nzGhost nzType="danger" (click)="deleteById(major.id)">-->
-            <!--<i nz-icon nzType="delete" nzTheme="twotone"></i>-->
-            <!--删除-->
-          <!--</button>-->
-        <!--</td>-->
-      <!--</tr>-->
-      <!--</tbody>-->
-    <!--</nz-table>-->
-  <!--</div>-->
-<!--</div>-->

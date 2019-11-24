@@ -52,8 +52,14 @@ public class TeachPlanServiceImpl implements TeachPlanService {
     }
 
     @Override
-    public void update(TeachPlan teachPlan) {
-        teachPlanRepository.save(teachPlan);
+    public void update(TeachPlan teachPlan, Long id) {
+        TeachPlan persistTeachPlan = findById(id);
+
+        persistTeachPlan.setSemester(teachPlan.getSemester());
+        persistTeachPlan.setCourse(teachPlan.getCourse());
+        persistTeachPlan.setMajor(teachPlan.getMajor());
+
+        teachPlanRepository.save(persistTeachPlan);
     }
 
     @Override

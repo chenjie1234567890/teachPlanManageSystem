@@ -23,6 +23,7 @@ export class TeachPlanAddComponent implements OnInit {
   majorOptions = Array<Major>();
   courseOptions = Array<Course>();
   loginTeacher: Teacher;
+  currentSemester: Semester;
 
   constructor(private fb: FormBuilder,
               private teacherService: TeacherService,
@@ -41,6 +42,7 @@ export class TeachPlanAddComponent implements OnInit {
     });
 
     this.semesterService.getOpenSemester().subscribe((openSemester: Semester) => {
+      this.currentSemester = openSemester;
       this.addForm.patchValue({semester: openSemester.id});
       this.semesterChange(openSemester.id);
     }, () => {
@@ -79,7 +81,9 @@ export class TeachPlanAddComponent implements OnInit {
       this.courseService.findBySemesterAndTeacher(selectSemesterId, this.loginTeacher.id)
         .subscribe((courses: Course[]) => {
           this.courseOptions = courses;
-          this.addForm.patchValue({course: courses[0]});
+          if (courses.length > 0) {
+            this.addForm.patchValue({course: courses[0]});
+          }
         }, () => {
           console.log('error');
         });
@@ -106,10 +110,8 @@ export class TeachPlanAddComponent implements OnInit {
 
   // 提交表单
   submitForm() {
-    const semester = new Semester();
-    semester.id = this.addForm.get('semester').value;
     const teachPlan: TeachPlan = this.addForm.value;
-    teachPlan.semester = semester;
+    teachPlan.semester = new Semester(this.addForm.get('semester').value);
 
     this.teachPlanService.add(teachPlan).subscribe(() => {
       this.router.navigateByUrl('teacher/teach-plan');

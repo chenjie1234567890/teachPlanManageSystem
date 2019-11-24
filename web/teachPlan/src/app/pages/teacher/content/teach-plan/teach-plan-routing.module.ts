@@ -18,7 +18,6 @@ const routes: Routes = [
       children: [
         { path: '', component: TeachPlanViewComponent },
         { path: 'add', component: TeachPlanAddComponent },
-        { path: 'edit/:id', component: TeachPlanEditComponent },
         { path: 'detail/:id', component: TeachPlanDetailComponent },
       ]
     }]

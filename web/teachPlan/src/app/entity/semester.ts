@@ -6,5 +6,10 @@ export class Semester {
   startTime: Date;  // 开始时间
   endTime: Date;    // 结束时间
   currentSemester: boolean; // 是否当前学期
-  courseList: Array<Course> // 开设的课程
+  courseList: Array<Course>; // 开设的课程
+
+
+  constructor(id?: number) {
+    this.id = id;
+  }
 }
