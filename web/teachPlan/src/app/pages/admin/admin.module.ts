@@ -11,12 +11,14 @@ import {MajorModule} from "./content/major/major.module";
 import {CourseModule} from "./content/course/course.module";
 import {SemesterModule} from "./content/semester/semester.module";
 import {EducatePlanModule} from "./content/educate-plan/educate-plan.module";
+import { AdminInfoComponent } from './content/admin-info/admin-info.component';
 
 
 @NgModule({
   declarations: [
       AdminComponent,
-      AdminContentComponent
+      AdminContentComponent,
+      AdminInfoComponent
   ],
   imports: [
     CommonModule,

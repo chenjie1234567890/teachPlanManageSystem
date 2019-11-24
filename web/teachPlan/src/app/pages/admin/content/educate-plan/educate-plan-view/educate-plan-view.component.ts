@@ -12,7 +12,7 @@ import {EducatePlan} from "../../../../../entity/educate-plan";
   styleUrls: ['./educate-plan-view.component.css']
 })
 export class EducatePlanViewComponent implements OnInit {
-
+  index = 1;
   pageable = AppConfig.pageConfig;
   educatePlanPage: Page<EducatePlan> = new Page();
   majorId = 0;

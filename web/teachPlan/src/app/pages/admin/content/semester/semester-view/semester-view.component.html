@@ -1,17 +1,15 @@
 <!--上方搜索框-->
 <div nz-row>
   <div nz-col [nzSpan]="4">
-    <nz-input-group nzSearch>
       <input type="text" nz-input placeholder="学期名" [(ngModel)]="semesterName">
-    </nz-input-group>
   </div>
-  <div nz-col [nzSpan]="4" [nzOffset]="1">
+  <div nz-col [nzSpan]="2">
     <button nz-button (click)="getSemesterPage()">
       <i nz-icon nzType="search" nzTheme="outline"></i>
       查询
     </button>
   </div>
-  <div nz-col [nzSpan]="4" [nzOffset]="2">
+  <div nz-col [nzSpan]="2" [nzOffset]="16">
     <a nz-button nzType="primary" routerLink="/admin/semester/add">
       <i nz-icon nzType="plus" nzTheme="outline"></i>新增</a>
   </div>
@@ -24,24 +22,21 @@
     <nz-table
       [nzData]="semesterPage.content"
       nzBordered
-      nzShowSizeChanger
       [nzLoading]="loading"
-      [nzTotal]="semesterPage?.content.length"
-      [nzPageSize]="pageable.size"
-      [nzPageIndex]="pageable.page"
-      (nzPageIndexChange)="getMajorPage()"
-      (nzPageSizeChange)="getMajorPage()">
+      [nzFrontPagination]="false"
+      [nzTotal]="semesterPage.totalElements"
+      [(nzPageSize)]="pageable.size"
+      [(nzPageIndex)]="pageable.page"
+      (nzPageIndexChange)="getSemesterPage()">
       <thead>
       <tr>
-        <th width="5%">id</th>
-        <th width="10">学期名称</th>
+        <th width="15">学期名称</th>
         <th width="60%">开设课程</th>
         <th width="25%">操作</th>
       </tr>
       </thead>
       <tbody>
       <tr *ngFor="let semester of semesterPage?.content">
-        <td>{{semester.id}}</td>
         <td>{{semester.name}}</td>
         <td>
           <span *ngFor="let course of semester.courseList"><nz-tag [nzColor]="'#108ee9'">{{course.name}}</nz-tag></span></td>
