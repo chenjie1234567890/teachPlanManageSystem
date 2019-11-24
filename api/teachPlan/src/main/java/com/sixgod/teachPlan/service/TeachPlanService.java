@@ -28,7 +28,7 @@ public interface TeachPlanService {
      * 更新
      * @param teachPlan
      */
-    void update(TeachPlan teachPlan);
+    void update(TeachPlan teachPlan, Long id);
 
     /**
      * 根据id获取教学计划

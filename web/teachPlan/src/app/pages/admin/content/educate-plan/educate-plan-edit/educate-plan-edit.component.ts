@@ -17,20 +17,22 @@ export class EducatePlanEditComponent implements OnInit {
 
   editForm: FormGroup;
   editEducatePlanId: number;
-  courseOptions: Array<{ label: string; value: number }> = [];
-  majorOptions: Array<{ label: string; value: number }> = [];
+  courseOptions = Array<Course>();
+  majorOptions = Array<Major>();
   constructor(private fb: FormBuilder,
               private majorService: MajorService,
               private courseService: CourseService,
               private educatePlanService: EducatePlanService,
               private router: Router,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute) {
+    this.createForm();
+  }
   // 构造表单
   createForm() {
     this.editForm = this.fb.group({
       termNumber: [null, [Validators.required]],
       majorId: [null, [Validators.required]],
-      courseIds: [null, []]
+      courseIds: [null, [Validators.required]]
     });
   }
 
@@ -55,7 +57,8 @@ export class EducatePlanEditComponent implements OnInit {
   getEditMajor() {
     this.route.params.subscribe(params => {
       this.editEducatePlanId = params['id'];
-      this.educatePlanService.findById(this.editEducatePlanId).subscribe((educatePlan: EducatePlan) => {
+      this.educatePlanService.findById(this.editEducatePlanId)
+        .subscribe((educatePlan: EducatePlan) => {
         this.initForm(educatePlan);
       }, (error) => {
         console.log(error);
@@ -68,26 +71,17 @@ export class EducatePlanEditComponent implements OnInit {
   // 初始化专业选项
   initMajorOptions() {
     this.majorService.getAll().subscribe((majorList: Major[]) => {
-      const children: Array<{ label: string; value: number }> = [];
-      for (let major of majorList) {
-        children.push({ label: major.name, value: major.id });
-      }
-      this.majorOptions = children;
-    }, () => {
-      console.log('error');
+      this.majorOptions = majorList;
     });
   }
 
-  // 初始化课程选项
-  initCourseOptions() {
-    this.courseService.getAllCourse().subscribe((courseList: Course[]) => {
-      const children: Array<{ label: string; value: number }> = [];
-      for (let course of courseList) {
-        children.push({ label: course.name, value: course.id });
-      }
-      this.courseOptions = children;
+  // 专业选项改变
+  majorChange(selectMajorId: number) {
+    this.editForm.patchValue({courseIds: null});
+    this.majorService.findById(selectMajorId).subscribe((majorInfo: Major) => {
+      this.courseOptions = majorInfo.courseList;
     }, () => {
-      console.log('error')
+      console.log('error');
     });
   }
 
@@ -119,9 +113,7 @@ export class EducatePlanEditComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.initCourseOptions();
     this.initMajorOptions();
-    this.createForm();
     this.getEditMajor();
   }
 

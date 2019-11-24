@@ -1,7 +1,7 @@
 <form nz-form [formGroup]="addForm" (ngSubmit)="submitForm()">
   <nz-form-item>
     <nz-form-label [nzSpan]="7" nzRequired>课程名</nz-form-label>
-    <nz-form-control [nzSpan]="6" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="nameErrorTpl">
+    <nz-form-control [nzSpan]="5" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="nameErrorTpl">
       <input nz-input formControlName="name" placeholder="请输入课程名" />
       <ng-template #nameErrorTpl let-control>
         <ng-container *ngIf="control.hasError('required')">
@@ -45,8 +45,27 @@
     <nz-form-label [nzSpan]="7" nzRequired>课程类型</nz-form-label>
     <nz-form-control [nzSpan]="6" nzValidatingTip="Validating...">
       <nz-radio-group formControlName="type">
+        <label nz-radio [nzValue]="0">基础课</label>
+        <label nz-radio [nzValue]="1">选修课</label>
+        <label nz-radio [nzValue]="2">专业课</label>
+      </nz-radio-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" nzRequired>授课方式</nz-form-label>
+    <nz-form-control [nzSpan]="6" nzValidatingTip="Validating...">
+      <nz-radio-group formControlName="teachType">
         <label nz-radio [nzValue]="0">普通课</label>
         <label nz-radio [nzValue]="1">实验课</label>
+      </nz-radio-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" nzRequired>考核方式</nz-form-label>
+    <nz-form-control [nzSpan]="6" nzValidatingTip="Validating...">
+      <nz-radio-group formControlName="examType">
+        <label nz-radio [nzValue]="1">闭卷考试</label>
+        <label nz-radio [nzValue]="0">开卷考试</label>
       </nz-radio-group>
     </nz-form-control>
   </nz-form-item>

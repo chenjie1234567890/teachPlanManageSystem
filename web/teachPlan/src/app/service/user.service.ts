@@ -2,14 +2,11 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {User} from '../entity/user';
-import {Menu} from '../entity/menu';
-import {FormControl, ValidatorFn} from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-
   private baseUrl = 'user';
 
   constructor(private http: HttpClient) {
@@ -38,24 +35,6 @@ export class UserService {
   getCurrentLoginUser(): Observable<User> {
     const url: string = this.baseUrl + '/currentLoginUser';
     return this.http.get<User>(url);
-  }
-
-  loginRoute(user: User): string {
-    let url = '';
-    switch (user.role) {
-    case User.ROLE_STUDENT: {
-        url =  'student';
-        break;
-      }
-    case User.ROLE_TEACHER: {
-        url = 'teacher';
-        break;
-      }
-    case User.ROLE_ADMIN: {
-        url = 'admin';
-      }
-    }
-    return url;
   }
 
   // 注销

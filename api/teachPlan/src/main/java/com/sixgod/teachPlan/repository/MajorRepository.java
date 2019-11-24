@@ -1,9 +1,12 @@
 package com.sixgod.teachPlan.repository;
 
+import com.sixgod.teachPlan.entity.Course;
 import com.sixgod.teachPlan.entity.Major;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
 
 public interface MajorRepository extends JpaRepository<Major, Long> {
     /**
@@ -26,4 +29,6 @@ public interface MajorRepository extends JpaRepository<Major, Long> {
      * @return
      */
     boolean existsByName(String name);
+
+    List<Major> findAllByCourseListContaining(Course course);
 }

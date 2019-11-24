@@ -1,5 +1,6 @@
 package com.sixgod.teachPlan.service.impl;
 
+import com.sixgod.teachPlan.entity.Course;
 import com.sixgod.teachPlan.entity.Major;
 import com.sixgod.teachPlan.repository.MajorRepository;
 import com.sixgod.teachPlan.service.MajorService;
@@ -93,5 +94,11 @@ public class MajorServiceImpl implements MajorService {
         else {
             return false;
         }
+    }
+
+    @Override
+    public List<Major> findAllByCourseId(Long id) {
+        return majorRepository.findAllByCourseListContaining(
+                Course.builder().id(id).build());
     }
 }

@@ -58,4 +58,12 @@ public interface CourseService {
      * 根据id获取课程
      */
     Course findById(Long id);
+
+    /**
+     * 根据学期和教师id查询课程
+     * @param semesterId
+     * @param teacherId
+     * @return
+     */
+    List<Course> findBySemesterAndTeacher(Long semesterId, Long teacherId);
 }

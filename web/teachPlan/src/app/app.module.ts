@@ -12,6 +12,7 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {AdminModule} from './pages/admin/admin.module';
 import {SharedModule} from './pages/shared/shared.module';
 import {TeacherModule} from "./pages/teacher/teacher.module";
+import { CourseTypePipe } from './pipe/course-type.pipe';
 
 registerLocaleData(en);
 
@@ -32,6 +33,6 @@ registerLocaleData(en);
     { provide: NZ_I18N, useValue: zh_CN },
     { provide: HTTP_INTERCEPTORS, useClass: MyInterceptor, multi: true },
     ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

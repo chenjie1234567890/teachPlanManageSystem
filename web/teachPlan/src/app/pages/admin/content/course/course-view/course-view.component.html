@@ -1,54 +1,54 @@
 <!--上方搜索框-->
 <div nz-row>
   <div nz-col [nzSpan]="4">
-    <nz-input-group nzSearch>
       <input type="text" nz-input placeholder="课程名" [(ngModel)]="courseName">
-    </nz-input-group>
   </div>
-  <div nz-col [nzSpan]="4" [nzOffset]="1">
+  <div nz-col [nzSpan]="2">
     <button nz-button (click)="getCoursePage()">
       <i nz-icon nzType="search" nzTheme="outline"></i>
       查询
     </button>
   </div>
-  <div nz-col [nzSpan]="4" [nzOffset]="2">
+  <div nz-col [nzSpan]="2" [nzOffset]="16">
     <a nz-button nzType="primary" routerLink="/admin/course/add">
       <i nz-icon nzType="plus" nzTheme="outline"></i>新增</a>
   </div>
 </div>
-<!--分割线-->
 <nz-divider></nz-divider>
 <!--下方表格-->
 <div nz-row>
   <div nz-col [nzSpan]="24">
     <nz-table
-      [nzData]="coursePage.content"
+      #CourseTable
       nzBordered
-      nzShowSizeChanger
+      nzTitle="课程信息表"
       [nzLoading]="loading"
-      [nzTotal]="coursePage?.total"
+      [nzData]="coursePage.content"
+      [nzTotal]="coursePage.totalElements"
       [(nzPageSize)]="pageable.size"
       [(nzPageIndex)]="pageable.page"
-      (nzPageIndexChange)="getMajorPage()"
-      (nzPageSizeChange)="getMajorPage()"
+      [nzFrontPagination]="false"
+      (nzPageIndexChange)="getCoursePage()"
     >
       <thead>
       <tr>
-        <th width="15%">id</th>
-        <th width="15">课程名称</th>
-        <th width="15%">学分</th>
-        <th width="15%">总课时</th>
-        <th width="15%">课程类型</th>
+        <th width="25">课程名称</th>
+        <th width="10%">学分</th>
+        <th width="10%">总课时</th>
+        <th width="10%">课程类型</th>
+        <th width="10%">授课方式</th>
+        <th width="10%">考核方式</th>
         <th width="25%">操作</th>
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let course of coursePage?.content">
-        <td>{{course.id}}</td>
+      <tr *ngFor="let course of CourseTable.data">
         <td>{{course.name}}</td>
         <td>{{course.credit}}</td>
         <td>{{course.totalLessonHour}}</td>
-        <td>{{course.type}}</td>
+        <td>{{course.type | courseType}}</td>
+        <td>{{course.teachType | teachType}}</td>
+        <td>{{course.examType | examType}}</td>
         <td>
           <a nz-button nzGhost nzType="primary" routerLink="/admin/course/edit/{{course.id}}">
             <i nz-icon nzType="edit" nzTheme="twotone"></i>

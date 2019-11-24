@@ -97,4 +97,14 @@ public class MajorController {
     public Boolean existByName(String name){
         return majorService.existByName(name) ;
     }
+
+    /**
+     * 获取所有包含courseId的专业
+     * @return List<Major>
+     */
+    @GetMapping("/findAllByCourseId")
+    @JsonView(MajorJsonView.getBase.class)
+    public List<Major> findAllByCourseId(@RequestParam(name = "courseId") Long courseId) {
+        return majorService.findAllByCourseId(courseId);
+    }
 }

@@ -7,13 +7,15 @@ import {SharedModule} from "../shared/shared.module";
 import {CoreModule} from "../core/core.module";
 import { CourseComponent } from './content/course/course.component';
 import {TeachPlanModule} from "./content/teach-plan/teach-plan.module";
+import { TeacherInfoComponent } from './content/teacher-info/teacher-info.component';
 
 
 @NgModule({
   declarations: [
     TeacherComponent,
     TeacherContentComponent,
-    CourseComponent
+    CourseComponent,
+    TeacherInfoComponent
   ],
   imports: [
     CommonModule,

@@ -17,10 +17,12 @@
     <nz-form-control [nzSpan]="6" nzValidatingTip="Validating...">
       <nz-select
         nzShowSearch
+        #SelectMajorId
         nzPlaceHolder="请选择专业"
-        formControlName="majorId">
-        <nz-option *ngFor="let majorOption of majorOptions" [nzLabel]="majorOption.label"
-                   [nzValue]="majorOption.value"></nz-option>
+        formControlName="majorId"
+        (ngModelChange)="majorChange(SelectMajorId.value)">
+        <nz-option *ngFor="let majorOption of majorOptions" [nzLabel]="majorOption.name"
+                   [nzValue]="majorOption.id"></nz-option>
       </nz-select>
     </nz-form-control>
   </nz-form-item>
@@ -31,8 +33,8 @@
         nzMode="multiple"
         nzPlaceHolder="请选择课程"
         [formControlName]="'courseIds'">
-        <nz-option *ngFor="let courseOption of courseOptions" [nzLabel]="courseOption.label"
-                   [nzValue]="courseOption.value"></nz-option>
+        <nz-option *ngFor="let courseOption of courseOptions" [nzLabel]="courseOption.name"
+                   [nzValue]="courseOption.id"></nz-option>
       </nz-select>
     </nz-form-control>
   </nz-form-item>

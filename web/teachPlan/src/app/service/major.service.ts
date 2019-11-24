@@ -64,4 +64,13 @@ export class MajorService {
   getAll(): Observable<Major[]> {
     return this.http.get<Major[]>(this.baseUrl + '/getAllMajor');
   }
+
+  /**
+   * 获取所有包含courseId的专业
+   * @param courseId
+   */
+  findAllByCourseId(courseId: number): Observable<Major[]> {
+    const params = { courseId: courseId.toString() };
+    return this.http.get<Major[]>(this.baseUrl + '/findAllByCourseId', {params: params});
+  }
 }

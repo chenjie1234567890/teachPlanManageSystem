@@ -8,6 +8,8 @@ import com.sixgod.teachPlan.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
+
 @Service
 public class TeacherServiceImpl implements TeacherService {
     @Autowired
@@ -20,5 +22,26 @@ public class TeacherServiceImpl implements TeacherService {
     public Teacher getCurrentLoginTeacher() {
         User user = userService.getCurrentLoginUser();
         return teacherRepository.findByUserId(user.getId());
+    }
+
+    @Override
+    public void upadte(Long id, Teacher teacher) {
+        Teacher persistTeacher = teacherRepository.findById(id).orElse(null);
+        if (persistTeacher == null) {
+            throw new EntityNotFoundException("专业id为：" + id + "不存在");
+        } else {
+            persistTeacher.setStaffNumber(teacher.getStaffNumber());
+            persistTeacher.setCourseList(teacher.getCourseList());
+            teacherRepository.save(persistTeacher);
+        }
+    }
+
+    @Override
+    public Teacher findById(Long teacherId) {
+        Teacher teacher = teacherRepository.findById(teacherId).orElse(null);
+        if (teacher == null) {
+            throw new EntityNotFoundException("id为" + teacherId + "的教师不存在");
+        }
+        return teacher;
     }
 }

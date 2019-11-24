@@ -5,6 +5,7 @@ import {TeachPlanViewComponent} from "./teach-plan-view/teach-plan-view.componen
 import {TeachPlanAddComponent} from "./teach-plan-add/teach-plan-add.component";
 import {TeachPlanEditComponent} from "./teach-plan-edit/teach-plan-edit.component";
 import {TeachPlanComponent} from "./teach-plan.component";
+import {TeachPlanDetailComponent} from "./teach-plan-detail/teach-plan-detail.component";
 
 
 const routes: Routes = [
@@ -17,7 +18,7 @@ const routes: Routes = [
       children: [
         { path: '', component: TeachPlanViewComponent },
         { path: 'add', component: TeachPlanAddComponent },
-        { path: 'edit/:id', component: TeachPlanEditComponent },
+        { path: 'detail/:id', component: TeachPlanDetailComponent },
       ]
     }]
   }

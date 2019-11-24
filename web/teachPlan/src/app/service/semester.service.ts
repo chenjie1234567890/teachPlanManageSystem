@@ -15,8 +15,8 @@ export class SemesterService {
   /**
    * 获取所有学期
    */
-  getAllCourse(): Observable<Array<Semester>> {
-    return this.http.get<Array<Semester>>(this.baseUrl + '/getAllSemester');
+  getAll(): Observable<Array<Semester>> {
+    return this.http.get<Array<Semester>>(this.baseUrl + '/getAll');
   }
 
   /**
@@ -57,12 +57,26 @@ export class SemesterService {
     return this.http.delete<void>(this.baseUrl + '/' + id);
   }
 
+  /**
+   * 根据ID获取学期
+   * @param id
+   */
   findById(id: number): Observable<Semester> {
-    console.log(id);
     return this.http.get<Semester>(this.baseUrl + '/' + id);
   }
 
+  /**
+   * 设置当前学期
+   * @param id
+   */
   setCurrentSemester(id: number): Observable<void> {
     return this.http.post<void>(this.baseUrl + '/setCurrentSemester', id);
+  }
+
+  /**
+   * 获取当前开放学期
+   */
+  getOpenSemester(): Observable<Semester> {
+    return this.http.get<Semester>(this.baseUrl + '/getOpenSemester');
   }
 }

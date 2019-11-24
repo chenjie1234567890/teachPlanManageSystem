@@ -5,11 +5,17 @@ import {NgZorroAntdModule, NzFormModule, NzGridModule} from 'ng-zorro-antd';
 import { IconsProviderModule } from '../../icons-provider.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from "@angular/router";
+import {CourseTypePipe} from "../../pipe/course-type.pipe";
+import {TeachTypePipe} from "../../pipe/teach-type.pipe";
+import {ExamTypePipe} from "../../pipe/exam-type.pipe";
 
 
 @NgModule({
   declarations: [
-    NotFoundComponent
+    NotFoundComponent,
+    CourseTypePipe,
+    TeachTypePipe,
+    ExamTypePipe
   ],
   imports: [
     CommonModule,
@@ -23,6 +29,9 @@ import {RouterModule} from "@angular/router";
     NzFormModule,
     ReactiveFormsModule,
     NzGridModule,
+    CourseTypePipe,
+    TeachTypePipe,
+    ExamTypePipe
   ]
 })
 export class SharedModule { }

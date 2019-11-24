@@ -57,7 +57,24 @@ export class CourseService {
     return this.http.delete<void>(this.baseUrl + '/' + id);
   }
 
+  /**
+   * 根据id获取课程
+   * @param id
+   */
   findById(id: number): Observable<Course> {
     return this.http.get<Course>(this.baseUrl + '/' + id);
+  }
+
+  /**
+   * 获取学期开设课程和教师教授课程的交集
+   * @param semesterId
+   * @param teacherId
+   */
+  findBySemesterAndTeacher(semesterId: number, teacherId: number): Observable<Course[]> {
+    const params = {
+      semesterId: semesterId.toString(),
+      teacherId: teacherId.toString()
+    };
+    return this.http.get<Course[]>(this.baseUrl + '/findBySemesterAndTeacher', {params: params})
   }
 }

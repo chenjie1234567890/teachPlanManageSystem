@@ -12,7 +12,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
-import {CoreModule} from "../core/core.module";
+import {pwConfirmValidator} from "./register/pwConfirm.validator";
 
 
 @NgModule({
@@ -31,10 +31,10 @@ import {CoreModule} from "../core/core.module";
     NzFormModule,
   ],
   exports: [
-    SetupComponent
+    SetupComponent,
   ],
   providers: [
     { provide: NZ_I18N, useValue: zh_CN }
-  ]
+  ],
 })
 export class SetupModule { }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {CourseService} from "../../../../../service/course.service";
 import {Router} from "@angular/router";
+import {Course} from "../../../../../entity/course";
 
 @Component({
   selector: 'app-course-add',
@@ -19,7 +20,9 @@ export class CourseAddComponent implements OnInit {
       name: ['', [Validators.required]],
       credit: [null, [Validators.required]],
       totalLessonHour: [null, [Validators.required]],
-      type: [0]
+      type: [Course.COURSE_TYPE_BASE],
+      teachType: [Course.TEACH_TYPE_PRIMARY],
+      examType: [Course.EXAM_TYPE_CLOSE_BOOK],
     });
   }
 

@@ -1,1 +1,53 @@
-<p>teach-plan-edit works!</p>
+<nz-descriptions nzTitle="教学计划详情" nzBordered>
+  <nz-descriptions-item nzTitle="当前学期">{{currentSemester?.name}}</nz-descriptions-item>
+  <nz-descriptions-item nzTitle="定制教师">{{loginTeacher?.user.userName}}</nz-descriptions-item>
+</nz-descriptions>
+
+<form nz-form [formGroup]="editForm" (ngSubmit)="submitForm()" class="ant-advanced-search-form">
+  <div nz-row [nzGutter]="24">
+    <div nz-col [nzSpan]="8">
+      <nz-form-item nzFlex>
+        <!--学期选项-->
+        <nz-form-label [nzSpan]="7" nzRequired>上课学期</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzValidatingTip="Validating...">
+          <nz-select
+            nzShowSearch
+            #SelectSemesterId
+            nzPlaceHolder="请选择学期"
+            (ngModelChange)="semesterChange(SelectSemesterId.value)"
+            formControlName="semesterId">
+            <nz-option *ngFor="let semesterOption of semesterOptions" [nzLabel]="semesterOption.name"
+                       [nzValue]="semesterOption.id"></nz-option>
+          </nz-select>
+        </nz-form-control>
+        <!--课程选项-->
+        <nz-form-label [nzSpan]="7" nzRequired>教授课程</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzValidatingTip="Validating...">
+          <nz-select
+            nzShowSearch
+            #SelectCourseId
+            nzPlaceHolder="请选择课程"
+            (ngModelChange)="courseChange(SelectCourseId.value)"
+            formControlName="courseId">
+            <nz-option *ngFor="let courseOption of courseOptions" [nzLabel]="courseOption.name"
+                       [nzValue]="courseOption.id"></nz-option>
+          </nz-select>
+        </nz-form-control>
+       <!--专业选项-->
+        <nz-form-label [nzSpan]="7">教授专业</nz-form-label>
+        <nz-form-control [nzSpan]="12">
+          <nz-select
+            nzPlaceHolder="请选择教授专业"
+            formControlName="majorId">
+            <nz-option *ngFor="let majorOption of majorOptions" [nzLabel]="majorOption.name"
+                       [nzValue]="majorOption.id"></nz-option>
+          </nz-select>
+        </nz-form-control>
+        <!--保存修改-->
+        <nz-form-control [nzOffset]="7" [nzSpan]="12">
+          <button nz-button type="submit" nzType="primary" [disabled]="!editForm.valid">保存修改</button>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+</form>

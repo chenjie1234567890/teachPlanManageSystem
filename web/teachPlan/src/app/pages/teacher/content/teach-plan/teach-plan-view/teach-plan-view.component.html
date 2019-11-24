@@ -1,1 +1,52 @@
-<p>teach-plan-view works!</p>
+<!--上方搜索框-->
+<div nz-row>
+  <div nz-col [nzSpan]="4" [nzOffset]="2">
+    <a nz-button nzType="primary" routerLink="/teacher/teach-plan/add">
+      <i nz-icon nzType="plus" nzTheme="outline"></i>新增</a>
+  </div>
+</div>
+<!--分割线-->
+<nz-divider></nz-divider>
+<!--下方表格-->
+<div nz-row>
+  <div nz-col [nzSpan]="24">
+    <nz-table
+      [nzData]="teachPlanPage?.content"
+      nzBordered
+      nzShowSizeChanger
+      [nzLoading]="loading"
+      [nzTotal]="teachPlanPage?.content.length"
+      [nzPageSize]="pageable.size"
+      [nzPageIndex]="pageable.page"
+      (nzPageIndexChange)="getTeachPlanPage()"
+      (nzPageSizeChange)="getTeachPlanPage()">
+      <thead>
+      <tr>
+        <th width="10%">id</th>
+        <th width="20%">学期</th>
+        <th width="20">专业</th>
+        <th width="20%">课程</th>
+        <th width="30%">操作</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let teachPlan of teachPlanPage?.content">
+        <td>{{teachPlan.id}}</td>
+        <td>{{teachPlan.semester.name}}</td>
+        <td>{{teachPlan.major.name}}</td>
+        <td>{{teachPlan.course.name}}</td>
+        <td>
+          <a nz-button nzGhost nzType="primary" routerLink="/teacher/teach-plan/detail/{{teachPlan.id}}">
+            <i nz-icon nzType="search" nzTheme="outline"></i>
+            查看详情
+          </a>
+          <button nz-button nzGhost nzType="danger" (click)="deleteById(teachPlan.id)">
+            <i nz-icon nzType="delete" nzTheme="outline"></i>
+            删除
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </nz-table>
+  </div>
+</div>

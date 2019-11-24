@@ -68,7 +68,11 @@ public class SemesterServiceImpl implements SemesterService {
 
     @Override
     public Semester findById(Long id) {
-        return semesterRepository.findById(id).orElse(null);
+        Semester semester = semesterRepository.findById(id).orElse(null);
+        if (semester == null) {
+            throw new EntityNotFoundException("id为" + id + "的学期不存在");
+        }
+        return semester;
     }
 
     @Override
@@ -91,5 +95,15 @@ public class SemesterServiceImpl implements SemesterService {
 
         // 保存数据
         semesterRepository.saveAll(semesterList);
+    }
+
+    @Override
+    public Semester getOpenSemester() {
+        return semesterRepository.findByCurrentSemesterTrue();
+    }
+
+    @Override
+    public List<Semester> findAll() {
+        return semesterRepository.findAll();
     }
 }
