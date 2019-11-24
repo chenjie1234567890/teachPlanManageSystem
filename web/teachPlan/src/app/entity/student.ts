@@ -6,4 +6,10 @@ export class Student {
   studentNum: number; // 学号
   major: Major;       // 所属专业
   user: User;         // 对应的用户
+
+
+  constructor(studentNum?: number, major?: Major) {
+    this.studentNum = studentNum;
+    this.major = major;
+  }
 }

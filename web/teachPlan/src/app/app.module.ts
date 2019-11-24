@@ -13,6 +13,7 @@ import {AdminModule} from './pages/admin/admin.module';
 import {SharedModule} from './pages/shared/shared.module';
 import {TeacherModule} from "./pages/teacher/teacher.module";
 import { CourseTypePipe } from './pipe/course-type.pipe';
+import {StudentModule} from "./pages/student/student.module";
 
 registerLocaleData(en);
 
@@ -27,6 +28,7 @@ registerLocaleData(en);
     SetupModule,
     AdminModule,
     TeacherModule,
+    StudentModule,
     AppRoutingModule,
   ],
   providers: [

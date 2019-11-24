@@ -23,6 +23,9 @@ import { TeacherInfoComponent } from './content/teacher-info/teacher-info.compon
     SharedModule,
     TeacherRoutingModule,
     TeachPlanModule,
+  ],
+  exports: [
+    CourseComponent
   ]
 })
 export class TeacherModule { }

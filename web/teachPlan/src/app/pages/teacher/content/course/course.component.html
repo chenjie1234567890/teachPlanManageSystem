@@ -1,1 +1,50 @@
-<p>course works!</p>
+<!--上方搜索框-->
+<div nz-row>
+  <div nz-col [nzSpan]="4">
+    <input type="text" nz-input placeholder="课程名" [(ngModel)]="courseName">
+  </div>
+  <div nz-col [nzSpan]="2">
+    <button nz-button (click)="getCoursePage()">
+      <i nz-icon nzType="search" nzTheme="outline"></i>
+      查询
+    </button>
+  </div>
+</div>
+<!--下方表格-->
+<div nz-row>
+  <div nz-col [nzSpan]="24">
+    <nz-table
+      #CourseTable
+      nzBordered
+      nzTitle="课程信息表"
+      [nzLoading]="loading"
+      [nzData]="coursePage.content"
+      [nzTotal]="coursePage.totalElements"
+      [(nzPageSize)]="pageable.size"
+      [(nzPageIndex)]="pageable.page"
+      [nzFrontPagination]="false"
+      (nzPageIndexChange)="getCoursePage()"
+    >
+      <thead>
+      <tr>
+        <th width="30">课程名称</th>
+        <th width="10%">学分</th>
+        <th width="15%">总课时</th>
+        <th width="15%">课程类型</th>
+        <th width="15%">授课方式</th>
+        <th width="15%">考核方式</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let course of CourseTable.data">
+        <td>{{course.name}}</td>
+        <td>{{course.credit}}</td>
+        <td>{{course.totalLessonHour}}</td>
+        <td>{{course.type | courseType}}</td>
+        <td>{{course.teachType | teachType}}</td>
+        <td>{{course.examType | examType}}</td>
+      </tr>
+      </tbody>
+    </nz-table>
+  </div>
+</div>

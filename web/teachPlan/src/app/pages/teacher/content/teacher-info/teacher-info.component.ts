@@ -49,7 +49,6 @@ export class TeacherInfoComponent implements OnInit {
 
   getCourseList() {
     this.courseService.getAllCourse().subscribe((courses: Course[]) => {
-      console.log(courses);
       this.courseList = courses;
     }, () => {
       console.log('error');

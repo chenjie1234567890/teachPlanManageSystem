@@ -1,5 +1,8 @@
 package com.sixgod.teachPlan.entity;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.sixgod.teachPlan.jsonView.NoneJsonView;
+import com.sixgod.teachPlan.jsonView.StudentJsonView;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,9 +26,11 @@ public class Student {
 
     Long studentNum;
 
+    @JsonView({StudentJsonView.getAll.class, NoneJsonView.class})
     @ManyToOne
     Major major;
 
+    @JsonView({StudentJsonView.getAll.class, NoneJsonView.class})
     @OneToOne
     User user;
 }

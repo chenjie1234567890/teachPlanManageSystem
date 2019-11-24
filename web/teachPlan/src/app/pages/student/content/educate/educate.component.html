@@ -1,0 +1,30 @@
+<div nz-row>
+  <div nz-col [nzSpan]="24">
+    <nz-table
+      [nzData]="educatePlanPage.content"
+      nzBordered
+      nzTitle="培养计划表"
+      [nzFrontPagination]="false"
+      [nzLoading]="loading"
+      [nzLoadingDelay]="'5'"
+      [nzNoResult]="'无数据，请在右上角【更多】->【个人中心】设检查是否绑定专业和学号,或联系管理员设定培养计划'"
+      [nzTotal]="educatePlanPage.totalElements"
+      [(nzPageSize)]="pageable.size"
+      [(nzPageIndex)]="pageable.page"
+      (nzPageIndexChange)="getEducatePlanPage()">
+      <thead>
+      <tr>
+        <th width="10">学年</th>
+        <th width="90%">开设课程</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let educatePlan of educatePlanPage?.content">
+        <td>{{educatePlan.termNumber}}</td>
+        <td>
+          <span *ngFor="let course of educatePlan.courseList"><nz-tag [nzColor]="'#108ee9'">{{course.name}}</nz-tag></span></td>
+      </tr>
+      </tbody>
+    </nz-table>
+  </div>
+</div>
