@@ -83,14 +83,4 @@ public class EducatePlanController {
     public List<EducatePlan> getAllEducatePlan(){
         return educatePlanService.getAllEducatePlan();
     }
-
-    /**
-     * 查看学期号是否存在
-     * @param termNumber
-     * @return
-     */
-    @GetMapping("/existByTermNumber")
-    public Boolean existByTermNumber(Integer termNumber){
-        return educatePlanService.existByTermNumber(termNumber);
-    }
 }

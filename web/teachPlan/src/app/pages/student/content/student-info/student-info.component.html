@@ -5,11 +5,18 @@
     <nz-form-label [nzSpan]="7" nzRequired>学号</nz-form-label>
     <nz-form-control [nzSpan]="6" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="studentNumErrorTpl">
       <nz-input-group>
-        <input nz-input placeholder="学号" formControlName="studentNum"/>
+        <input nz-input
+               maxlength="6"
+               minlength="6"
+               placeholder="学号"
+               formControlName="studentNum"/>
       </nz-input-group>
       <ng-template #studentNumErrorTpl let-control>
         <ng-container *ngIf="control.hasError('required')">
           学号必须输入
+        </ng-container>
+        <ng-container *ngIf="control.hasError('minLength') || control.hasError('maxLength')">
+          学号为6位
         </ng-container>
       </ng-template>
     </nz-form-control>
@@ -25,7 +32,7 @@
       </nz-select>
       <ng-template #majorErrorTpl let-control>
         <ng-container *ngIf="control.hasError('required')">
-          学号必须输入
+          专业必须输入
         </ng-container>
       </ng-template>
     </nz-form-control>

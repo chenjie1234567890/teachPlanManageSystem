@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {Observable, of} from "rxjs";
 import {Pageable} from "../entity/pageable";
 import {Page} from "../entity/page";
 import {Semester} from "../entity/semester";
+import {AbstractControl, AsyncValidatorFn, ValidationErrors} from "@angular/forms";
+import {catchError, map} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -78,5 +80,33 @@ export class SemesterService {
    */
   getOpenSemester(): Observable<Semester> {
     return this.http.get<Semester>(this.baseUrl + '/getOpenSemester');
+  }
+
+  /**
+   * 验证学期名是否重复验证器
+   * @param name 学期
+   * @returns AsyncValidatorFn 异步验证器
+   */
+  public getValidatorNameExistFn(name?: string): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+      if (control.value === name) {
+        return of(null);
+      } else {
+        return this.existByCourseName(control.value).pipe(
+          map(exist => (exist ? { exist: true, error: true } : {})),
+          catchError(() => null)
+        );
+      }
+    };
+  }
+
+  /**
+   * 是否存在该学期名
+   * @param name 学期名
+   * @returns 查询结果true：存在，false：不存在
+   */
+  public existByCourseName(name: string): Observable<boolean> {
+    const params = { name: name };
+    return this.http.get<boolean>(`${this.baseUrl}/existByName`, {params: params});
   }
 }

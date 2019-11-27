@@ -26,7 +26,7 @@ export class TeacherInfoComponent implements OnInit {
   // 构造表单
   createForm() {
     this.editForm = this.fb.group({
-      staffNumber: [null, [Validators.required]],
+      staffNumber: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(6)]],
       courseIds: [null, []]
     });
   }

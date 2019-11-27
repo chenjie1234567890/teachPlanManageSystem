@@ -16,9 +16,9 @@ public interface EducatePlanRepository extends JpaRepository<EducatePlan, Long> 
     Page<EducatePlan> findAllByMajor(Major major, Pageable pageable);
 
     /**
-     * 查询学期号是否存在
+     * 查询学年号是否存在
      * @param termNumber
      * @return
      */
-    boolean existsByTermNumber(Integer termNumber);
+    boolean existsByTermNumberAndMajorId(Integer termNumber, Long majorId);
 }

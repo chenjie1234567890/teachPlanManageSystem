@@ -22,6 +22,7 @@
     <nz-table
       [nzData]="semesterPage.content"
       nzBordered
+      nzTitle="学期信息表"
       [nzLoading]="loading"
       [nzFrontPagination]="false"
       [nzTotal]="semesterPage.totalElements"
@@ -31,13 +32,15 @@
       <thead>
       <tr>
         <th width="15">学期名称</th>
-        <th width="60%">开设课程</th>
-        <th width="25%">操作</th>
+        <th width="15">学期时间</th>
+        <th width="50%">开设课程</th>
+        <th width="20%">操作</th>
       </tr>
       </thead>
       <tbody>
       <tr *ngFor="let semester of semesterPage?.content">
         <td>{{semester.name}}</td>
+        <td>{{semester.startTime | date:'yyyy/MM/dd'}}-{{semester.endTime | date:'yyyy/MM/dd'}}</td>
         <td>
           <span *ngFor="let course of semester.courseList"><nz-tag [nzColor]="'#108ee9'">{{course.name}}</nz-tag></span></td>
         <td>
@@ -50,10 +53,10 @@
             <i nz-icon nzType="edit" nzTheme="twotone"></i>
             编辑
           </a>
-          <button nz-button nzGhost nzType="danger" (click)="deleteById(semester.id)">
-            <i nz-icon nzType="delete" nzTheme="twotone"></i>
-            删除
-          </button>
+          <!--<button nz-button nzGhost nzType="danger" (click)="deleteById(semester.id)">-->
+            <!--<i nz-icon nzType="delete" nzTheme="twotone"></i>-->
+            <!--删除-->
+          <!--</button>-->
         </td>
       </tr>
       </tbody>

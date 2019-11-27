@@ -27,7 +27,7 @@ export class StudentInfoComponent implements OnInit {
   // 构造表单
   createForm() {
     this.editForm = this.fb.group({
-      studentNum: [null, [Validators.required]],
+      studentNum: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(6)]],
       majorId: [null, []]
     });
   }

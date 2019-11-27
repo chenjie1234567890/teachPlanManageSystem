@@ -94,7 +94,7 @@ public class MajorController {
      * @return
      */
     @GetMapping("/existByName")
-    public Boolean existByName(String name){
+    public Boolean existByName(@RequestParam String name){
         return majorService.existByName(name) ;
     }
 

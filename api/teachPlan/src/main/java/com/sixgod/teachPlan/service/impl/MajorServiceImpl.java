@@ -33,7 +33,7 @@ public class MajorServiceImpl implements MajorService {
         if (name.equals("")) {
             return majorRepository.findAll(pageable);
         } else {
-            return majorRepository.findAllByNameLike(name, pageable);
+            return majorRepository.findByNameLike("%" + name + "%", pageable);
         }
     }
 

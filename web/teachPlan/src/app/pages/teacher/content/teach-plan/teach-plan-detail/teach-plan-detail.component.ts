@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {TeachPlan} from "../../../../../entity/teach-plan";
 import {TeachPlanService} from "../../../../../service/teach-plan.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {LessonService} from "../../../../../service/lesson.service";
 import {NzMarks, NzMessageService} from "ng-zorro-antd";
 import {Lesson} from "../../../../../entity/lesson";
@@ -28,7 +28,8 @@ export class TeachPlanDetailComponent implements OnInit {
   constructor(private teachPlanService: TeachPlanService,
               private lessonService: LessonService,
               private message: NzMessageService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   getTeachPlan() {
     this.route.params.subscribe(params => {
@@ -76,4 +77,7 @@ export class TeachPlanDetailComponent implements OnInit {
     this.getTeachPlan();
   }
 
+  back() {
+    this.router.navigateByUrl('teacher/teach-plan');
+  }
 }

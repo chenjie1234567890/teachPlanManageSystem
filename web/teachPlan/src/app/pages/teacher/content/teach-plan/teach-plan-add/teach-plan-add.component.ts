@@ -56,6 +56,7 @@ export class TeachPlanAddComponent implements OnInit {
   getLoginTeacher() {
     this.teacherService.getCurrentLoginTeacher().subscribe((teacher: Teacher) => {
       this.loginTeacher = teacher;
+      console.log(teacher);
     }, () => {
       console.log('error');
     });
@@ -134,5 +135,7 @@ export class TeachPlanAddComponent implements OnInit {
     this.getLoginTeacher();
     this.initForm();
   }
-
+  back() {
+    this.router.navigateByUrl('teacher/teach-plan');
+  }
 }

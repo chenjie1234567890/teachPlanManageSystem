@@ -1,3 +1,10 @@
+<nz-page-header (nzBack)="back()" nzBackIcon nzTitle="新增培养计划">
+  <nz-breadcrumb nz-page-header-breadcrumb>
+    <nz-breadcrumb-item><a routerLink="/admin/educate-plan">培养计划管理</a></nz-breadcrumb-item>
+    <nz-breadcrumb-item>新增</nz-breadcrumb-item>
+  </nz-breadcrumb>
+</nz-page-header>
+
 <form nz-form [formGroup]="addForm" (ngSubmit)="submitForm()">
   <nz-form-item>
     <nz-form-label [nzSpan]="7" nzRequired>学年</nz-form-label>

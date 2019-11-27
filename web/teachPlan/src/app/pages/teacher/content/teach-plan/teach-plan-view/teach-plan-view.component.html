@@ -1,8 +1,8 @@
 <!--上方搜索框-->
 <div nz-row>
-  <div nz-col [nzSpan]="4" [nzOffset]="2">
+  <div nz-col [nzSpan]="4">
     <a nz-button nzType="primary" routerLink="/teacher/teach-plan/add">
-      <i nz-icon nzType="plus" nzTheme="outline"></i>新增</a>
+      <i nz-icon nzType="plus" nzTheme="outline"></i>定制教学计划</a>
   </div>
 </div>
 <!--分割线-->
@@ -22,7 +22,6 @@
       (nzPageSizeChange)="getTeachPlanPage()">
       <thead>
       <tr>
-        <th width="10%">id</th>
         <th width="20%">学期</th>
         <th width="20">专业</th>
         <th width="20%">课程</th>
@@ -31,7 +30,6 @@
       </thead>
       <tbody>
       <tr *ngFor="let teachPlan of teachPlanPage?.content">
-        <td>{{teachPlan.id}}</td>
         <td>{{teachPlan.semester.name}}</td>
         <td>{{teachPlan.major.name}}</td>
         <td>{{teachPlan.course.name}}</td>

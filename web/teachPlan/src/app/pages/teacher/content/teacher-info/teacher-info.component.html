@@ -5,7 +5,11 @@
     <nz-form-label [nzSpan]="7" nzRequired>工号</nz-form-label>
     <nz-form-control [nzSpan]="6" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="nameErrorTpl">
       <nz-input-group>
-        <input nz-input placeholder="工号" formControlName="staffNumber"/>
+        <input nz-input
+               minlength="6"
+               maxlength="6"
+               placeholder="工号"
+               formControlName="staffNumber"/>
       </nz-input-group>
       <ng-template #nameErrorTpl let-control>
         <ng-container *ngIf="control.hasError('required')">

@@ -33,10 +33,6 @@ public class Teacher {
     @OneToOne
     User user;              //用户
 
-    @JsonView({TeacherJsonView.getBase.class})
-    @OneToMany
-    List<TeachPlan> teachPlanList;
-
     @JsonView({NoneJsonView.class, TeacherJsonView.getCurrentLoginTeacher.class})
     @ManyToMany(fetch = FetchType.EAGER)
     @Fetch(value = FetchMode.SUBSELECT)

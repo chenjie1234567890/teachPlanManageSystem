@@ -1,8 +1,18 @@
+<nz-page-header (nzBack)="back()" nzBackIcon nzTitle="编辑学期">
+  <nz-breadcrumb nz-page-header-breadcrumb>
+    <nz-breadcrumb-item><a routerLink="/admin/semester">学期管理</a></nz-breadcrumb-item>
+    <nz-breadcrumb-item>编辑</nz-breadcrumb-item>
+  </nz-breadcrumb>
+</nz-page-header>
+
 <form nz-form [formGroup]="editForm" (ngSubmit)="submitForm()">
   <nz-form-item>
     <nz-form-label [nzSpan]="7" nzRequired>学期名</nz-form-label>
     <nz-form-control [nzSpan]="6" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="nameErrorTpl">
       <input nz-input formControlName="name" placeholder="请输入学期名" />
+      <ng-container *ngIf="editForm.get('name').hasError('exist') && editForm.get('name').dirty">
+        学期名已存在
+      </ng-container>
       <ng-template #nameErrorTpl let-control>
         <ng-container *ngIf="control.hasError('required')">
           学期名必须输入

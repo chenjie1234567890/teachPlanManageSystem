@@ -3,7 +3,7 @@
   <li *ngFor="let menu of menuList"
       nz-menu-item
       routerLink="{{menu.router}}"
-      nzSelected="{{ menu._SELECTED }}">
+      [nzMatchRouter]="true">
     <span>
       <i nz-icon nzType="{{menu.iconType}}" nzTheme="outline"></i>
       <span class="nav-text">{{menu.name}}</span>

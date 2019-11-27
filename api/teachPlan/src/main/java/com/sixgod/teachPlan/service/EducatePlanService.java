@@ -46,9 +46,4 @@ public interface EducatePlanService {
      * 获取所有培养计划
      */
     List<EducatePlan> getAllEducatePlan();
-
-    /**
-     * 根据学年校验培养计划是否存在
-     */
-    Boolean existByTermNumber(Integer termNumber);
 }

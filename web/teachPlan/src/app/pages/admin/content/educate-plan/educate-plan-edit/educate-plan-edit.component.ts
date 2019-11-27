@@ -117,4 +117,7 @@ export class EducatePlanEditComponent implements OnInit {
     this.getEditMajor();
   }
 
+  back() {
+    this.router.navigateByUrl('admin/educate-plan');
+  }
 }

@@ -1,56 +1,40 @@
 <!--上方搜索框-->
 <div nz-row>
   <div nz-col [nzSpan]="4">
-    <nz-input-group nzSearch>
-      <input type="text" nz-input placeholder="用户姓名" #search>
-    </nz-input-group>
+    <input type="text" nz-input placeholder="用户名" [(ngModel)]="userName">
   </div>
-  <div nz-col [nzSpan]="4" [nzOffset]="1">
-    <button nz-button (click)="searchData(search.value)">
+  <div nz-col [nzSpan]="2">
+    <button nz-button (click)="getUserPage()">
       <i nz-icon nzType="search" nzTheme="outline"></i>
       查询
     </button>
   </div>
-  <div nz-col [nzSpan]="4" [nzOffset]="2">
-    <a nz-button nzType="primary" routerLink="/admin/user/add">
-      <i nz-icon nzType="plus" nzTheme="outline"></i>新增</a>
-  </div>
 </div>
-<!--分割线-->
-<nz-divider></nz-divider>
 <!--下方表格-->
 <div nz-row>
   <div nz-col [nzSpan]="24">
     <nz-table
-      [nzData]="userList"
+      #UserTable
       nzBordered
-      nzShowSizeChanger
+      nzTitle="用户信息表"
       [nzLoading]="loading"
-      [nzTotal]="userList.length"
-      (nzPageIndexChange)="getAllByPage()"
-      (nzPageSizeChange)="getAllByPage()"
+      [nzData]="userPage.content"
+      [nzTotal]="userPage.totalElements"
+      [(nzPageSize)]="pageable.size"
+      [(nzPageIndex)]="pageable.page"
+      [nzFrontPagination]="false"
+      (nzPageIndexChange)="getUserPage()"
     >
       <thead>
       <tr>
-        <th>id</th>
-        <th>姓名</th>
-        <th>密码</th>
-        <th>身份</th>
-        <th>操作</th>
+        <th width="50">用户名</th>
+        <th width="50%">角色</th>
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let user of userList">
-        <td>{{user.id}}</td>
+      <tr *ngFor="let user of UserTable.data">
         <td>{{user.userName}}</td>
-        <td>{{user.password}}</td>
-        <td>{{user.role}}</td>
-        <td>
-          <a nz-button nzGhost nzType="primary" routerLink="/admin/user/edit/{{user.id}}">
-            <i nz-icon nzType="edit" nzTheme="twotone"></i>
-            编辑
-          </a>
-        </td>
+        <td>{{user.role | userRole}}</td>
       </tr>
       </tbody>
     </nz-table>

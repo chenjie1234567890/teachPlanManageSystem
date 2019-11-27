@@ -20,7 +20,7 @@ export class MajorAddComponent implements OnInit {
   // 初始化表单
   initForm() {
     this.addForm = this.fb.group({
-      name: ['', [Validators.required]],
+      name: ['', [Validators.required], [this.majorService.getValidatorNameExistFn()]],
       courseList: [null, []]
     });
   }
@@ -59,5 +59,9 @@ export class MajorAddComponent implements OnInit {
   ngOnInit() {
     this.initForm();
     this.initOptions();
+  }
+
+  back() {
+    this.router.navigateByUrl('admin/major');
   }
 }

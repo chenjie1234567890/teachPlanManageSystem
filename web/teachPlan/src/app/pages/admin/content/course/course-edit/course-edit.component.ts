@@ -32,7 +32,7 @@ export class CourseEditComponent implements OnInit {
 
   // 初始化表单
   initForm(course: Course) {
-    this.editForm.setValue({
+    this.editForm.patchValue({
       name: course.name,
       credit: course.credit,
       totalLessonHour: course.totalLessonHour,
@@ -40,6 +40,8 @@ export class CourseEditComponent implements OnInit {
       teachType: course.teachType,
       examType: course.examType
     });
+    // this.editForm.get('name').setAsyncValidators(
+    //   this.courseService.getValidatorNameExistFn(course.name));
   }
 
   // 获取要编辑的课程
@@ -78,4 +80,7 @@ export class CourseEditComponent implements OnInit {
     this.getEdiCourse();
   }
 
+  back() {
+    this.router.navigateByUrl('admin/course');
+  }
 }

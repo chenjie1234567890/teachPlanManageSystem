@@ -3,7 +3,9 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {Pageable} from "../entity/pageable";
 import {Page} from "../entity/page";
 import {Major} from "../entity/major";
-import {Observable} from "rxjs";
+import {Observable, of} from "rxjs";
+import {AbstractControl, AsyncValidatorFn, ValidationErrors} from "@angular/forms";
+import {catchError, map} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -72,5 +74,33 @@ export class MajorService {
   findAllByCourseId(courseId: number): Observable<Major[]> {
     const params = { courseId: courseId.toString() };
     return this.http.get<Major[]>(this.baseUrl + '/findAllByCourseId', {params: params});
+  }
+
+  /**
+   * 验证专业名是否重复验证器
+   * @param name 专业
+   * @returns AsyncValidatorFn 异步验证器
+   */
+  public getValidatorNameExistFn(name?: string): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+      if (control.value === name) {
+        return of(null);
+      } else {
+        return this.existByCourseName(control.value).pipe(
+          map(exist => (exist ? { exist: true, error: true } : {})),
+          catchError(() => null)
+        );
+      }
+    };
+  }
+
+  /**
+   * 是否存在该专业名
+   * @param name 专业名
+   * @returns 查询结果true：存在，false：不存在
+   */
+  public existByCourseName(name: string): Observable<boolean> {
+    const params = { name: name };
+    return this.http.get<boolean>(`${this.baseUrl}/existByName`, {params: params});
   }
 }

@@ -11,6 +11,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang.math.RandomUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import javax.security.auth.message.AuthException;
 import javax.servlet.http.HttpSession;
@@ -118,5 +120,10 @@ public class UserServiceImpl implements UserService {
         else{
             return true;
         }
+    }
+
+    @Override
+    public Page<User> findAllByName(String name, Pageable pageable) {
+        return userRepository.findByUserNameLike("%" + name + "%", pageable);
     }
 }

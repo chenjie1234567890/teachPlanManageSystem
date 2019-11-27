@@ -1,5 +1,6 @@
 package com.sixgod.teachPlan.service.impl;
 
+import com.sixgod.teachPlan.Exception.EntityRepeatException;
 import com.sixgod.teachPlan.entity.Lesson;
 import com.sixgod.teachPlan.entity.TeachPlan;
 import com.sixgod.teachPlan.entity.Teacher;
@@ -33,6 +34,15 @@ public class TeachPlanServiceImpl implements TeachPlanService {
 
     @Override
     public void add(TeachPlan teachPlan) {
+        if (teachPlanRepository.existsBySemesterIdAndMajorIdAndCourseIdAndTeacherId(
+                teachPlan.getSemester().getId(),
+                teachPlan.getMajor().getId(),
+                teachPlan.getCourse().getId(),
+                teacherService.getCurrentLoginTeacher().getId()
+        )) {
+            throw new EntityRepeatException("教学计划添加重复");
+        }
+
         // 新增教学计划同时生成多个课时空表
         List<Lesson> lessonList = new ArrayList<>();
         int i = teachPlan.getCourse().getTotalLessonHour();
@@ -49,6 +59,18 @@ public class TeachPlanServiceImpl implements TeachPlanService {
         teachPlan.setTeacher(teacherService.getCurrentLoginTeacher());
 
         teachPlanRepository.save(teachPlan);
+    }
+
+    public Boolean isExist(TeachPlan newteachPlan)  {
+        List<TeachPlan> teachPlans = teachPlanRepository.findAllByTeacherId(teacherService.getCurrentLoginTeacher().getId());
+        for (TeachPlan teachPlan: teachPlans) {
+            if (teachPlan.getCourse().getId().equals(newteachPlan.getCourse().getId()) &&
+                teachPlan.getMajor().getId().equals(newteachPlan.getMajor().getId()) &&
+                teachPlan.getSemester().getId().equals(newteachPlan.getSemester().getId())) {
+                throw new EntityRepeatException("教学计划添加重复");
+            }
+        }
+        return false;
     }
 
     @Override

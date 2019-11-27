@@ -1,9 +1,17 @@
 package com.sixgod.teachPlan.controller;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.sixgod.teachPlan.entity.Major;
 import com.sixgod.teachPlan.entity.User;
+import com.sixgod.teachPlan.jsonView.MajorJsonView;
+import com.sixgod.teachPlan.jsonView.UserJsonView;
 import com.sixgod.teachPlan.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 import javax.security.auth.message.AuthException;
 
@@ -64,7 +72,22 @@ public class UserController {
      * @return
      */
     @GetMapping("/existByUserName")
-    public boolean existByUserName(String username){
+    public boolean existByUserName(@RequestParam String username){
         return userService.existByUserName(username);
+    }
+
+    /**
+     * 根据姓名查询所有用户分页信息
+     * @param name
+     * @param pageable
+     * @return Page<Major>
+     */
+    @JsonView(UserJsonView.getBase.class)
+    @GetMapping
+    public Page<User> getUserPage(
+            @RequestParam(name = "name", required = false, defaultValue = "") String name,
+            @PageableDefault(sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
+        Page<User> userPage = userService.findAllByName(name, pageable);
+        return userPage;
     }
 }

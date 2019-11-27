@@ -21,7 +21,7 @@ public class SemesterServiceImpl implements SemesterService {
             return semesterRepository.findAll(pageable);
         }
         else {
-            return semesterRepository.findAllByNameLike(name,pageable);
+            return semesterRepository.findByNameLike("%" + name + "%", pageable);
         }
     }
 

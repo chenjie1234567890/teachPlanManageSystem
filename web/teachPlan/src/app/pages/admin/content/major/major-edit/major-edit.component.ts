@@ -107,4 +107,7 @@ export class MajorEditComponent implements OnInit {
     this.getEditMajor();
   }
 
+  back() {
+    this.router.navigateByUrl('admin/major');
+  }
 }

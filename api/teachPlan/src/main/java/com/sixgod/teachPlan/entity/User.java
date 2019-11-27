@@ -1,5 +1,7 @@
 package com.sixgod.teachPlan.entity;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.sixgod.teachPlan.jsonView.UserJsonView;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -27,24 +29,28 @@ public class User {
     private Long id;
 
     /**
-     * 用户
+     * 用户名
      */
+    @JsonView(UserJsonView.getBase.class)
     @Column(unique = true)
     private String userName;
 
     /**
      * 密码
      */
+    @JsonView(UserJsonView.getAll.class)
     private String password;
 
     /**
      * 确认密码，不映射到数据表
      */
     @Transient
+    @JsonView(UserJsonView.getAll.class)
     private String confirmPassword;
 
     /**
      * 角色
      */
+    @JsonView(UserJsonView.getBase.class)
     private Integer role = ROLE_STUDENT;
 }

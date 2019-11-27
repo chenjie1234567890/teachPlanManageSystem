@@ -23,5 +23,5 @@ public class Lesson {
 
     Integer lessonHour;    // 课时次序
     String content;        // 内容
-    Integer weight = 0;    // 重要性
+    Double weight = 0.3;    // 重要性
 }

@@ -14,7 +14,7 @@ public interface MajorRepository extends JpaRepository<Major, Long> {
      * @param name
      * @return
      */
-    Page<Major> findAllByNameLike(String name, Pageable pageable);
+    Page<Major> findByNameLike(String name, Pageable pageable);
 
     /**
      * 查询所有专业分页信息
