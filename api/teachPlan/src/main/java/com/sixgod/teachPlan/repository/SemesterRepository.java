@@ -14,7 +14,7 @@ public interface SemesterRepository extends JpaRepository <Semester,Long > {
      * @param pageable
      * @return
      */
-    Page<Semester> findAllByNameLike(String name, Pageable pageable);
+    Page<Semester> findByNameLike(String name, Pageable pageable);
 
     /**
      * 查询学期名是否存在

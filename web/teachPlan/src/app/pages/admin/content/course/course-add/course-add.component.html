@@ -1,9 +1,19 @@
+<nz-page-header (nzBack)="back()" nzBackIcon nzTitle="新增课程">
+  <nz-breadcrumb nz-page-header-breadcrumb>
+    <nz-breadcrumb-item><a routerLink="/admin/course">课程管理</a></nz-breadcrumb-item>
+    <nz-breadcrumb-item>新增</nz-breadcrumb-item>
+  </nz-breadcrumb>
+</nz-page-header>
+
 <form nz-form [formGroup]="addForm" (ngSubmit)="submitForm()">
   <nz-form-item>
     <nz-form-label [nzSpan]="7" nzRequired>课程名</nz-form-label>
-    <nz-form-control [nzSpan]="5" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="nameErrorTpl">
+    <nz-form-control [nzSpan]="5" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="nameErrorTpl1">
       <input nz-input formControlName="name" placeholder="请输入课程名" />
-      <ng-template #nameErrorTpl let-control>
+      <ng-template #nameErrorTpl1 let-control>
+        <ng-container *ngIf="control.hasError('exist')">
+          课程名已存在
+        </ng-container>
         <ng-container *ngIf="control.hasError('required')">
           课程名必须输入
         </ng-container>
@@ -15,7 +25,7 @@
     <nz-form-control [nzSpan]="6" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="nameErrorTpl">
       <nz-input-number
         formControlName="credit"
-        [nzMin]="1"
+        [nzMin]="0.5"
         [nzMax]="10"
         [nzStep]="0.1"
       ></nz-input-number>

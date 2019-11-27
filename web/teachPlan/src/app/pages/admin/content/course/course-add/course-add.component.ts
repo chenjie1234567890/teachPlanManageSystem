@@ -17,7 +17,7 @@ export class CourseAddComponent implements OnInit {
   // 初始化表单
   initForm() {
     this.addForm = this.fb.group({
-      name: ['', [Validators.required]],
+      name: ['', [Validators.required], [this.courseService.getValidatorNameExistFn()]],
       credit: [null, [Validators.required]],
       totalLessonHour: [null, [Validators.required]],
       type: [Course.COURSE_TYPE_BASE],
@@ -47,4 +47,7 @@ export class CourseAddComponent implements OnInit {
     this.initForm();
   }
 
+  back() {
+    this.router.navigateByUrl('admin/course');
+  }
 }

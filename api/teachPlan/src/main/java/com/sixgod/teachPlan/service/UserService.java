@@ -2,6 +2,7 @@ package com.sixgod.teachPlan.service;
 
 import com.sixgod.teachPlan.entity.User;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import javax.security.auth.message.AuthException;
 
@@ -59,4 +60,12 @@ public interface UserService {
      * 校验用户名是否存在
      */
     Boolean existByUserName(String userName);
+
+    /**
+     * 根据用户名返回用户分页信息
+     * @param name
+     * @param pageable
+     * @return
+     */
+    Page<User> findAllByName(String name, Pageable pageable);
 }

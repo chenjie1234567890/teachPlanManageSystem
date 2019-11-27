@@ -1,6 +1,8 @@
 package com.sixgod.teachPlan.repository;
 
 import com.sixgod.teachPlan.entity.User;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -21,4 +23,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
      * @return
      */
     User findByUserName(String userName);
+
+    Page<User> findByUserNameLike(String s, Pageable pageable);
 }

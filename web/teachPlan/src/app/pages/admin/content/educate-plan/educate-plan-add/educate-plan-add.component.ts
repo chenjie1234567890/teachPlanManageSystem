@@ -73,4 +73,7 @@ export class EducatePlanAddComponent implements OnInit {
     this.initMajorOptions();
   }
 
+  back() {
+    this.router.navigateByUrl('admin/educate-plan');
+  }
 }

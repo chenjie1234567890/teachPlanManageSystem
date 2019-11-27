@@ -9,7 +9,7 @@ export const AppConfig = {
   currentDate: new Date(),
 
   // 分页配置
-  pageConfig: new Pageable(1, 10),
+  pageConfig: new Pageable(1, 8),
 
   // 日期格式
   dateFormat: 'yyyy-MM-dd',

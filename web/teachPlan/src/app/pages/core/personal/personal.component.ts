@@ -20,7 +20,7 @@ export class PersonalComponent implements OnInit {
   // 构造表单
   ceeateForm() {
     this.userForm = this.fb.group({
-      userName: ['', [Validators.required]],
+      userName: ['', [Validators.required], [this.userService.getValidatorNameExistFn()]],
       password: [null, [Validators.required]],
       confirmPassword: [null, [Validators.required, pwConfirmValidator]],
     });

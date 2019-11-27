@@ -1,5 +1,6 @@
 package com.sixgod.teachPlan.service.impl;
 
+import com.sixgod.teachPlan.Exception.EntityRepeatException;
 import com.sixgod.teachPlan.entity.EducatePlan;
 import com.sixgod.teachPlan.entity.Major;
 import com.sixgod.teachPlan.repository.EducatePlanRepository;
@@ -30,6 +31,12 @@ public class EducatePlanServiceImpl implements EducatePlanService {
 
     @Override
     public void add(EducatePlan educatePlan) {
+        if (educatePlanRepository.existsByTermNumberAndMajorId(
+                educatePlan.getTermNumber(),
+                educatePlan.getMajor().getId()
+        )) {
+            throw new EntityRepeatException("培养计划添加重复");
+        }
         educatePlanRepository.save(educatePlan);
     }
 
@@ -78,15 +85,5 @@ public class EducatePlanServiceImpl implements EducatePlanService {
     @Override
     public List<EducatePlan> getAllEducatePlan() {
         return educatePlanRepository.findAll();
-    }
-
-    @Override
-    public Boolean existByTermNumber(Integer termNumber) {
-        if(educatePlanRepository.existsByTermNumber(termNumber)){
-            return true;
-        }
-        else {
-            return false;
-        }
     }
 }

@@ -1,5 +1,11 @@
 <!--分割线-->
-<nz-descriptions nzTitle="教学计划详情">
+<nz-page-header (nzBack)="back()" nzBackIcon nzTitle="教学计划详情">
+  <nz-breadcrumb nz-page-header-breadcrumb>
+    <nz-breadcrumb-item><a routerLink="/teacher/teach-plan">教学计划</a></nz-breadcrumb-item>
+    <nz-breadcrumb-item>详情</nz-breadcrumb-item>
+  </nz-breadcrumb>
+</nz-page-header>
+<nz-descriptions>
   <nz-descriptions-item nzTitle="上课学期">{{teachPlan?.semester.name}}</nz-descriptions-item>
   <nz-descriptions-item nzTitle="课程名">{{teachPlan?.course.name}}</nz-descriptions-item>
   <nz-descriptions-item nzTitle="教授专业">{{teachPlan?.major.name}}</nz-descriptions-item>
@@ -21,8 +27,8 @@
     >
       <thead>
       <tr>
-        <th width="5%">课时</th>
-        <th width="25">重要性</th>
+        <th width="10%">课时</th>
+        <th width="20">重要性</th>
         <th width="70%">课时内容</th>
       </tr>
       </thead>
@@ -30,7 +36,7 @@
       <ng-template nz-virtual-scroll let-lesson>
         <tr>
           <td width="10%">{{lesson.lessonHour}}</td>
-          <td width="30%">
+          <td width="20%">
             <nz-slider
               [nzMin]="0"
               [nzMax]="0.9"
@@ -43,7 +49,7 @@
               (nzOnAfterChange)="weightChange($event, lesson.id)"
             ></nz-slider>
           </td>
-          <td width="60%" [nzBreakWord]="true">
+          <td width="70%" [nzBreakWord]="true">
             <p
               nz-paragraph
               nzCopyable
@@ -51,7 +57,7 @@
               nzEllipsis
               [(nzContent)]="lesson.content"
               (nzContentChange)="contentChange($event, lesson.id)"
-              [nzEllipsisRows]="2"></p>
+              [nzEllipsisRows]="3"></p>
           </td>
         </tr>
       </ng-template>

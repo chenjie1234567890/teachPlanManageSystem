@@ -23,7 +23,7 @@ export class SemesterAddComponent implements OnInit {
   // 初始化表单
   initForm() {
     this.addForm = this.fb.group({
-      name: ['', [Validators.required]],
+      name: ['', [Validators.required], [this.semesterService.getValidatorNameExistFn()]],
       timeRange: ['', [Validators.required]],
       courseList: [null, []]
     });
@@ -71,6 +71,10 @@ export class SemesterAddComponent implements OnInit {
   ngOnInit() {
     this.initForm();
     this.initOptions();
+  }
+
+  back() {
+    this.router.navigateByUrl('admin/semester');
   }
 
 }

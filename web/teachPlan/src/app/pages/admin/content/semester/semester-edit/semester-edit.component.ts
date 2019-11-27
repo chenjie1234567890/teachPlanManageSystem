@@ -118,4 +118,9 @@ export class SemesterEditComponent implements OnInit {
     this.getEditSemester();
     this.initOptions();
   }
+
+  back() {
+    this.router.navigateByUrl('admin/semester');
+  }
+
 }

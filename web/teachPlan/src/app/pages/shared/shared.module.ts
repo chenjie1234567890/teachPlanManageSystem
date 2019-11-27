@@ -8,6 +8,7 @@ import {RouterModule} from "@angular/router";
 import {CourseTypePipe} from "../../pipe/course-type.pipe";
 import {TeachTypePipe} from "../../pipe/teach-type.pipe";
 import {ExamTypePipe} from "../../pipe/exam-type.pipe";
+import {UserRolePipe} from "../../pipe/user-role.pipe";
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import {ExamTypePipe} from "../../pipe/exam-type.pipe";
     NotFoundComponent,
     CourseTypePipe,
     TeachTypePipe,
-    ExamTypePipe
+    ExamTypePipe,
+    UserRolePipe
   ],
   imports: [
     CommonModule,
@@ -31,7 +33,8 @@ import {ExamTypePipe} from "../../pipe/exam-type.pipe";
     NzGridModule,
     CourseTypePipe,
     TeachTypePipe,
-    ExamTypePipe
+    ExamTypePipe,
+    UserRolePipe
   ]
 })
 export class SharedModule { }

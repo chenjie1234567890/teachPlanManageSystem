@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 @Service
@@ -31,7 +30,7 @@ public class CourseServiceImpl implements CourseService {
             return courseRepository.findAll(pageable);
         }
         else {
-            return courseRepository.findAllByNameLike(name,pageable);
+            return courseRepository.findByNameLike("%" + name + "%", pageable);
         }
     }
 

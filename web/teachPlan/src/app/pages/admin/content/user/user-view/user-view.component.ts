@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from '../../../../../entity/user';
+import {AppConfig} from "../../../../../app.config";
+import {Page} from "../../../../../entity/page";
+import {UserService} from "../../../../../service/user.service";
+
 
 @Component({
   selector: 'app-user-index',
@@ -7,20 +11,23 @@ import {User} from '../../../../../entity/user';
   styleUrls: ['./user-view.component.css']
 })
 export class UserViewComponent implements OnInit {
-  userList: ({ id: number; userName: string; password: string; role: number })[];
-  constructor() { }
 
-  getAllByPage() {
-   console.log('page change');
+  userName = '';
+  pageable = AppConfig.pageConfig;
+  userPage: Page<User> = new Page();
+  constructor(private userService: UserService) { }
+
+  getUserPage() {
+    this.userService.getUserPage(this.pageable, this.userName)
+      .subscribe((data: Page<User>) => {
+        this.userPage = data;
+      }, (res) => {
+        console.log(res);
+      });
   }
 
   ngOnInit() {
-    this.userList = [
-      {id: 4, userName: '赵六', password: '123', role: User.ROLE_STUDENT},
-      {id: 1, userName: '张三', password: '123', role: User.ROLE_ADMIN},
-      {id: 2, userName: '李四', password: '123', role: User.ROLE_STUDENT},
-      {id: 3, userName: '王五', password: '123', role: User.ROLE_TEACHER},
-    ];
+    this.getUserPage();
   }
 
 }

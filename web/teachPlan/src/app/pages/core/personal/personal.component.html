@@ -6,6 +6,9 @@
         <input nz-input placeholder="用户名" formControlName="userName"/>
       </nz-input-group>
       <ng-template #userErrorTpl let-control>
+        <ng-container *ngIf="control.hasError('exist') && control.dirty">
+          用户名已存在
+        </ng-container>
         <ng-container *ngIf="control.hasError('required')">
           用户名不能为空
         </ng-container>

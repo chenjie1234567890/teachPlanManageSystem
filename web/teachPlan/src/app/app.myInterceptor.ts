@@ -48,6 +48,8 @@ export class MyInterceptor implements HttpInterceptor {
       case 404:
         this.message.error('页面不存在');
         break;
+      case 405:
+        this.message.error(errorResponse.error.message);
     }
     // 最终将异常抛出来，便于组件个性化处理
     throw errorResponse;
